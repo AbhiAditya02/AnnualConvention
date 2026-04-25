@@ -127,13 +127,13 @@ export default function MotionCards() {
             className="motion-card-section" id="motion-card-section">
             {/* ─── Part 1: Bold Heading Text with SVG Sticker Placeholders ─── */}
             <div className="motion-card__heading">
-                <h2 className="motion-card__title">
-                    an agency built
+                <h2 className="motion-card__title" style={{ fontSize: '7rem', lineHeight: '0.9', letterSpacing: '-3px' }}>
+                    fostering innovation
                     <br />
-                    for the future.
+                    &amp; excellence.
                 </h2>
                 <p className="motion-card__subtitle">
-                    from TV to TikTok.
+                    from ideas to impact.
                     {/* SVG sticker placeholder — top-right area */}
                     <span className="motion-card__sticker motion-card__sticker--top">
                         <img
@@ -165,12 +165,13 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--1">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/686b8e614494dac669a4099c_c310914b5a1a573b4c7499e9531f8d52_DE.avif"
+                                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
-                                alt=""
+                                alt="Students in auditorium"
                                 className="cover-image"
+                                style={{ objectFit: 'cover' }}
                             />
                         </div>
                     </div>
@@ -178,12 +179,13 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--2">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/686b8e607142a7a25157d9dd_1875b9852ca289170917f9060c95b6a4_BolpuntJapie.avif"
+                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
-                                alt=""
+                                alt="Students networking"
                                 className="cover-image"
+                                style={{ objectFit: 'cover' }}
                             />
                         </div>
                     </div>
@@ -191,12 +193,13 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--3">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/686b8e60ba19eb1109d3daa5_b1280272f47b3cd3ea25b91391935efa_RonaldoMassage.avif"
+                                src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
-                                alt=""
+                                alt="Hackathon"
                                 className="cover-image"
+                                style={{ objectFit: 'cover' }}
                             />
                         </div>
                     </div>
@@ -204,12 +207,13 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--4">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/686b8e607d351d1335f06e04_f1aafb2150d81c3990c906d901d2e7e4_Esprix.avif"
+                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
-                                alt=""
+                                alt="Speaker on stage"
                                 className="cover-image"
+                                style={{ objectFit: 'cover' }}
                             />
                         </div>
                     </div>
@@ -218,13 +222,13 @@ export default function MotionCards() {
                 {/* Floating labels — positioned freely over the cards area */}
                 <div ref={containerRef} className="motion-card__floating-labels">
                     <div className="motion-card__floating-label motion-card__floating-label--pink">
-                        <p className="motion-card__floating-text">girls just wanna have fun!</p>
+                        <p className="motion-card__floating-text">building a dynamic tech community</p>
                     </div>
                     <div className="motion-card__floating-label motion-card__floating-label--orange">
-                        <p className="motion-card__floating-text">mainstream is not a dirty word</p>
+                        <p className="motion-card__floating-text">ethical hacking & CTF</p>
                     </div>
                     <div className="motion-card__floating-label motion-card__floating-label--red">
-                        <p className="motion-card__floating-text">arrogance = old fashioned</p>
+                        <p className="motion-card__floating-text">bridging academia & industry</p>
                     </div>
                 </div>
             </div>
@@ -232,10 +236,8 @@ export default function MotionCards() {
             {/* ─── Part 3: Bottom Paragraph Text ─── */}
             <div className="motion-card__footer-text">
                 <p className="motion-card__description">
-                    To reach the new generation you need to know where
-                    they are. We are a true 360° agency, working the
-                    whole spectrum from TikTok content to TVC and from influencer
-                    collabs to out of home spectaculars.
+                    The Indian Society for Technical Education (ISTE) was established in 1941 to advance technical education in India. 
+                    The ISTE HIT Students' Chapter aims to bridge the gap between academia and industry through hands-on learning, research, and innovation-driven events.
                 </p>
             </div>
         </section>

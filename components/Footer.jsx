@@ -158,8 +158,8 @@ export default function Footer() {
             <div className="footer-top">
                 {/* Jobs */}
                 <div className="footer-column">
-                    <span className="footer-badge">join us</span>
-                    <h3>we are recruiting!</h3>
+                    <span className="footer-badge">participate</span>
+                    <h3>register now!</h3>
                 </div>
                 {/* Office */}
                 <div className="footer-column">
@@ -237,12 +237,12 @@ export default function Footer() {
                         <div className="credits-box">
                             <div className="credits-content">
                                 <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">design by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Jordan</a></div>
+                                    <div className="overflow-wrapper"><span className="credits-label">organized by</span></div>
+                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">ISTE HIT SC</a></div>
                                 </div>
                                 <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">code by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Dennis</a></div>
+                                    <div className="overflow-wrapper"><span className="credits-label">developed by</span></div>
+                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Web Dev Team</a></div>
                                 </div>
                             </div>
                         </div>
