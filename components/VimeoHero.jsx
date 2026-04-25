@@ -189,12 +189,10 @@ export default function VimeoHero() {
                 <div className="home-header__title">
                     <h1 className="vimeo-hero__title" ref={titleRef} onClick={(e) => e.stopPropagation()}>
 
-                        {/* "we" */}
-                        <span className="vimeo-hero__word">we </span>
+                        <span className="vimeo-hero__word">annual </span>
 
-                        {/* "make" + ⑤ smiley (no animation) */}
                         <span className="vimeo-hero__word is--relative">
-                            <span>make </span>
+                            <span>convention </span>
                             <div className="home-header__smiley">
                                 <img
                                     src="/assets/VimeoHero SVG/smiley-face.svg"
@@ -204,18 +202,13 @@ export default function VimeoHero() {
                             </div>
                         </span>
 
-                        {/* "advertising" italic */}
-                        <span className="vimeo-hero__word"><em>advertising </em></span>
-
-                        {/* "for" */}
-                        <span className="vimeo-hero__word">for </span>
+                        <span className="vimeo-hero__word"><em>3.0 </em></span>
 
                         <div style={{ flexBasis: '100%', height: 0 }} />
 
-                        <span className="vimeo-hero__word">the </span>
-                        <span className="vimeo-hero__word">new </span>
+                        <span className="vimeo-hero__word">by </span>
+                        <span className="vimeo-hero__word">iste </span>
 
-                        {/* "mainstream" + ⑤ pink star (no spin) + oval underline */}
                         <span className="vimeo-hero__word is--relative">
                             <div className="home-header__star">
                                 <div className="home-header__star-inner">
@@ -232,7 +225,7 @@ export default function VimeoHero() {
                                 alt=""
                                 className="home-header__title-line-svg"
                             />
-                            <span>mainstream</span>
+                            <span>hit sc</span>
                         </span>
 
                     </h1>
