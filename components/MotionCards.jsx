@@ -165,7 +165,21 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--1">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                src="assets/MotionCard SVG/ideathon_web.jpeg"
+                                loading="lazy"
+                                width={1000}
+                                height={1000}
+                                alt="Ideathon 2k25"
+                                className="cover-image"
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="motion-card__card motion-card__card--2">
+                        <div className="motion-card__card-image">
+                            <img
+                                src="assets/MotionCard SVG/convention1_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -176,28 +190,14 @@ export default function MotionCards() {
                         </div>
                     </div>
 
-                    <div className="motion-card__card motion-card__card--2">
-                        <div className="motion-card__card-image">
-                            <img
-                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                                loading="lazy"
-                                width={1000}
-                                height={1000}
-                                alt="Students networking"
-                                className="cover-image"
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </div>
-                    </div>
-
                     <div className="motion-card__card motion-card__card--3">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                src="assets/MotionCard SVG/convention2_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
-                                alt="Hackathon"
+                                alt="Inauguration"
                                 className="cover-image"
                                 style={{ objectFit: 'cover' }}
                             />
@@ -207,11 +207,11 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--4">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                src="assets/MotionCard SVG/convention3_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
-                                alt="Speaker on stage"
+                                alt="Chief Guest"
                                 className="cover-image"
                                 style={{ objectFit: 'cover' }}
                             />
@@ -222,13 +222,13 @@ export default function MotionCards() {
                 {/* Floating labels — positioned freely over the cards area */}
                 <div ref={containerRef} className="motion-card__floating-labels">
                     <div className="motion-card__floating-label motion-card__floating-label--pink">
-                        <p className="motion-card__floating-text">building a dynamic tech community</p>
+                        <p className="motion-card__floating-text"></p>
                     </div>
                     <div className="motion-card__floating-label motion-card__floating-label--orange">
-                        <p className="motion-card__floating-text">ethical hacking & CTF</p>
+                        <p className="motion-card__floating-text"></p>
                     </div>
                     <div className="motion-card__floating-label motion-card__floating-label--red">
-                        <p className="motion-card__floating-text">bridging academia & industry</p>
+                        <p className="motion-card__floating-text"></p>
                     </div>
                 </div>
             </div>
