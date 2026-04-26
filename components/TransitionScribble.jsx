@@ -2,15 +2,15 @@
 
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { ANIMATION_CONFIG } from '@/lib/data';
+import { ANIMATION_CONFIG, ISTE_Default_SVG} from '@/lib/data';
 
 export default function TransitionScribble() {
     useEffect(() => {
-        const logoTruusClickable = document.querySelector('.logo-truus');
+        const logoClickable = document.querySelector('.logo');
         const transitionScribblePath = document.querySelector('.transition-scribble path');
         const transitionScribbleSvg = document.querySelector('.transition-scribble');
 
-        if (!logoTruusClickable || !transitionScribblePath || !transitionScribbleSvg) return;
+        if (!logoClickable || !transitionScribblePath || !transitionScribbleSvg) return;
 
         const transitionColors = [
             'var(--color-green)', 'var(--color-lightblue)', 'var(--color-darkblue)',
@@ -41,9 +41,23 @@ export default function TransitionScribble() {
                 transitionLogo = document.createElement('div');
                 transitionLogo.className = 'transition-logo';
                 transitionLogo.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:10000; pointer-events:none; opacity:0; display:flex; justify-content:center; align-items:center; transition: color 0.1s;';
-                const svgClone = document.querySelector('.logo-truus').cloneNode(true);
-                svgClone.style.width = '150px';
-                svgClone.style.height = 'auto';
+                const logoEl = document.querySelector('.logo');
+                let svgClone;
+                if (logoEl) {
+                    svgClone = logoEl.cloneNode(true);
+                    svgClone.style.width = '500px';
+                } else {
+                    const parser = new DOMParser();
+                    const svgDoc = parser.parseFromString(ISTE_Default_SVG, 'image/svg+xml');
+                    svgClone = svgDoc.documentElement;
+                    svgClone.style.width = 'min(500px, 80vw)';
+                    svgClone.style.height = 'auto';
+                    svgClone.style.color = logoColor;
+                    svgClone.querySelectorAll('[fill="white"]').forEach(el => el.setAttribute('fill', 'currentColor'));
+                }
+                if (logoEl) {
+                    svgClone.style.height = 'auto';
+                }
                 transitionLogo.appendChild(svgClone);
                 document.body.appendChild(transitionLogo);
             }
@@ -95,13 +109,13 @@ export default function TransitionScribble() {
             }, durIn + (durOut * 0.48));
         };
 
-        logoTruusClickable.addEventListener('click', runScribbleAnimation);
+        logoClickable.addEventListener('click', runScribbleAnimation);
 
         // Auto-run on load
         const timer = setTimeout(() => runScribbleAnimation(null), 100);
 
         return () => {
-            logoTruusClickable.removeEventListener('click', runScribbleAnimation);
+            if (logoClickable) logoClickable.removeEventListener('click', runScribbleAnimation);
             clearTimeout(timer);
         };
     }, []);

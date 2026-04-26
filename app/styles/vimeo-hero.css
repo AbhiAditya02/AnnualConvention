@@ -5,7 +5,7 @@
     position: relative;
     width: calc(100% - 24px);
     height: calc(100vh - 24px);
-    margin: 12px auto;
+    margin: -5px auto;
     overflow: hidden;
     background-color: var(--color-black-soft);
     border-radius: 24px;
@@ -112,10 +112,10 @@
 /* ─── ⑤ Smiley — NO animation ─────────────────── */
 .home-header__smiley {
     position: absolute;
-    top: -0.35em;
-    left: 0.4em;
-    width: 1em;
-    height: 1em;
+    top: -55%;
+    left: 7%;
+    width: 40px;
+    height: auto;
     pointer-events: none;
     z-index: 10;
     rotate: calc(-30deg);
@@ -130,7 +130,7 @@
 .home-header__star {
     position: absolute;
     top: 10%;
-    right: -0.6em;
+    left: 73%;
     transform: translateY(-50%);
     width: 0.8em;
     height: 0.8em;
@@ -156,10 +156,10 @@
 .home-header__title-line-svg {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 70%;
     transform: translate(-50%, -50%);
-    width: 120%;
-    height: 104%;
+    width: 50%;
+    height: auto;
     color: var(--color-white);
     overflow: visible;
     pointer-events: none;
