@@ -1,24 +1,15 @@
 /* ─── Navbar & Header ───────────────────────────────────────────────────────── */
 .main-header {
-    width: 80%;
+    width: 100%;
 }
 
-.logo-work-container {
+.logo-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60px;
-    height: 55px;
-}
-
-.nav-bar__work-blob-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    height: 60px;
 }
 
 .logo-work-text {
@@ -55,13 +46,19 @@
     color: var(--color-dark);
 }
 
-.logo-truus {
+.logo {
     display: block;
-    width: 150px;
+    width: 240px;
     height: auto;
 }
 
-.logo-truus path,
+@media (max-width: 768px) {
+    .logo {
+        display: none;
+    }
+}
+
+.logo path,
 .nav-bar__whatsapp-svg path {
     fill: currentColor;
     transition: fill 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -113,6 +110,7 @@
 .nav-popout-inner {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .nav-hover-trigger:hover .nav-popout {
@@ -129,21 +127,17 @@
 
 /* --- Left Popout (Work) --- */
 .nav-left .nav-popout {
-    top: 8px;
-    left: -8px;
-    width: 320px;
-    height: 500px;
+    top: 15px;
+    left: 15px;
 }
 
-.nav-left .nav-popout-inner {
+.nav-popout-inner {
     width: 100%;
     height: 100%;
-    padding: 100px 24px 24px 24px;
-    /* Space for the Work logo at the top */
-    gap: 20px;
+    padding: 40px;
 }
 
-.nav-left .logo-work-container {
+.nav-left .logo-container {
     position: relative;
     z-index: 105;
     /* Keeps logo ABOVE the popout background */
