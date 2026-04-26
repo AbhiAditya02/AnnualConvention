@@ -1,10 +1,10 @@
 import './globals.css';
 
 export const metadata = {
-    title: 'Truus — We make advertising for you',
-    description: 'Truus is a creative advertising agency specialising in brand strategy, social media, video production, and activations.',
+    title: 'ISTE HIT SC — Annual Convention',
+    description: 'ISTE HIT Students Chapter — Building a dynamic technical community empowering students with knowledge, skills, and industry exposure.',
     icons: {
-        icon: 'https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68381362603d6402ee03c00e_favicon.png',
+        icon: '/assets/Iste.png',
     },
 };
 

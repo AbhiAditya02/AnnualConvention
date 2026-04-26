@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
+import GalleryGrid from '@/components/GalleryGrid';
 
 export default function GalleryPage() {
     return (
@@ -14,15 +15,16 @@ export default function GalleryPage() {
             <SmoothScroll />
             <CursorBubble />
             
-            <header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
-                <Navbar />
-                <div style={{ maxWidth: '900px', padding: '0 2rem' }}>
-                    <h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1.5rem' }}>Event Gallery</h1>
-                    <p style={{ fontSize: '1.5rem', color: '#a3a3a3', lineHeight: '1.6' }}>Explore past highlights from our previous annual conventions and initiatives by the ISTE HIT Students' Chapter.</p>
-                </div>
-            </header>
+<header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
+<Navbar />
+<div style={{ maxWidth: '900px', padding: '0 2rem' }}>
+<h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1.5rem' }}>Event Gallery</h1>
+</div>
+</header>
 
             <main>
+                <GalleryGrid />
+
                 <div className="content-section" style={{ padding: '8rem 2rem', backgroundColor: 'var(--bg-color)', color: 'var(--color-dark)' }}>
                     <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '6rem' }}>
                         
