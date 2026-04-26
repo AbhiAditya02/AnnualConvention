@@ -1,16 +1,14 @@
 /* ─── Footer Shell ───────────────────────────────────────────────────────── */
 .main-footer {
     padding: 10px;
-    background-color: var(--bg-color);
 }
 
 .footer-inner {
-    background-color: var(--color-darkblue);
+    background-color: var(--color-gray);
     border-radius: 20px;
-    padding: 80px 40px 40px;
+    padding: 40px 40px;
     position: relative;
     overflow: hidden;
-    min-height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -61,8 +59,8 @@
 .footer-column address {
     font-family: "Epilogue", Arial, sans-serif;
     font-style: normal;
-    font-size: 2rem;
-    font-weight: 1000;
+    font-size: 1.3rem;
+    font-weight: 600;
     line-height: 1.2;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
@@ -98,7 +96,7 @@
     letter-spacing: -0.5px;
     width: fit-content;
     display: inline-block;
-    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
+    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 0 0, pointer;
 }
 
 .footer-whatsapp {
@@ -148,19 +146,31 @@
     margin-top: 50px;
 }
 
-.footer-big-text {
-    width: 100%;
+.footer-logo-box {
+    height: 50px;
+    width: auto;
+    margin-bottom: 20px;
     color: var(--color-white);
-    text-align: center;
+    text-align: left;
     pointer-events: none;
     user-select: none;
-    margin-bottom: -70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
 }
 
-.footer-logo__svg {
-    width: 104.9%;
-    height: auto;
-    margin-left: -2.5%;
+.footer-logo{
+    height: 40px;
+    width: auto;
+}
+
+.footer-wordmark {
+    height: 25px;
+    width: auto;
+    color: var(--color-white);
+    pointer-events: none;
+    user-select: none;
 }
 
 .footer-bottom-row {
@@ -296,7 +306,6 @@
 
 .footer-sticker {
     position: absolute;
-    width: 100px;
     height: auto;
     pointer-events: auto;
 }
@@ -304,41 +313,40 @@
 .sticker-boom {
     left: -1%;
     bottom: 15%;
-    width: 150px;
     transform: rotate(-10deg);
 }
 
 .sticker-smiley {
-    left: 20%;
-    bottom: 45%;
-    width: 130px;
+    left: 18%;
+    bottom: 60%;
     transform: rotate(-20deg);
 }
 
 .sticker-heart {
     left: 45%;
     bottom: 30%;
-    width: 130px;
     transform: rotate(-15deg);
 }
 
 .footer-sticker.sticker-hands {
     left: 55%;
     bottom: 0%;
-    width: 130px;
     transform: rotate(10deg);
 }
 
 .footer-sticker.sticker-100 {
-    left: 60%;
-    bottom: 55%;
-    width: 130px;
+    left: 72%;
+    bottom: 72%;
     transform: rotate(-0deg);
 }
 
 .footer-sticker.sticker-camera {
     right: 8%;
     bottom: 15%;
-    width: 130px;
     transform: rotate(5deg);
+}
+
+.footer-sticker{
+    width: 60px;
+    height: auto;
 }
