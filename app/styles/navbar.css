@@ -226,8 +226,8 @@
 
 /* --- Right Popout (WhatsApp) --- */
 .nav-right .nav-popout {
-    top: 8px;
-    right: -8px;
+top: 15px;
+right: 15px;
 }
 
 .nav-right .nav-popout-inner {

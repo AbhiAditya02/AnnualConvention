@@ -346,9 +346,9 @@ export default function Navbar() {
                 </div>
                 <div className="nav-right" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
                     <div className="nav-hover-trigger">
-                        <div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
-                            <span className="logo-register-text" style={{ fontFamily: 'Epilogue, sans-serif', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.5px' }}>Register</span>
-                        </div>
+<div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
+<span className="logo-register-text" style={{ fontFamily: 'Epilogue, sans-serif', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.5px', borderBottom: '3px solid currentColor' }}>Register</span>
+</div>
 
                         {/* Pop-out Box for Right Side */}
                         <div className="nav-popout nav-wa-box">

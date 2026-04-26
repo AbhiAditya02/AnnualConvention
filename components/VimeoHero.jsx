@@ -171,16 +171,16 @@ export default function VimeoHero() {
                   Currently left blank to display a solid black background while you work on text, SVGs, and the navbar.
                   Once you have your personal video file in the `public/` folder, uncomment and update the src below!
                 */}
-                <video
-                    ref={iframeRef}
-                    // src="/your-personal-video.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="vimeo-hero__iframe"
-                    style={{ objectFit: 'cover', backgroundColor: '#111' }}
-                />
+<video 
+ref={iframeRef} 
+src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260302_085844_21a8f4b3-dea5-4ede-be16-d53f6973bb14.mp4" 
+autoPlay 
+loop 
+muted 
+playsInline 
+className="vimeo-hero__iframe" 
+style={{ objectFit: 'cover', backgroundColor: '#111' }} 
+/>
 
                 {/* Gradient fade */}
                 <div className="vimeo-hero__fade" />
