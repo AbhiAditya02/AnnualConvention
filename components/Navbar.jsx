@@ -164,126 +164,73 @@ export default function Navbar() {
         // ─── Navbar Right Hover ───
         const navRight = document.querySelector('.nav-right');
         const waBox = document.querySelector('.nav-wa-box');
-        const waSvgPath = document.querySelector('.nav-bar__whatsapp-svg path');
 
         if (navRight && waBox) {
-            const waInner = waBox.querySelector('.nav-popout-inner');
+            const waInner = waBox.querySelector('.nav-popout-inner-right');
             const waItems = waInner ? Array.from(waInner.children) : [];
-            const waIcon = document.querySelector('.nav-bar__whatsapp-svg');
+            const waIcon = document.querySelector('.nav-bar_register'); // ✅ Now resolves correctly
 
-            // Temporarily show to measure both the box AND the WA icon center
             gsap.set(waBox, { visibility: 'visible', scale: 1, opacity: 1 });
             const waBoxRect = waBox.getBoundingClientRect();
             const waIconRect = waIcon ? waIcon.getBoundingClientRect() : waBoxRect;
-            // Icon center relative to the box's own top-left
             const waOriginX = (waIconRect.left + waIconRect.width / 2) - waBoxRect.left;
             const waOriginY = (waIconRect.top + waIconRect.height / 2) - waBoxRect.top;
             const waOrigin = `${waOriginX}px ${waOriginY}px`;
 
-            // Start collapsed, scaling FROM the WA icon center
-            gsap.set(waBox, {
-                visibility: 'hidden',
-                scale: 0,
-                opacity: 0,
-                transformOrigin: waOrigin
-            });
+            gsap.set(waBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: waOrigin });
             gsap.set(waItems, { y: 10, opacity: 0 });
 
+            let rightHoverTimeout;
+
             const onEnterRight = () => {
+                clearTimeout(rightHoverTimeout);
                 gsap.killTweensOf(waBox);
                 gsap.killTweensOf(waItems);
                 showOverlay();
-                if (waSvgPath) gsap.to(waSvgPath, { fill: '#0e6634ff', duration: 0.3 }); // Darker WA green
 
                 gsap.set(waBox, { visibility: 'visible' });
-                // Box grows out smoothly from the WA icon center
                 gsap.fromTo(waBox,
                     { scale: 0, opacity: 0 },
                     { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }
                 );
-                // Items emerge while box is growing
                 gsap.to(waItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
             };
 
             const onLeaveRight = () => {
-                gsap.killTweensOf(waBox);
-                gsap.killTweensOf(waItems);
-                hideOverlay();
-                if (waSvgPath) gsap.to(waSvgPath, { fill: 'currentColor', duration: 0.3 });
+                rightHoverTimeout = setTimeout(() => {
+                    // ✅ Stay open if EITHER the nav trigger OR the popup box is still hovered
+                    if (!navRight.matches(':hover') && !waBox.matches(':hover')) {
+                        gsap.killTweensOf(waBox);
+                        gsap.killTweensOf(waItems);
+                        hideOverlay();
 
-                // Items fade quickly
-                gsap.to(waItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
-                // Box shrinks back into WA icon smoothly
-                gsap.to(waBox, {
-                    scale: 0,
-                    opacity: 0,
-                    duration: 0.3,
-                    ease: 'expo.in',
-                    delay: 0.05,
-                    onComplete: () => gsap.set(waBox, { visibility: 'hidden' })
-                });
+                        gsap.to(waItems, { y: 10, opacity: 0, duration: 0.5, ease: 'power2.in' });
+                        gsap.to(waBox, {
+                            scale: 0,
+                            opacity: 0,
+                            duration: 0.3,
+                            ease: 'expo.in',
+                            delay: 0.05,
+                            onComplete: () => gsap.set(waBox, { visibility: 'hidden' })
+                        });
+                    }
+                }, 100);
             };
 
             navRight.addEventListener('mouseenter', onEnterRight);
             navRight.addEventListener('mouseleave', onLeaveRight);
+            waBox.addEventListener('mouseenter', onEnterRight);
+            waBox.addEventListener('mouseleave', onLeaveRight);
+
             cleanups.push(() => {
+                clearTimeout(rightHoverTimeout);
                 navRight.removeEventListener('mouseenter', onEnterRight);
                 navRight.removeEventListener('mouseleave', onLeaveRight);
+                waBox.removeEventListener('mouseenter', onEnterRight);
+                waBox.removeEventListener('mouseleave', onLeaveRight);
             });
         }
 
-        // ─── Work Item: badge wiggle + image tilt on hover ───
-        const workItems = document.querySelectorAll('.nav-work-item');
-        workItems.forEach(item => {
-            const badge = item.querySelector('.nav-work-badge');
-            const img = item.querySelector('.nav-work-item__img');
-            let wiggleTween;
-
-            const onItemEnter = () => {
-                // Wiggle badge intensity 2
-                if (badge) {
-                    gsap.set(badge, { transformOrigin: 'center center' });
-                    wiggleTween = gsap.to(badge, { rotation: 5, duration: 0.15, repeat: -1, yoyo: true, ease: 'steps(1)' });
-                }
-                // Tilt image slightly right
-                if (img) gsap.to(img, { rotation: 16, scale: 1.15, duration: 0.25, ease: 'power2.out' });
-            };
-            const onItemLeave = () => {
-                if (wiggleTween) { wiggleTween.kill(); }
-                if (badge) gsap.to(badge, { rotation: 0, duration: 0.3, ease: 'power2.out' });
-                if (img) gsap.to(img, { rotation: 0, scale: 1, duration: 0.3, ease: 'power2.out' });
-            };
-            item.addEventListener('mouseenter', onItemEnter);
-            item.addEventListener('mouseleave', onItemLeave);
-            cleanups.push(() => {
-                item.removeEventListener('mouseenter', onItemEnter);
-                item.removeEventListener('mouseleave', onItemLeave);
-            });
-        });
-
-        // ─── All Our Work btn: wiggle intensity 4 (bubble handled by CursorBubble) ───
-        const workBtn = document.querySelector('.nav-work-btn');
-        if (workBtn) {
-            let btnWiggle;
-            const onBtnEnter = () => {
-                const btnText = workBtn.querySelector('.nav-work-btn__text');
-                if (btnText) {
-                    gsap.set(btnText, { transformOrigin: 'center center', display: 'inline-block' });
-                    btnWiggle = gsap.to(btnText, { rotation: 4, duration: 0.12, repeat: -1, yoyo: true, ease: 'steps(1)' });
-                }
-            };
-            const onBtnLeave = () => {
-                const btnText = workBtn.querySelector('.nav-work-btn__text');
-                if (btnWiggle) { btnWiggle.kill(); }
-                if (btnText) gsap.to(btnText, { rotation: 0, duration: 0.3, ease: 'power2.out' });
-            };
-            workBtn.addEventListener('mouseenter', onBtnEnter);
-            workBtn.addEventListener('mouseleave', onBtnLeave);
-            cleanups.push(() => {
-                workBtn.removeEventListener('mouseenter', onBtnEnter);
-                workBtn.removeEventListener('mouseleave', onBtnLeave);
-            });
-        }
 
         return () => {
             window.removeEventListener('scroll', updateNavbarColor);
@@ -308,10 +255,10 @@ export default function Navbar() {
                                     <a href="/" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Home</a>
                                 </div>
                                 <div className="nav-work-item">
-                                    <a href="/schedules" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Schedules</a>
+                                    <a href="/about" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>About Us</a>
                                 </div>
                                 <div className="nav-work-item">
-                                    <a href="/sponsors" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Sponsors</a>
+                                    <a href="/schedules" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Schedules</a>
                                 </div>
                                 <div className="nav-work-item">
                                     <a href="/gallery" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Gallery</a>
@@ -346,16 +293,21 @@ export default function Navbar() {
                 </div>
                 <div className="nav-right" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
                     <div className="nav-hover-trigger">
-<div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
-<span className="logo-register-text" style={{ fontFamily: 'Epilogue, sans-serif', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.5px', borderBottom: '3px solid currentColor' }}>Register</span>
-</div>
+                        <div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
+                            {/* ✅ Removed the stray dot from className */}
+                            <span className="nav-bar_register">Register</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 169 10" fill="none" className="stroke-svg">
+                                <path d="M1 6.5661C56.3941 3.06082 112.187 1.20095 168 0.999878" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75"></path>
+                                <path d="M32.1313 8.63371C68.2147 6.92799 104.462 6.13378 140.695 6.25107" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path>
+                            </svg>
+                        </div>
 
                         {/* Pop-out Box for Right Side */}
-                        <div className="nav-popout nav-wa-box">
-                            <div className="nav-popout-inner" style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
-                                <h4 className="nav-wa-title" style={{ marginTop: '0', marginBottom: '20px' }}>join us now</h4>
-                                <p className="nav-wa-desc">Secure your spot for the upcoming event. Early registrations get special perks!</p>
-                                <a href="/register" className="nav-work-btn" style={{ marginTop: '30px', width: '100%', padding: '16px', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', borderRadius: '12px', fontSize: '1.2rem', fontWeight: 800, textDecoration: 'none', textAlign: 'center' }}>
+                        <div className="nav-popout-right nav-wa-box">
+                            <div className="nav-popout-inner-right" style={{ padding: '40px' }}>
+                                <h4 className="nav-wa-title">Join Now</h4>
+                                <p className="nav-wa-desc">Secure your spot for the Annual Convention.</p>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhoVhFIEbH41zrbEwhtgaKSBswWQNVhfMg9wo_YLKX0SS5QA/alreadyresponded" className="nav-work-btn">
                                     <span className="nav-work-btn__text">Register Here</span>
                                 </a>
                             </div>

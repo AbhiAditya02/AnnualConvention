@@ -1,34 +1,13 @@
 /* ─── Navbar & Header ───────────────────────────────────────────────────────── */
 .main-header {
-    width: 100%;
-}
-
-.logo-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-}
-
-.logo-work-text {
-    position: relative;
-    z-index: 2;
-    font-family: 'Epilogue', sans-serif;
-    font-weight: 800;
-    font-size: 2rem;
-    margin-left: 60px;
-    color: inherit;
-    letter-spacing: -0.5px;
-    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100vw;
 }
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,18 +37,11 @@
     }
 }
 
-.logo path,
-.nav-bar__whatsapp-svg path {
+.logo path {
     fill: currentColor;
     transition: fill 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-bar__whatsapp-svg {
-    width: 32px;
-    height: auto;
-    display: block;
-    color: inherit;
-}
 
 
 /* VimeoHero sits directly inside main-header — no extra wrapper needed */
@@ -97,7 +69,6 @@
 .nav-popout {
     position: absolute;
     background: var(--bg-color);
-    /* Off-white beige from image */
     color: var(--color-dark);
     border-radius: 16px;
     opacity: 0;
@@ -105,15 +76,44 @@
     pointer-events: none;
     z-index: 100;
     overflow: hidden;
+    top: 15px;
+    left: 15px;
+}
+
+.nav-popout-right {
+    position: absolute;
+    background: var(--bg-color);
+    color: var(--color-dark);
+    border-radius: 16px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+    top: 15px;
+    right: 15px;
+    width: 300px;
 }
 
 .nav-popout-inner {
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: 15px;
+    padding: 40px;
 }
 
-.nav-hover-trigger:hover .nav-popout {
+.nav-popout-inner-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 40px;
+}
+
+.nav-hover-trigger:hover .nav-popout,
+.nav-hover-trigger:hover .nav-popout-right,
+.nav-popout-right:hover {
     pointer-events: auto;
 }
 
@@ -125,22 +125,24 @@
     margin: 0;
 }
 
-/* --- Left Popout (Work) --- */
-.nav-left .nav-popout {
-    top: 15px;
-    left: 15px;
-}
-
-.nav-popout-inner {
-    width: 100%;
-    height: 100%;
-    padding: 40px;
-}
 
 .nav-left .logo-container {
     position: relative;
     z-index: 105;
     /* Keeps logo ABOVE the popout background */
+}
+
+.logo-register-container{
+     width: 100px;
+    display: flex;  
+    flex-direction: column;  
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.stroke-svg{
+    scale: 1.3;
 }
 
 /* Force text dark when hovering, since popout bg is light */
@@ -158,57 +160,6 @@
     cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
 }
 
-/* Image clip wrapper — tilt stays inside bounds */
-.nav-work-item__img-wrap {
-    width: 75px;
-    height: 75px;
-    border-radius: 12px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.nav-work-item__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.nav-work-item__text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    margin-top: 2px;
-}
-
-.nav-work-badge {
-    font-size: 1.05rem;
-    font-weight: 500;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border-bottom-left-radius: 1px;
-    width: fit-content;
-}
-
-.badge-maroon {
-    background-color: #B1536E;
-    /* Deep maroon/pink */
-    color: var(--color-dark);
-}
-
-.badge-pink {
-    background-color: #EBB6F4;
-    /* Light pink */
-    color: var(--color-dark);
-}
-
-.nav-work-title {
-    margin-top: 50px;
-    font-size: 1.3rem;
-    font-weight: 650;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
-}
 
 .nav-work-btn {
     display: block;
@@ -217,48 +168,30 @@
     color: var(--color-white);
     padding: 20px;
     border-radius: 12px;
-    font-weight: 800;
+    font-weight: 600;
     font-size: 1.4rem;
     text-decoration: none;
-    margin-top: 10rem;
     cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
 }
 
 /* --- Right Popout (WhatsApp) --- */
-.nav-right .nav-popout {
-top: 15px;
-right: 15px;
+.nav-right .nav-popout-right {
+    top: 15px;
+    right: 15px;
 }
 
-.nav-right .nav-popout-inner {
-    width: 320px;
-    padding: 100px 24px 24px 24px;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-}
-
-.nav-right .logo-whatsapp {
+.nav-right .logo-register {
     position: relative;
     z-index: 105;
 }
 
 
-.nav-wa-qr {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    top: -60px;
-    border-radius: 0px;
-    object-fit: cover;
-}
 
 .nav-wa-title {
     font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: -0.5px;
-    text-transform: lowercase;
-    margin-top: -40px;
+    text-transform:capitalize;
 }
 
 .nav-wa-desc {
@@ -266,44 +199,5 @@ right: 15px;
     font-weight: 500;
     line-height: 1.35;
     opacity: 1;
-    margin-bottom: 28px;
-    /* Large gap to the link */
-}
-
-.nav-wa-link {
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.25rem;
-    font-weight: 800;
-    text-decoration: none;
-    color: inherit;
-    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
-    padding-bottom: 18px;
-    /* Room for the two SVG lines below */
-}
-
-.nav-wa-link-text {
-    z-index: 2;
-}
-
-.nav-wa-link-svg {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    height: 14px;
-    /* Taller to fit both paths */
-}
-
-.nav-wa-link-svg path {
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    transition: stroke-dashoffset 0.5s ease-out;
-}
-
-.nav-hover-trigger:hover .nav-wa-link-svg path {
-    stroke-dashoffset: 0;
-    transition-delay: 0.15s;
+    text-align: center;
 }
