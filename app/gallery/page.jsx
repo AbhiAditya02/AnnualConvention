@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import SvgSymbols from '@/components/SvgSymbols';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,75 +9,57 @@ import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
 import DomeGallery from '@/components/DomeGallery';
 
-const galleryImages = Array.from({ length: 42 }, (_, i) => ({
-    src: `/assets/gallery-images/${i + 1}.webp`,
-    alt: `ISTE HIT SC Annual Convention gallery image ${i + 1}`,
-}));
-
 export default function GalleryPage() {
+    const [galleryImages, setGalleryImages] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('/api/gallery')
+            .then(res => res.json())
+            .then(data => {
+                setGalleryImages(data.images || []);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Failed to fetch gallery images:', err);
+                setLoading(false);
+            });
+    }, []);
+
     return (
         <>
             <SvgSymbols />
             <SmoothScroll />
             <CursorBubble />
-            
-<header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
-<Navbar />
-<div style={{ maxWidth: '900px', padding: '0 2rem' }}>
-<h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1.5rem' }}>Event Gallery</h1>
-</div>
-</header>
+
+            <header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
+                <Navbar />
+                <div style={{ maxWidth: '900px', padding: '0 2rem' }}>
+                    <h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1.5rem' }}>Event Gallery</h1>
+                </div>
+            </header>
 
             <main>
                 <section style={{ width: '100vw', height: '100vh', backgroundColor: '#120F17' }}>
-                    <DomeGallery
-                        images={galleryImages}
-                        segments={24}
-                        grayscale={false}
-                        minRadius={520}
-                        imageBorderRadius="24px"
-                        openedImageBorderRadius="24px"
-                    />
+                    {loading ? (
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff', fontSize: '1.5rem', fontFamily: 'Epilogue, sans-serif' }}>
+                            Loading gallery...
+                        </div>
+                    ) : galleryImages.length > 0 ? (
+                        <DomeGallery
+                            images={galleryImages}
+                            segments={24}
+                            grayscale={false}
+                            minRadius={520}
+                            imageBorderRadius="24px"
+                            openedImageBorderRadius="24px"
+                        />
+                    ) : (
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#888', fontSize: '1.5rem', fontFamily: 'Epilogue, sans-serif' }}>
+                            No images found. Upload images to the &quot;iste-gallery&quot; folder on Cloudinary.
+                        </div>
+                    )}
                 </section>
-
-                <div className="content-section" style={{ padding: '8rem 2rem', backgroundColor: 'var(--bg-color)', color: 'var(--color-dark)' }}>
-                    <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '6rem' }}>
-                        
-                        {/* 2025 Edition */}
-                        <div style={{ borderLeft: '8px solid var(--color-black)', paddingLeft: '3rem' }}>
-                            <h2 style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '-1px' }}>Annual Convention 2025</h2>
-                            <ul style={{ listStyleType: 'circle', paddingLeft: '2rem', fontSize: '1.5rem', lineHeight: '1.8', color: '#444', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                <li>Participation from distinguished academicians from prestigious technical institutions.</li>
-                                <li>Guest Speakers from: MN Dastur, IIFON, Trisita Engineering, EEGRAB, Google, SecureT360, Dataspace, and IEM Labs.</li>
-                                <li>Expert Sessions Covered: Artificial Intelligence, Cybersecurity, Data Science, and networking opportunities.</li>
-                            </ul>
-                        </div>
-
-                        {/* 2024 Edition */}
-                        <div style={{ borderLeft: '8px solid var(--color-orange)', paddingLeft: '3rem' }}>
-                            <h2 style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '-1px' }}>Annual Convention 2024</h2>
-                            <ul style={{ listStyleType: 'circle', paddingLeft: '2rem', fontSize: '1.5rem', lineHeight: '1.8', color: '#444', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                <li>Participation from professionals at Google, TCS, Black Hills Information Security, and Dastur InfoScience.</li>
-                                <li>Student innovation showcase, notably the demonstration of the Drone Medicine Model.</li>
-                                <li>Official launch of the ISTE HIT Students’ Chapter Website.</li>
-                            </ul>
-                        </div>
-
-                        {/* About Us section */}
-                        <div style={{ backgroundColor: 'var(--color-white)', padding: '5rem', borderRadius: '40px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)', marginTop: '4rem', borderTop: '8px solid var(--color-darkblue)' }}>
-                            <h2 style={{ fontSize: '3rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-1px', marginBottom: '2rem' }}>About ISTE HIT SC</h2>
-                            <p style={{ fontSize: '1.4rem', lineHeight: '1.8', color: '#555', marginBottom: '3rem' }}>
-                                The ISTE HIT Students’ Chapter was founded in 2023 under the parent body established in 1941 to advance technical education in India. Workshops are led by Prof. Priyatosh Jana sir. Within one year, the chapter has successfully educated students in both technical and non-technical aspects.
-                            </p>
-                            
-                            <h3 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem' }}>Vision & Mission</h3>
-                            <p style={{ fontSize: '1.4rem', lineHeight: '1.8', color: '#555' }}>
-                                To build a dynamic technical community empowering students with knowledge, skills, and industry exposure. Bridging the gap between academia and industry through hands-on learning, research, and innovation-driven events. Foster leadership, networking, and collaboration to nurture future-ready professionals. Dedicated to ethical and sustainable technological advancements to shape tomorrow’s engineers and innovators.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
             </main>
 
             <footer className="main-footer">
