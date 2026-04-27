@@ -171,16 +171,16 @@ export default function VimeoHero() {
                   Currently left blank to display a solid black background while you work on text, SVGs, and the navbar.
                   Once you have your personal video file in the `public/` folder, uncomment and update the src below!
                 */}
-                <video
-                    ref={iframeRef}
-                    // src="/your-personal-video.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="vimeo-hero__iframe"
-                    style={{ objectFit: 'cover', backgroundColor: '#111' }}
-                />
+<video 
+ref={iframeRef} 
+src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260302_085844_21a8f4b3-dea5-4ede-be16-d53f6973bb14.mp4" 
+autoPlay 
+loop 
+muted 
+playsInline 
+className="vimeo-hero__iframe" 
+style={{ objectFit: 'cover', backgroundColor: '#111' }} 
+/>
 
                 {/* Gradient fade */}
                 <div className="vimeo-hero__fade" />
@@ -189,10 +189,20 @@ export default function VimeoHero() {
                 <div className="home-header__title">
                     <h1 className="vimeo-hero__title" ref={titleRef} onClick={(e) => e.stopPropagation()}>
 
-                        <span className="vimeo-hero__word">annual </span>
+                        <div className="home-header__star">
+                            <div className="home-header__star-inner">
+                                <img
+                                    src="/assets/VimeoHero SVG/pink-star.svg"
+                                    alt=""
+                                    className="home-header__star-svg"
+                                />
+                            </div>
+                        </div>
+
+                        <span className="vimeo-hero__word">Annual </span>
 
                         <span className="vimeo-hero__word is--relative">
-                            <span>convention </span>
+                            <span>Convention </span>
                             <div className="home-header__smiley">
                                 <img
                                     src="/assets/VimeoHero SVG/smiley-face.svg"
@@ -202,31 +212,26 @@ export default function VimeoHero() {
                             </div>
                         </span>
 
-                        <span className="vimeo-hero__word"><em>3.0 </em></span>
+                        <span className="vimeo-hero__word">
 
-                        <div style={{ flexBasis: '100%', height: 0 }} />
-
-                        <span className="vimeo-hero__word">by </span>
-                        <span className="vimeo-hero__word">iste </span>
-
-                        <span className="vimeo-hero__word is--relative">
-                            <div className="home-header__star">
-                                <div className="home-header__star-inner">
-                                    <img
-                                        src="/assets/VimeoHero SVG/pink-star.svg"
-                                        alt=""
-                                        className="home-header__star-svg"
-                                    />
-                                </div>
-                            </div>
                             {/* Oval underline */}
                             <img
                                 src="/assets/VimeoHero SVG/oval-underline.svg"
                                 alt=""
                                 className="home-header__title-line-svg"
                             />
-                            <span>hit sc</span>
+                            <em>3.0 </em>
                         </span>
+
+                        <div className="home-header__star">
+                            <div className="home-header__star-inner">
+                                <img
+                                    src="/assets/VimeoHero SVG/pink-star.svg"
+                                    alt=""
+                                    className="home-header__star-svg"
+                                />
+                            </div>
+                        </div>
 
                     </h1>
                 </div>

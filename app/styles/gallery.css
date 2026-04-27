@@ -1,0 +1,68 @@
+/* Gallery Page Specific Styles */
+
+.gallery-grid-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #0e0d0e; /* from --color-bg-content */
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    /* Added to align with Truus theme */
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.grid--spaced {
+    gap: 1rem; /* var(--grid-gap) */
+}
+
+.grid--small {
+    grid-template-columns: repeat(9, 1fr);
+    grid-auto-rows: 1fr;
+}
+
+.grid__img {
+    position: relative;
+    background-size: cover;
+    background-position: 50% 50%;
+    pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0.1px);
+    min-height: 15vh; /* To give it some height */
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* Fit the aesthetic */
+}
+
+.pos-1 { grid-area: 1 / 1; }
+.pos-2 { grid-area: 1 / 3; }
+.pos-3 { grid-area: 1 / 4; }
+.pos-4 { grid-area: 1 / 5; }
+.pos-5 { grid-area: 1 / 7; }
+.pos-6 { grid-area: 2 / 1; }
+.pos-7 { grid-area: 2 / 3; }
+.pos-8 { grid-area: 2 / 4; }
+.pos-9 { grid-area: 2 / 6; }
+.pos-10 { grid-area: 2 / 7; }
+.pos-11 { grid-area: 2 / 8; }
+.pos-12 { grid-area: 3 / 1; }
+.pos-13 { grid-area: 3 / 2; }
+.pos-14 { grid-area: 3 / 4; }
+.pos-15 { grid-area: 3 / 5; }
+.pos-16 { grid-area: 3 / 7; }
+.pos-17 { grid-area: 3 / 8; }
+.pos-18 { grid-area: 2 / 5; }
+
+/* Responsive adjustments */
+@media screen and (min-width: 53em) {
+    .grid--spaced {
+        gap: 2rem;
+    }
+}
