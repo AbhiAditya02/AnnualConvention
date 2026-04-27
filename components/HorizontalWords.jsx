@@ -53,7 +53,7 @@ const HorizontalWords = () => {
                     duration: entranceDistance
                 })
                 .to(textRef, {
-                    x: () => -(textRef.scrollWidth - window.innerWidth * 0.5),
+                    x: () => -(textRef.scrollWidth - window.innerWidth * 0.875),
                     ease: "none",
                     duration: pinnedDistance
                 });
@@ -70,13 +70,14 @@ const HorizontalWords = () => {
             // ------------------------------------
 
             // Bounce each letter randomly
-            letters.forEach((letter) => {
-                gsap.from(letter, {
-                    yPercent: (Math.random() - 0.5) * 500,
+            stickers.forEach((sticker) => {
+                gsap.from(sticker, {
+                    scale: 0,
+                    yPercent: (Math.random() - 0.5) * 400,
                     rotation: (Math.random() - 0.5) * 60,
                     ease: "elastic.out(1.2, 1)",
                     scrollTrigger: {
-                        trigger: letter,
+                        trigger: sticker,
                         containerAnimation: scrollTween,
                         start: 'left 90%',
                         end: 'left 50%', // Finish as it reaches center

@@ -47,7 +47,7 @@
 
 .horizontal-words__bottom-text-l {
     max-width: 40em;
-    font-size: 1.3rem;
+    font-size: 1.75rem;
     line-height: 1.4;
     font-weight: 450;
     margin: 0;
@@ -72,8 +72,8 @@
 .horizontal-words__sticker-phone {
     width: 8em;
     position: absolute;
-    top: 50%;
-    left: 79%;
+    top: 38%;
+    left: 75%;
     transform: translate(-50%, -100%);
     z-index: 10;
     /* Put sticker over text */
@@ -107,7 +107,7 @@
 }
 
 .horizontal-words__h2 {
-    font-size: 9vw;
+    font-size: 5rem;
     line-height: 1;
     font-weight: 1000;
     margin: 0;
