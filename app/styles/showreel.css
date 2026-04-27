@@ -1,5 +1,6 @@
 /* ─── Showreel Section ───────────────────────────────────────────────────── */
 .showreel-section {
+    margin-top: 10vh;
     position: relative;
     width: 100%;
     min-height: 100vh;

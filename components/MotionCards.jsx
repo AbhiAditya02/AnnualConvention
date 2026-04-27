@@ -127,13 +127,11 @@ export default function MotionCards() {
             className="motion-card-section" id="motion-card-section">
             {/* ─── Part 1: Bold Heading Text with SVG Sticker Placeholders ─── */}
             <div className="motion-card__heading">
-                <h2 className="motion-card__title" style={{ fontSize: '7rem', lineHeight: '0.9', letterSpacing: '-3px' }}>
-                    fostering innovation
-                    <br />
-                    &amp; excellence.
+                <h2 className="motion-card__title">
+                    Celebrating Innovation, <br /> <span className="motion-card__title-part">Collaboration &amp; Growth</span>
                 </h2>
                 <p className="motion-card__subtitle">
-                    from ideas to impact.
+                    Event Highlights !! 
                     {/* SVG sticker placeholder — top-right area */}
                     <span className="motion-card__sticker motion-card__sticker--top">
                         <img
@@ -235,10 +233,9 @@ export default function MotionCards() {
 
             {/* ─── Part 3: Bottom Paragraph Text ─── */}
             <div className="motion-card__footer-text">
-                <p className="motion-card__description">
-                    The Indian Society for Technical Education (ISTE) was established in 1941 to advance technical education in India. 
-                    The ISTE HIT Students' Chapter aims to bridge the gap between academia and industry through hands-on learning, research, and innovation-driven events.
-                </p>
+                <a href="/gallery" className="motion-card__btn">
+                    <span className="nav-work-btn__text"> View Full Gallery → </span>
+                </a>
             </div>
         </section>
     );

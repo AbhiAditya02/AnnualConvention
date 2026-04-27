@@ -18,7 +18,7 @@
     position: absolute;
     /* Lock to track */
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-30%);
     white-space: nowrap;
     display: flex;
     align-items: center;
@@ -47,9 +47,9 @@
 
 .horizontal-words__bottom-text-l {
     max-width: 40em;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     line-height: 1.4;
-    font-weight: 450;
+    font-weight: 600;
     margin: 0;
     /* Removed the hacky centered margin */
 }
@@ -60,27 +60,27 @@
 }
 
 .horizontal-words__sticker-cursor {
-    width: 7.5em;
+    width: 4em;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 45%;
+    left: 47%;
     transform: translate(-50%, 10%);
     z-index: 10;
     /* Put sticker over text */
 }
 
 .horizontal-words__sticker-phone {
-    width: 8em;
+    width: 4.5em;
     position: absolute;
-    top: 50%;
-    left: 79%;
+    top: 55%;
+    left: 75%;
     transform: translate(-50%, -100%);
     z-index: 10;
     /* Put sticker over text */
 }
 
 .horizontal-words__arrow-end-svg {
-    width: 8.4375em;
+    width: 8em;
     position: absolute;
     top: 50%;
     left: 100%;
@@ -88,7 +88,7 @@
 }
 
 .horizontal-words__sticker-watch {
-    width: 6em;
+    width: 5em;
     position: absolute;
     top: 50%;
     left: 17.5%;
@@ -107,7 +107,7 @@
 }
 
 .horizontal-words__h2 {
-    font-size: 9vw;
+    font-size: 4rem;
     line-height: 1;
     font-weight: 1000;
     margin: 0;
