@@ -32,13 +32,17 @@ const HorizontalWords = () => {
             // To make letters start animating as we scroll down from VimeoHero,
             // we start the horizontal movement as soon as the section enters the viewport (top bottom).
             const entranceDistance = window.innerHeight;
-            const pinnedDistance = 2500;
+            const getScrollDistance = () => {
+                const totalWidth = textRef.scrollWidth;
+                const viewportWidth = window.innerWidth;
+                return totalWidth - viewportWidth;
+            };
 
             const scrollTween = gsap.timeline({
                 scrollTrigger: {
                     trigger: container,
                     start: "top bottom",
-                    end: () => `+=${entranceDistance + pinnedDistance}`,
+                    end: () => `+=${entranceDistance + getScrollDistance()}`,
                     scrub: 1,
                     invalidateOnRefresh: true,
                 }
@@ -48,21 +52,21 @@ const HorizontalWords = () => {
                 .fromTo(textRef, {
                     x: window.innerWidth // Start words off-screen right
                 }, {
-                    x: window.innerWidth * 0.5,
+                    x: 0,
                     ease: "none",
-                    duration: entranceDistance
+                    duration: 5
                 })
                 .to(textRef, {
-                    x: () => -(textRef.scrollWidth - window.innerWidth * 0.5),
+                    x: () => -(textRef.scrollWidth - window.innerWidth*0.7),
                     ease: "none",
-                    duration: pinnedDistance
+                    duration: 10
                 });
 
             // Separate pinning logic so it only locks when the section hits the top
             ScrollTrigger.create({
                 trigger: container,
                 start: "top top",
-                end: () => `+=${pinnedDistance}`,
+                end: () => `+=${getScrollDistance()}`,
                 pin: true,
                 pinSpacing: true,
                 invalidateOnRefresh: true
@@ -78,8 +82,8 @@ const HorizontalWords = () => {
                     scrollTrigger: {
                         trigger: letter,
                         containerAnimation: scrollTween,
-                        start: 'left 90%',
-                        end: 'left 50%', // Finish as it reaches center
+                        start: 'right 100%', // Start when the letter is near the right edge
+                        end: 'left 70%',// Finish as it reaches center
                         scrub: 0.5
                     }
                 });
@@ -95,8 +99,8 @@ const HorizontalWords = () => {
                     scrollTrigger: {
                         trigger: sticker,
                         containerAnimation: scrollTween,
-                        start: 'left 90%',
-                        end: 'left 50%', // Finish as it reaches center
+                        start: 'left 100%',
+                        end: 'left 80%', // Finish as it reaches center
                         scrub: 0.5
                     }
                 });
@@ -113,8 +117,8 @@ const HorizontalWords = () => {
                         scrollTrigger: {
                             trigger: arrowPath.parentElement,
                             containerAnimation: scrollTween,
-                            start: 'left 90%',
-                            end: 'left 50%', // This is the last arrow's end point
+                            start: 'left 100%',
+                            end: 'left 80%', // This is the last arrow's end point
                             scrub: 0.5
                         }
                     });
@@ -181,7 +185,7 @@ const HorizontalWords = () => {
 
             <div className="horizontal-words__bottom-text">
                 <div className="horizontal-words__bottom-text-l">
-                    Empowering students with knowledge, skills, <em>and</em> industry exposure<br />
+                    Empowering students with knowledge, skills and industry exposure<br />
                     Bridging the gap between academia and industry through hands-on<br />
                     learning, research, and innovation-driven events.
                 </div>
