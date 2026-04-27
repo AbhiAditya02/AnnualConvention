@@ -3,10 +3,7 @@
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
 
-const DEFAULT_IMAGES = Array.from({ length: 42 }, (_, i) => ({
-    src: `/assets/gallery-images/${i + 1}.webp`,
-    alt: `ISTE HIT SC event gallery image ${i + 1}`,
-}));
+const DEFAULT_IMAGES = [];
 
 const DEFAULTS = {
     maxVerticalRotationDeg: 5,
