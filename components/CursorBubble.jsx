@@ -25,9 +25,6 @@ export default function CursorBubble() {
 
             if (found && !isHoveringClickable) {
                 isHoveringClickable = true;
-                if (found.matches('.logo')) cursorBubble.textContent = 'to home';
-                else if (found.matches('.nav-work-btn')) cursorBubble.textContent = 'click';
-                else cursorBubble.textContent = 'click';
                 gsap.killTweensOf(cursorBubble, 'opacity,scale,rotation');
                 gsap.to(cursorBubble, { opacity: 1, scale: 1, rotation: 0, duration: 1.7, delay: 0.1, ease: 'elastic.out(1, 0.4)' });
             } else if (!found && isHoveringClickable) {
@@ -56,5 +53,5 @@ export default function CursorBubble() {
         };
     }, []);
 
-    return <div className="cursor-bubble">click</div>;
+    return <div className="cursor-bubble"></div>;
 }

@@ -3,17 +3,7 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { SOCIAL_ICONS, WIGGLE_CONFIG } from '@/lib/data';
-
-function initWiggle(element, intensity) {
-    const target = element.querySelector('[data-wiggle-target]') || element;
-    gsap.set(target, { transformOrigin: 'center center' });
-    let tween;
-    const onEnter = () => { tween = gsap.to(target, { rotation: intensity, duration: 0.17, repeat: -1, yoyo: true, ease: 'steps(1)' }); };
-    const onLeave = () => { if (tween) { tween.kill(); gsap.to(target, { rotation: 0, duration: 0.3, ease: 'power2.out' }); } };
-    element.addEventListener('mouseenter', onEnter);
-    element.addEventListener('mouseleave', onLeave);
-    return () => { element.removeEventListener('mouseenter', onEnter); element.removeEventListener('mouseleave', onLeave); };
-}
+import { initWiggle } from '@/lib/animations';
 
 export default function Footer() {
     useEffect(() => {

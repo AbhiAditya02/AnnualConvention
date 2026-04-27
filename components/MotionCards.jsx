@@ -1,100 +1,24 @@
 "use client";
 
 import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { initInertia } from "@/lib/animations";
 import Magnetic from "@/components/Magnetic";
 
 gsap.registerPlugin(InertiaPlugin, ScrollTrigger);
 
 export default function MotionCards() {
     const sectionRef = useRef(null);
-    const containerRef = useRef(null);
+    const cardsRef = useRef(null);
+    const labelsRef = useRef(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Inertia on cards
-            const cards = document.querySelectorAll(".motion-card__card");
-            cards.forEach((card) => {
-                let lastX = 0;
-                let lastY = 0;
-                let speedX = 0;
-                let speedY = 0;
-
-                const startRotation = gsap.getProperty(card, "rotation");
-                const startX = gsap.getProperty(card, "x");
-                const startY = gsap.getProperty(card, "y");
-
-                const onMove = (e) => {
-                    speedX = e.clientX - lastX;
-                    speedY = e.clientY - lastY;
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                };
-
-                const onEnter = (e) => {
-                    speedX = 0;
-                    speedY = 0;
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                };
-
-                const onLeave = () => {
-                    gsap.to(card, {
-                        inertia: {
-                            x: { velocity: speedX * 20, end: startX },
-                            y: { velocity: speedY * 20, end: startY },
-                            rotation: { velocity: speedX * 1.5, end: startRotation },
-                        },
-                    });
-                };
-
-                card.addEventListener("mousemove", onMove);
-                card.addEventListener("mouseenter", onEnter);
-                card.addEventListener("mouseleave", onLeave);
-            });
-
-            // Inertia on floating labels
-            const labels = document.querySelectorAll(".motion-card__floating-label");
-            labels.forEach((label) => {
-                let lastX = 0;
-                let lastY = 0;
-                let speedX = 0;
-                let speedY = 0;
-
-                const startRotation = gsap.getProperty(label, "rotation");
-                const startX = gsap.getProperty(label, "x");
-                const startY = gsap.getProperty(label, "y");
-
-                const onMove = (e) => {
-                    speedX = e.clientX - lastX;
-                    speedY = e.clientY - lastY;
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                };
-
-                const onEnter = (e) => {
-                    speedX = 0;
-                    speedY = 0;
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                };
-
-                const onLeave = () => {
-                    gsap.to(label, {
-                        inertia: {
-                            x: { velocity: speedX * 25, end: startX },
-                            y: { velocity: speedY * 25, end: startY },
-                            rotation: { velocity: speedX * 2, end: startRotation },
-                        },
-                    });
-                };
-
-                label.addEventListener("mousemove", onMove);
-                label.addEventListener("mouseenter", onEnter);
-                label.addEventListener("mouseleave", onLeave);
-            });
+            // Inertia physics on cards and floating labels
+            initInertia('.motion-card__card', 20, 1.5);
+            initInertia('.motion-card__floating-label', 25, 2);
 
             // Entry Animations: Sticker Pop & Underline Draw
             const tl = gsap.timeline({
@@ -160,11 +84,11 @@ export default function MotionCards() {
 
 
                 {/* 4 Photo Cards */}
-                <div ref={containerRef} className="motion-card__cards">
+                <div ref={cardsRef} className="motion-card__cards">
                     <div className="motion-card__card motion-card__card--1">
                         <div className="motion-card__card-image">
                             <img
-                                src="assets/MotionCard SVG/ideathon_web.jpeg"
+                                src="/assets/MotionCard SVG/ideathon_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -178,7 +102,7 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--2">
                         <div className="motion-card__card-image">
                             <img
-                                src="assets/MotionCard SVG/convention1_web.jpeg"
+                                src="/assets/MotionCard SVG/convention1_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -192,7 +116,7 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--3">
                         <div className="motion-card__card-image">
                             <img
-                                src="assets/MotionCard SVG/convention2_web.jpeg"
+                                src="/assets/MotionCard SVG/convention2_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -206,7 +130,7 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--4">
                         <div className="motion-card__card-image">
                             <img
-                                src="assets/MotionCard SVG/convention3_web.jpeg"
+                                src="/assets/MotionCard SVG/convention3_web.jpeg"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -219,7 +143,7 @@ export default function MotionCards() {
                 </div>
 
                 {/* Floating labels — positioned freely over the cards area */}
-                <div ref={containerRef} className="motion-card__floating-labels">
+                <div ref={labelsRef} className="motion-card__floating-labels">
                     <div className="motion-card__floating-label motion-card__floating-label--pink">
                         <p className="motion-card__floating-text"></p>
                     </div>

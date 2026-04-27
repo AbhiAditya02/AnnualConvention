@@ -2,251 +2,197 @@
 
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { WIGGLE_CONFIG } from '@/lib/data';
+import { WIGGLE_CONFIG, NAV_LINKS } from '@/lib/data';
+import { initWiggle, createOverlayHelpers } from '@/lib/animations';
 import Magnetic from '@/components/Magnetic';
 import TextRevealHover from '@/components/TextRevealHover';
 
-function initWiggle(element, intensity) {
-    const target = element.querySelector('[data-wiggle-target]') || element;
-    gsap.set(target, { transformOrigin: 'center center' });
-    let tween;
+/* ─── Inline style constants ─────────────────────────────────────────────── */
+const CURSOR_POINTER = "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer";
+const NAV_LINK_STYLE = { fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' };
+
+/* ─── Scroll-based navbar color toggle ───────────────────────────────────── */
+/**
+ * Switches navbar between on-dark / on-light classes based on which
+ * section the user has scrolled into.
+ */
+function initNavbarColorToggle(navbar, footerEl) {
+    if (!navbar || !footerEl) return () => {};
+
+    navbar.classList.add('on-dark');
+    navbar.classList.remove('on-light');
+
+    const setDark = () => { navbar.classList.add('on-dark'); navbar.classList.remove('on-light'); };
+    const setLight = () => { navbar.classList.add('on-light'); navbar.classList.remove('on-dark'); };
+
+    const updateColor = () => {
+        const scrollPos = window.scrollY + navbar.offsetHeight / 2;
+
+        const sectionTop = (selector) => {
+            const el = document.querySelector(selector);
+            return el ? el.getBoundingClientRect().top + window.scrollY : Infinity;
+        };
+
+        const motionCardTop = sectionTop('.motion-cards-wrapper');
+        const horizontalWordsTop = sectionTop('.horizontal-words-section');
+        const showreelTop = sectionTop('#showreel-section');
+        const serviceCardsTop = sectionTop('.service-cards-wrapper');
+        const doubleMarqueeTop = sectionTop('.Double-marquee');
+        const footerTop = footerEl.getBoundingClientRect().top + window.scrollY;
+
+        if (scrollPos >= footerTop) setDark();
+        else if (scrollPos >= doubleMarqueeTop) setLight();
+        else if (scrollPos >= serviceCardsTop) setLight();
+        else if (scrollPos >= motionCardTop) setLight();
+        else if (scrollPos >= showreelTop) setDark();
+        else if (scrollPos >= horizontalWordsTop) setLight();
+        else setDark();
+    };
+
+    window.addEventListener('scroll', updateColor);
+    updateColor();
+
+    return () => window.removeEventListener('scroll', updateColor);
+}
+
+/* ─── Left popout (navigation links) ─────────────────────────────────────── */
+function initLeftPopout(navLeft, workBox, workBlob, overlayHelpers) {
+    if (!navLeft || !workBox || !workBlob) return () => {};
+
+    const workInner = workBox.querySelector('.nav-popout-inner');
+    const workItems = workInner ? Array.from(workInner.children) : [];
+
+    // Measure origin from the blob icon center
+    gsap.set(workBox, { visibility: 'visible', scale: 1, opacity: 1 });
+    const boxRect = workBox.getBoundingClientRect();
+    const blobRect = workBlob.getBoundingClientRect();
+    const originX = (blobRect.left + blobRect.width / 2) - boxRect.left;
+    const originY = (blobRect.top + blobRect.height / 2) - boxRect.top;
+    const workOrigin = `${originX}px ${originY}px`;
+
+    gsap.set(workBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: workOrigin });
+    gsap.set(workItems, { y: 10, opacity: 0 });
+    gsap.set(workBlob, { transformOrigin: 'center center' });
+
     const onEnter = () => {
-        tween = gsap.to(target, { rotation: intensity, duration: 0.17, repeat: -1, yoyo: true, ease: 'steps(1)' });
+        gsap.killTweensOf(workBox);
+        gsap.killTweensOf(workItems);
+        gsap.killTweensOf(workBlob);
+        overlayHelpers.show();
+        gsap.to(workBlob, { rotation: '+=360', duration: 0.5, ease: 'power3.inOut' });
+        gsap.set(workBox, { visibility: 'visible' });
+        gsap.fromTo(workBox, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' });
+        gsap.to(workItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
     };
+
     const onLeave = () => {
-        if (tween) { tween.kill(); gsap.to(target, { rotation: 0, duration: 0.3, ease: 'power2.out' }); }
+        gsap.killTweensOf(workBox);
+        gsap.killTweensOf(workItems);
+        gsap.killTweensOf(workBlob);
+        overlayHelpers.hide();
+        gsap.to(workBlob, { rotation: 0, duration: 0.5, ease: 'power2.out' });
+        gsap.to(workItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
+        gsap.to(workBox, { scale: 0, opacity: 0, duration: 0.3, ease: 'expo.in', delay: 0.05, onComplete: () => gsap.set(workBox, { visibility: 'hidden' }) });
     };
-    element.addEventListener('mouseenter', onEnter);
-    element.addEventListener('mouseleave', onLeave);
+
+    navLeft.addEventListener('mouseenter', onEnter);
+    navLeft.addEventListener('mouseleave', onLeave);
+
     return () => {
-        element.removeEventListener('mouseenter', onEnter);
-        element.removeEventListener('mouseleave', onLeave);
+        navLeft.removeEventListener('mouseenter', onEnter);
+        navLeft.removeEventListener('mouseleave', onLeave);
     };
 }
 
+/* ─── Right popout (register CTA) ────────────────────────────────────────── */
+function initRightPopout(navRight, registerBox, registerIcon, overlayHelpers) {
+    if (!navRight || !registerBox) return () => {};
+
+    const registerInner = registerBox.querySelector('.nav-popout-inner-right');
+    const registerItems = registerInner ? Array.from(registerInner.children) : [];
+
+    gsap.set(registerBox, { visibility: 'visible', scale: 1, opacity: 1 });
+    const boxRect = registerBox.getBoundingClientRect();
+    const iconRect = registerIcon ? registerIcon.getBoundingClientRect() : boxRect;
+    const originX = (iconRect.left + iconRect.width / 2) - boxRect.left;
+    const originY = (iconRect.top + iconRect.height / 2) - boxRect.top;
+
+    gsap.set(registerBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: `${originX}px ${originY}px` });
+    gsap.set(registerItems, { y: 10, opacity: 0 });
+
+    let hoverTimeout;
+
+    const onEnter = () => {
+        clearTimeout(hoverTimeout);
+        gsap.killTweensOf(registerBox);
+        gsap.killTweensOf(registerItems);
+        overlayHelpers.show();
+        gsap.set(registerBox, { visibility: 'visible' });
+        gsap.fromTo(registerBox, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' });
+        gsap.to(registerItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
+    };
+
+    const onLeave = () => {
+        hoverTimeout = setTimeout(() => {
+            if (!navRight.matches(':hover') && !registerBox.matches(':hover')) {
+                gsap.killTweensOf(registerBox);
+                gsap.killTweensOf(registerItems);
+                overlayHelpers.hide();
+                gsap.to(registerItems, { y: 10, opacity: 0, duration: 0.5, ease: 'power2.in' });
+                gsap.to(registerBox, { scale: 0, opacity: 0, duration: 0.3, ease: 'expo.in', delay: 0.05, onComplete: () => gsap.set(registerBox, { visibility: 'hidden' }) });
+            }
+        }, 100);
+    };
+
+    navRight.addEventListener('mouseenter', onEnter);
+    navRight.addEventListener('mouseleave', onLeave);
+    registerBox.addEventListener('mouseenter', onEnter);
+    registerBox.addEventListener('mouseleave', onLeave);
+
+    return () => {
+        clearTimeout(hoverTimeout);
+        navRight.removeEventListener('mouseenter', onEnter);
+        navRight.removeEventListener('mouseleave', onLeave);
+        registerBox.removeEventListener('mouseenter', onEnter);
+        registerBox.removeEventListener('mouseleave', onLeave);
+    };
+}
+
+/* ─── Navbar Component ───────────────────────────────────────────────────── */
 export default function Navbar() {
     useEffect(() => {
-        const navbar = document.querySelector('.navbar');
-        const contentSection = document.querySelector('.content-section');
-        // const newsection=document.querySelector('motion-cards-wrapper')
-        const footerEl = document.querySelector('.main-footer');
-
-        // ② Start white (on-dark) — video is dark background
-        if (navbar) { navbar.classList.add('on-dark'); navbar.classList.remove('on-light'); }
-
-        const updateNavbarColor = () => {
-            if (!navbar || !contentSection || !footerEl) return;
-            const scrollPos = window.scrollY + navbar.offsetHeight / 2;
-            const contentTop = contentSection.getBoundingClientRect().top + window.scrollY;
-
-            const motioncardSection = document.querySelector('.motion-cards-wrapper');
-            const motioncardTop = motioncardSection ? motioncardSection.getBoundingClientRect().top + window.scrollY : Infinity;
-
-            const horizontalWordsSection = document.querySelector('.horizontal-words-section');
-            const horizontalWordsTop = horizontalWordsSection ? horizontalWordsSection.getBoundingClientRect().top + window.scrollY : Infinity;
-
-            const showreelSection = document.querySelector('#showreel-section');
-            const showreelTop = showreelSection ? showreelSection.getBoundingClientRect().top + window.scrollY : Infinity;
-
-            const serviceCardsSection = document.querySelector('.service-cards-wrapper');
-            const serviceCardsTop = serviceCardsSection ? serviceCardsSection.getBoundingClientRect().top + window.scrollY : Infinity;
-
-            const doubleMarquee = document.querySelector('.Double-marquee');
-            const doubleMarqueeTop = doubleMarquee ? doubleMarquee.getBoundingClientRect().top + window.scrollY : Infinity;
-            const footerTop = footerEl.getBoundingClientRect().top + window.scrollY;
-
-            if (scrollPos >= footerTop) {
-                navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
-            } else if (scrollPos >= doubleMarqueeTop) {
-                navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
-            } else if (scrollPos >= serviceCardsTop) {
-                navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
-            }else if (scrollPos >= motioncardTop) {
-                navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
-            } else if (scrollPos >= showreelTop) {
-                navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
-            } else if (scrollPos >= horizontalWordsTop) {
-                navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
-            } else {
-                navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
-            }
-        };
-
-        window.addEventListener('scroll', updateNavbarColor);
-        updateNavbarColor();
-
-        // Wiggle on logo and whatsapp
         const cleanups = [];
+
+        // Scroll-based color toggle
+        const navbar = document.querySelector('.navbar');
+        const footerEl = document.querySelector('.main-footer');
+        cleanups.push(initNavbarColorToggle(navbar, footerEl));
+
+        // Wiggle on logo
         const logoClickable = document.querySelector('.logo-container');
         if (logoClickable) cleanups.push(initWiggle(logoClickable, WIGGLE_CONFIG.logoClickable));
 
+        // Overlay (shared by both popouts)
         const overlay = document.querySelector('.nav-overlay');
-        if (overlay) {
-            gsap.set(overlay, { opacity: 0, visibility: 'hidden' });
-        }
-        const showOverlay = () => {
-            if (overlay) {
-                gsap.set(overlay, { visibility: 'visible' });
-                gsap.to(overlay, { opacity: 1, duration: 0.35, ease: 'power2.out' });
-            }
-        };
-        const hideOverlay = () => {
-            if (overlay) {
-                gsap.to(overlay, { opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => gsap.set(overlay, { visibility: 'hidden' }) });
-            }
-        };
+        const overlayHelpers = createOverlayHelpers(overlay);
 
-        // ─── Navbar LeftHover ───
-        const navLeft = document.querySelector('.nav-left');
-        const workBox = document.querySelector('.nav-work-box');
-        const workBlob = document.querySelector('.nav-bar_Iste-logo');
+        // Left popout — navigation links
+        cleanups.push(initLeftPopout(
+            document.querySelector('.nav-left'),
+            document.querySelector('.nav-work-box'),
+            document.querySelector('.nav-bar_Iste-logo'),
+            overlayHelpers,
+        ));
 
-        if (navLeft && workBox && workBlob) {
-            const workInner = workBox.querySelector('.nav-popout-inner');
-            const workItems = workInner ? Array.from(workInner.children) : [];
+        // Right popout — register CTA
+        cleanups.push(initRightPopout(
+            document.querySelector('.nav-right'),
+            document.querySelector('.nav-wa-box'),
+            document.querySelector('.nav-bar_register'),
+            overlayHelpers,
+        ));
 
-            // Temporarily show to measure both the box AND the blob icon center
-            gsap.set(workBox, { visibility: 'visible', scale: 1, opacity: 1 });
-            const boxRect = workBox.getBoundingClientRect();
-            const blobRect = workBlob.getBoundingClientRect();
-            // Icon center relative to the box's own top-left
-            const originX = (blobRect.left + blobRect.width / 2) - boxRect.left;
-            const originY = (blobRect.top + blobRect.height / 2) - boxRect.top;
-            const workOrigin = `${originX}px ${originY}px`;
-
-            // Start collapsed, scaling FROM the icon center
-            gsap.set(workBox, {
-                visibility: 'hidden',
-                scale: 0,
-                opacity: 0,
-                transformOrigin: workOrigin
-            });
-            gsap.set(workItems, { y: 10, opacity: 0 });
-            gsap.set(workBlob, { transformOrigin: 'center center' });
-
-            const onEnterLeft = () => {
-                gsap.killTweensOf(workBox);
-                gsap.killTweensOf(workItems);
-                gsap.killTweensOf(workBlob);
-                showOverlay();
-
-                // Fast 360 blob spin — like it's spinning then releasing the box
-                gsap.to(workBlob, { rotation: '+=360', duration: 0.5, ease: 'power3.inOut' });
-
-                gsap.set(workBox, { visibility: 'visible' });
-                // Box grows out smoothly from the icon center
-                gsap.fromTo(workBox,
-                    { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }
-                );
-                // Items emerge while box is growing
-                gsap.to(workItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
-            };
-
-            const onLeaveLeft = () => {
-                gsap.killTweensOf(workBox);
-                gsap.killTweensOf(workItems);
-                gsap.killTweensOf(workBlob);
-                hideOverlay();
-
-                gsap.to(workBlob, { rotation: 0, duration: 0.5, ease: 'power2.out' });
-
-                // Items fade quickly
-                gsap.to(workItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
-                // Box shrinks back into icon smoothly
-                gsap.to(workBox, {
-                    scale: 0,
-                    opacity: 0,
-                    duration: 0.3,
-                    ease: 'expo.in',
-                    delay: 0.05,
-                    onComplete: () => gsap.set(workBox, { visibility: 'hidden' })
-                });
-            };
-
-            navLeft.addEventListener('mouseenter', onEnterLeft);
-            navLeft.addEventListener('mouseleave', onLeaveLeft);
-            cleanups.push(() => {
-                navLeft.removeEventListener('mouseenter', onEnterLeft);
-                navLeft.removeEventListener('mouseleave', onLeaveLeft);
-            });
-        }
-
-        // ─── Navbar Right Hover ───
-        const navRight = document.querySelector('.nav-right');
-        const waBox = document.querySelector('.nav-wa-box');
-
-        if (navRight && waBox) {
-            const waInner = waBox.querySelector('.nav-popout-inner-right');
-            const waItems = waInner ? Array.from(waInner.children) : [];
-            const waIcon = document.querySelector('.nav-bar_register'); // ✅ Now resolves correctly
-
-            gsap.set(waBox, { visibility: 'visible', scale: 1, opacity: 1 });
-            const waBoxRect = waBox.getBoundingClientRect();
-            const waIconRect = waIcon ? waIcon.getBoundingClientRect() : waBoxRect;
-            const waOriginX = (waIconRect.left + waIconRect.width / 2) - waBoxRect.left;
-            const waOriginY = (waIconRect.top + waIconRect.height / 2) - waBoxRect.top;
-            const waOrigin = `${waOriginX}px ${waOriginY}px`;
-
-            gsap.set(waBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: waOrigin });
-            gsap.set(waItems, { y: 10, opacity: 0 });
-
-            let rightHoverTimeout;
-
-            const onEnterRight = () => {
-                clearTimeout(rightHoverTimeout);
-                gsap.killTweensOf(waBox);
-                gsap.killTweensOf(waItems);
-                showOverlay();
-
-                gsap.set(waBox, { visibility: 'visible' });
-                gsap.fromTo(waBox,
-                    { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }
-                );
-                gsap.to(waItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
-            };
-
-            const onLeaveRight = () => {
-                rightHoverTimeout = setTimeout(() => {
-                    // ✅ Stay open if EITHER the nav trigger OR the popup box is still hovered
-                    if (!navRight.matches(':hover') && !waBox.matches(':hover')) {
-                        gsap.killTweensOf(waBox);
-                        gsap.killTweensOf(waItems);
-                        hideOverlay();
-
-                        gsap.to(waItems, { y: 10, opacity: 0, duration: 0.5, ease: 'power2.in' });
-                        gsap.to(waBox, {
-                            scale: 0,
-                            opacity: 0,
-                            duration: 0.3,
-                            ease: 'expo.in',
-                            delay: 0.05,
-                            onComplete: () => gsap.set(waBox, { visibility: 'hidden' })
-                        });
-                    }
-                }, 100);
-            };
-
-            navRight.addEventListener('mouseenter', onEnterRight);
-            navRight.addEventListener('mouseleave', onLeaveRight);
-            waBox.addEventListener('mouseenter', onEnterRight);
-            waBox.addEventListener('mouseleave', onLeaveRight);
-
-            cleanups.push(() => {
-                clearTimeout(rightHoverTimeout);
-                navRight.removeEventListener('mouseenter', onEnterRight);
-                navRight.removeEventListener('mouseleave', onLeaveRight);
-                waBox.removeEventListener('mouseenter', onEnterRight);
-                waBox.removeEventListener('mouseleave', onLeaveRight);
-            });
-        }
-
-
-        return () => {
-            window.removeEventListener('scroll', updateNavbarColor);
-            cleanups.forEach(fn => fn && fn());
-        };
+        return () => cleanups.forEach(fn => fn && fn());
     }, []);
 
     return (
@@ -254,36 +200,28 @@ export default function Navbar() {
             <div className="nav-overlay"></div>
             <nav className="navbar">
                 <Magnetic intensity={0.2}>
-                    <div className="nav-left" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
+                    <div className="nav-left" style={{ cursor: CURSOR_POINTER }}>
                         <div className="nav-hover-trigger">
                             <div className="logo-container">
                                 <img src="/assets/Iste.png" width="60" height="60" className="nav-bar_Iste-logo" alt="" aria-hidden="true" />
                             </div>
 
-                            {/* Pop-out Box for Left Side */}
+                            {/* Pop-out Box — Navigation Links */}
                             <div className="nav-popout nav-work-box">
                                 <div className="nav-popout-inner">
-                                    <div className="nav-work-item">
-                                        <a href="/" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Home</TextRevealHover></a>
-                                    </div>
-                                    <div className="nav-work-item">
-                                        <a href="/about" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>About Us</TextRevealHover></a>
-                                    </div>
-                                    <div className="nav-work-item">
-                                        <a href="/schedules" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Schedules</TextRevealHover></a>
-                                    </div>
-                                    <div className="nav-work-item">
-                                        <a href="/gallery" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Gallery</TextRevealHover></a>
-                                    </div>
-                                    <div className="nav-work-item">
-                                        <a href="/contact" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Contact Us</TextRevealHover></a>
-                                    </div>
+                                    {NAV_LINKS.map(({ href, label }) => (
+                                        <div key={href} className="nav-work-item">
+                                            <a href={href} style={NAV_LINK_STYLE}>
+                                                <TextRevealHover>{label}</TextRevealHover>
+                                            </a>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </Magnetic>
-                <div className="nav-center" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
+                <div className="nav-center" style={{ cursor: CURSOR_POINTER }}>
                     <svg className="logo" width="400" height="auto" viewBox="0 0 3797 391" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_3313_31)">
                             <path d="M2021.98 1.37249C2079.93 -0.957247 2129.86 8.89783 2128.07 34.561C2126.83 52.3701 2120.47 71.3545 2116.55 89.2208C2105.6 129.965 2124.98 170.993 2125.79 211.473C2126.72 258.338 2111.66 303.368 2127.85 350.441C2137.67 378.98 2066.63 391.226 2005.52 387.386C1910.26 381.402 1917.91 350.437 1932.65 320.231C1941.64 299.663 2011.4 219.363 1922.39 212.964C1839.6 207.014 1826.39 263.103 1828.83 285.478C1826.81 296.362 1831.48 307.217 1831.82 317.96C1832.6 342.645 1869.79 365.339 1811.86 382.015C1747.02 396.178 1658.38 385.742 1648.37 353.299C1632.64 302.318 1679.47 252.739 1699.47 203.076C1712.94 169.651 1709.75 136.285 1697.26 102.94C1692.22 77.4364 1660.34 38.6782 1698.11 15.6454C1725.05 -0.787055 1806.55 -2.58417 1842.83 8.7788C1874.27 19.3217 1866.56 37.4552 1862.01 51.6302C1855.75 71.1252 1820.86 145.265 1890.52 150.611C1999.46 158.974 1966 99.1331 1953.9 74.775C1938.96 44.7204 1918.82 6.44376 2021.98 1.37249Z" fill="currentColor" />
@@ -301,11 +239,10 @@ export default function Navbar() {
                                 <rect width="3797" height="391" fill="white" />
                             </clipPath>
                         </defs>
-
                     </svg>
                 </div>
                 <Magnetic intensity={0.2}>
-                    <div className="nav-right" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
+                    <div className="nav-right" style={{ cursor: CURSOR_POINTER }}>
                         <div className="nav-hover-trigger">
                             <div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
                                 <span className="nav-bar_register"><TextRevealHover>Register</TextRevealHover></span>
@@ -315,7 +252,7 @@ export default function Navbar() {
                                 </svg>
                             </div>
 
-                            {/* Pop-out Box for Right Side */}
+                            {/* Pop-out Box — Register CTA */}
                             <div className="nav-popout-right nav-wa-box">
                                 <div className="nav-popout-inner-right" style={{ padding: '40px' }}>
                                     <h4 className="nav-wa-title">Join Now</h4>
