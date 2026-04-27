@@ -6,7 +6,12 @@ import Footer from '@/components/Footer';
 import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
-import GalleryGrid from '@/components/GalleryGrid';
+import DomeGallery from '@/components/DomeGallery';
+
+const galleryImages = Array.from({ length: 42 }, (_, i) => ({
+    src: `/assets/gallery-images/${i + 1}.webp`,
+    alt: `ISTE HIT SC Annual Convention gallery image ${i + 1}`,
+}));
 
 export default function GalleryPage() {
     return (
@@ -23,7 +28,16 @@ export default function GalleryPage() {
 </header>
 
             <main>
-                <GalleryGrid />
+                <section style={{ width: '100vw', height: '100vh', backgroundColor: '#120F17' }}>
+                    <DomeGallery
+                        images={galleryImages}
+                        segments={24}
+                        grayscale={false}
+                        minRadius={520}
+                        imageBorderRadius="24px"
+                        openedImageBorderRadius="24px"
+                    />
+                </section>
 
                 <div className="content-section" style={{ padding: '8rem 2rem', backgroundColor: 'var(--bg-color)', color: 'var(--color-dark)' }}>
                     <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '6rem' }}>

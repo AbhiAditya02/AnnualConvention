@@ -4,6 +4,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Magnetic from "@/components/Magnetic";
 
 gsap.registerPlugin(InertiaPlugin, ScrollTrigger);
 
@@ -233,9 +234,11 @@ export default function MotionCards() {
 
             {/* ─── Part 3: Bottom Paragraph Text ─── */}
             <div className="motion-card__footer-text">
-                <a href="/gallery" className="motion-card__btn">
-                    <span className="nav-work-btn__text"> View Full Gallery → </span>
-                </a>
+                <Magnetic intensity={0.3}>
+                    <a href="/gallery" className="motion-card__btn">
+                        <span className="nav-work-btn__text"> View Full Gallery → </span>
+                    </a>
+                </Magnetic>
             </div>
         </section>
     );

@@ -3,6 +3,8 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { WIGGLE_CONFIG } from '@/lib/data';
+import Magnetic from '@/components/Magnetic';
+import TextRevealHover from '@/components/TextRevealHover';
 
 function initWiggle(element, intensity) {
     const target = element.querySelector('[data-wiggle-target]') || element;
@@ -26,6 +28,7 @@ export default function Navbar() {
     useEffect(() => {
         const navbar = document.querySelector('.navbar');
         const contentSection = document.querySelector('.content-section');
+        // const newsection=document.querySelector('motion-cards-wrapper')
         const footerEl = document.querySelector('.main-footer');
 
         // ② Start white (on-dark) — video is dark background
@@ -74,7 +77,7 @@ export default function Navbar() {
 
         // Wiggle on logo and whatsapp
         const cleanups = [];
-        const logoClickable = document.querySelector('.logo');
+        const logoClickable = document.querySelector('.logo-container');
         if (logoClickable) cleanups.push(initWiggle(logoClickable, WIGGLE_CONFIG.logoClickable));
 
         const overlay = document.querySelector('.nav-overlay');
@@ -250,34 +253,36 @@ export default function Navbar() {
         <>
             <div className="nav-overlay"></div>
             <nav className="navbar">
-                <div className="nav-left" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
-                    <div className="nav-hover-trigger">
-                        <div className="logo-container">
-                            <img src="/assets/Iste.png" width="60" height="60" className="nav-bar_Iste-logo" alt="" aria-hidden="true" />
-                        </div>
+                <Magnetic intensity={0.2}>
+                    <div className="nav-left" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
+                        <div className="nav-hover-trigger">
+                            <div className="logo-container">
+                                <img src="/assets/Iste.png" width="60" height="60" className="nav-bar_Iste-logo" alt="" aria-hidden="true" />
+                            </div>
 
-                        {/* Pop-out Box for Left Side */}
-                        <div className="nav-popout nav-work-box">
-                            <div className="nav-popout-inner">
-                                <div className="nav-work-item">
-                                    <a href="/" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Home</a>
-                                </div>
-                                <div className="nav-work-item">
-                                    <a href="/about" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>About Us</a>
-                                </div>
-                                <div className="nav-work-item">
-                                    <a href="/schedules" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Schedules</a>
-                                </div>
-                                <div className="nav-work-item">
-                                    <a href="/gallery" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Gallery</a>
-                                </div>
-                                <div className="nav-work-item">
-                                    <a href="/contact" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>Contact Us</a>
+                            {/* Pop-out Box for Left Side */}
+                            <div className="nav-popout nav-work-box">
+                                <div className="nav-popout-inner">
+                                    <div className="nav-work-item">
+                                        <a href="/" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Home</TextRevealHover></a>
+                                    </div>
+                                    <div className="nav-work-item">
+                                        <a href="/about" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>About Us</TextRevealHover></a>
+                                    </div>
+                                    <div className="nav-work-item">
+                                        <a href="/schedules" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Schedules</TextRevealHover></a>
+                                    </div>
+                                    <div className="nav-work-item">
+                                        <a href="/gallery" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Gallery</TextRevealHover></a>
+                                    </div>
+                                    <div className="nav-work-item">
+                                        <a href="/contact" style={{ fontSize: '1.3rem', fontWeight: 600, textDecoration: 'none', color: 'inherit', display: 'inline-block' }}><TextRevealHover>Contact Us</TextRevealHover></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Magnetic>
                 <div className="nav-center" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
                     <svg className="logo" width="400" height="auto" viewBox="0 0 3797 391" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_3313_31)">
@@ -299,29 +304,30 @@ export default function Navbar() {
 
                     </svg>
                 </div>
-                <div className="nav-right" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
-                    <div className="nav-hover-trigger">
-                        <div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
-                            {/* ✅ Removed the stray dot from className */}
-                            <span className="nav-bar_register">Register</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 169 10" fill="none" className="stroke-svg">
-                                <path d="M1 6.5661C56.3941 3.06082 112.187 1.20095 168 0.999878" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75"></path>
-                                <path d="M32.1313 8.63371C68.2147 6.92799 104.462 6.13378 140.695 6.25107" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path>
-                            </svg>
-                        </div>
+                <Magnetic intensity={0.2}>
+                    <div className="nav-right" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
+                        <div className="nav-hover-trigger">
+                            <div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
+                                <span className="nav-bar_register"><TextRevealHover>Register</TextRevealHover></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 169 10" fill="none" className="stroke-svg">
+                                    <path d="M1 6.5661C56.3941 3.06082 112.187 1.20095 168 0.999878" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75"></path>
+                                    <path d="M32.1313 8.63371C68.2147 6.92799 104.462 6.13378 140.695 6.25107" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path>
+                                </svg>
+                            </div>
 
-                        {/* Pop-out Box for Right Side */}
-                        <div className="nav-popout-right nav-wa-box">
-                            <div className="nav-popout-inner-right" style={{ padding: '40px' }}>
-                                <h4 className="nav-wa-title">Join Now</h4>
-                                <p className="nav-wa-desc">Secure your spot for the Annual Convention.</p>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhoVhFIEbH41zrbEwhtgaKSBswWQNVhfMg9wo_YLKX0SS5QA/alreadyresponded" className="nav-work-btn">
-                                    <span className="nav-work-btn__text">Register Here</span>
-                                </a>
+                            {/* Pop-out Box for Right Side */}
+                            <div className="nav-popout-right nav-wa-box">
+                                <div className="nav-popout-inner-right" style={{ padding: '40px' }}>
+                                    <h4 className="nav-wa-title">Join Now</h4>
+                                    <p className="nav-wa-desc">Secure your spot for the Annual Convention.</p>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhoVhFIEbH41zrbEwhtgaKSBswWQNVhfMg9wo_YLKX0SS5QA/alreadyresponded" className="nav-work-btn">
+                                        <span className="nav-work-btn__text"><TextRevealHover>Register Here</TextRevealHover></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Magnetic>
             </nav>
         </>
     );
