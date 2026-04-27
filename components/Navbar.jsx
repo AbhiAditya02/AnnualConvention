@@ -36,6 +36,12 @@ export default function Navbar() {
             const scrollPos = window.scrollY + navbar.offsetHeight / 2;
             const contentTop = contentSection.getBoundingClientRect().top + window.scrollY;
 
+            const motioncardSection = document.querySelector('.motion-cards-wrapper');
+            const motioncardTop = motioncardSection ? motioncardSection.getBoundingClientRect().top + window.scrollY : Infinity;
+
+            const horizontalWordsSection = document.querySelector('.horizontal-words-section');
+            const horizontalWordsTop = horizontalWordsSection ? horizontalWordsSection.getBoundingClientRect().top + window.scrollY : Infinity;
+
             const showreelSection = document.querySelector('#showreel-section');
             const showreelTop = showreelSection ? showreelSection.getBoundingClientRect().top + window.scrollY : Infinity;
 
@@ -52,9 +58,11 @@ export default function Navbar() {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else if (scrollPos >= serviceCardsTop) {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
+            }else if (scrollPos >= motioncardTop) {
+                navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else if (scrollPos >= showreelTop) {
                 navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
-            } else if (scrollPos >= contentTop) {
+            } else if (scrollPos >= horizontalWordsTop) {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else {
                 navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
