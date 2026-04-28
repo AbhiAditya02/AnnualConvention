@@ -1,82 +1,154 @@
 'use client';
 
-import SvgSymbols from '@/components/SvgSymbols';
-import Navbar from '@/components/Navbar';
-import TransitionScribble from '@/components/TransitionScribble';
-import CursorBubble from '@/components/CursorBubble';
-import SmoothScroll from '@/components/SmoothScroll';
+import "../styles/about.css";
+
+import Navbar from "@/components/Navbar";
+import SvgSymbols from "@/components/SvgSymbols";
+import SmoothScroll from "@/components/SmoothScroll";
+import CursorBubble from "@/components/CursorBubble";
+import TransitionScribble from "@/components/TransitionScribble";
+import { useEffect, useRef } from "react";
+
+const stats = [
+  { num: "2+", label: "Conventions" },
+  { num: "1941", label: "Parent Body" },
+  { num: "∞", label: "Impact" },
+];
+
+const conv2025 = [
+  "Distinguished academicians from prestigious technical institutions.",
+  "Guest Speakers: MN Dastur, IIFON, Trisita Engineering, EEGRAB, Google, SecureT360, Dataspace, IEM Labs.",
+  "Expert Sessions: Artificial Intelligence, Cybersecurity, Data Science & networking opportunities.",
+];
+
+const conv2024 = [
+  "Professionals from Google, TCS, Black Hills Information Security, and Dastur InfoScience.",
+  "Student innovation showcase — Drone Medicine Model demonstration.",
+  "Official launch of the ISTE HIT Students' Chapter Website.",
+];
+
+const vision = [
+  {num: "01",title: "Technical Community",body: "Establish a strong and inclusive technical ecosystem that equips students with practical knowledge, problem-solving skills, and continuous learning opportunities."},
+  {num: "02",title: "Academia–Industry Integration",body: "Bridge the gap between academic learning and industry expectations through hands-on projects, expert interactions, and real-world exposure."},
+  {num: "03",title: "Leadership & Collaboration",body: "Develop leadership capabilities and promote teamwork by encouraging active participation, peer learning, and cross-disciplinary collaboration."},
+  {num: "04",title: "Ethical Innovation",body: "Promote responsible and sustainable technological development, ensuring ethical practices and long-term societal impact."}
+];
+
+function FadeIn({ children, delay = 0 }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    el.style.opacity = 0;
+    el.style.transform = "translateY(22px)";
+    el.style.transition = `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`;
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0)";
+        obs.disconnect();
+      }
+    });
+
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [delay]);
+
+  return <div ref={ref}>{children}</div>;
+}
 
 export default function AboutPage() {
-    return (
-        <>
-            <SvgSymbols />
-            <SmoothScroll />
-            <CursorBubble />
+  return (
+    <div className="root">
+      <SvgSymbols />
+      <SmoothScroll />
+      <CursorBubble />
 
-            {/* ─── Hero Header ─── */}
-            <header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
-                <Navbar />
-                <div style={{ maxWidth: '800px', padding: '0 2rem' }}>
-                    <h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1.5rem' }}>About Us</h1>
-                    <p style={{ fontSize: '1.5rem', color: '#a3a3a3', lineHeight: '1.6' }}>Building a dynamic technical community empowering students with knowledge, skills, and industry exposure.</p>
-                </div>
-            </header>
+      {/* HERO */}
+      <header className="hero">
+        <Navbar />
+        <div className="hero-glow" />
+        <p className="hero-eyebrow">ISTE HIT Students' Chapter · Est. 2023</p>
+        <h1 className="hero-h1">
+          About <em>Our</em> Chapter
+        </h1>
+        <p className="hero-desc">
+          Building a dynamic technical community — empowering students...
+        </p>
 
-            <main>
-                {/* ─── About ISTE HIT SC ─── */}
-                <div className="content-section" style={{ padding: '6rem 2rem', backgroundColor: 'var(--color-black)', color: 'var(--color-white)' }}>
-                    <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-                        <h2 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '2rem', letterSpacing: '-1px' }}>About ISTE HIT SC</h2>
-                        <p style={{ fontSize: '1.3rem', lineHeight: '1.8', color: '#c0c0c0' }}>
-                            The ISTE HIT Students' Chapter was founded in 2023 under the parent body established in 1941 to advance technical education in India. Workshops are led by Prof. Priyatosh Jana sir. Within one year, the chapter has successfully educated students in both technical and non-technical aspects.
-                        </p>
-                    </div>
-                </div>
+        <div className="hero-rule" />
+      </header>
 
-                {/* ─── Annual Conventions ─── */}
-                <div className="content-section" style={{ padding: '6rem 2rem', backgroundColor: 'var(--bg-color)', color: 'var(--color-dark)' }}>
-                    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-                        <h2 style={{ fontSize: '3rem', fontWeight: 800, textAlign: 'center', marginBottom: '4rem', letterSpacing: '-1px' }}>Our Journey</h2>
+      {/* ABOUT */}
+      <FadeIn>
+        <section className="about">
+          <div className="about-side">
+            <span className="side-label">OVERVIEW</span>
+          </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem' }}>
-                            {/* Convention 2025 */}
-                            <div style={{ backgroundColor: 'var(--color-white)', padding: '4rem 3rem', borderRadius: '32px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)' }}>
-                                <h3 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '2rem', borderBottom: '2px solid #eaeaea', paddingBottom: '1rem' }}>Annual Convention 2025</h3>
-                                <ul style={{ listStyle: 'none', padding: 0, fontSize: '1.15rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', lineHeight: '1.7' }}>
-                                    <li style={{ color: 'var(--color-dark)' }}>Participation from distinguished academicians from prestigious technical institutions.</li>
-                                    <li style={{ color: 'var(--color-dark)' }}><strong>Guest Speakers from:</strong> MN Dastur, IIFON, Trisita Engineering, EEGRAB, Google, SecureT360, Dataspace, and IEM Labs.</li>
-                                    <li style={{ color: 'var(--color-dark)' }}><strong>Expert Sessions Covered:</strong> Artificial Intelligence, Cybersecurity, Data Science, and networking opportunities.</li>
-                                </ul>
-                            </div>
+          <div className="about-content">
+            <span className="body-label">Who We Are</span>
+            <p className="body-text">
+              Established in 1941, the Indian Society for Technical Education (ISTE)
+              aims to advance technical education in India. <br /> In 2023, the ISTE HIT
+              Students’ Chapter was founded, offering workshops led by Prof. Priyatosh
+              Jana sir.
+            </p>
+          </div>
+        </section>
+      </FadeIn>
 
-                            {/* Convention 2024 */}
-                            <div style={{ backgroundColor: 'var(--color-white)', padding: '4rem 3rem', borderRadius: '32px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)' }}>
-                                <h3 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '2rem', borderBottom: '2px solid #eaeaea', paddingBottom: '1rem' }}>Annual Convention 2024</h3>
-                                <ul style={{ listStyle: 'none', padding: 0, fontSize: '1.15rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', lineHeight: '1.7' }}>
-                                    <li style={{ color: 'var(--color-dark)' }}>Participation from professionals at Google, TCS, Black Hills Information Security, and Dastur InfoScience.</li>
-                                    <li style={{ color: 'var(--color-dark)' }}>Student innovation showcase, notably the demonstration of the Drone Medicine Model.</li>
-                                    <li style={{ color: 'var(--color-dark)' }}>Official launch of the ISTE HIT Students' Chapter Website.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      {/* JOURNEY */}
+      <FadeIn delay={60}>
+        <section className="journey">
+          <h2 className="journey-heading">Our Journey</h2>
 
-                {/* ─── Vision & Mission ─── */}
-                <div className="content-section" style={{ padding: '6rem 2rem', backgroundColor: 'var(--color-black)', color: 'var(--color-white)' }}>
-                    <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-                        <h2 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '3rem', letterSpacing: '-1px' }}>Vision & Mission</h2>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', fontSize: '1.25rem', lineHeight: '1.8', color: '#c0c0c0' }}>
-                            <p>To build a dynamic technical community empowering students with knowledge, skills, and industry exposure.</p>
-                            <p>Bridging the gap between academia and industry through hands-on learning, research, and innovation-driven events.</p>
-                            <p>Foster leadership, networking, and collaboration to nurture future-ready professionals.</p>
-                            <p>Dedicated to ethical and sustainable technological advancements to shape tomorrow's engineers and innovators.</p>
-                        </div>
-                    </div>
-                </div>
-            </main>
+          <div className="conv-grid">
+            <div className="conv-dark">
+              <p className="year amber">2025</p>
+              <ul className="conv-list">
+                {conv2025.map((item) => (
+                  <li key={item}><span className="symbol1">✦</span>{item}</li>
+                ))}
+              </ul>
+            </div>
 
-            <TransitionScribble />
-        </>
-    );
+            <div className="conv-light">
+              <p className="year faded">2024</p>
+              <ul className="conv-list">
+                {conv2024.map((item) => (
+                  <li key={item}><span className="symbol2">✦</span> {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* VISION */}
+      <FadeIn delay={80}>
+        <section className="vision">
+          <h2 className="vision-heading">
+            Vision & <em>Mission</em>
+          </h2>
+
+          <div className="vision-grid">
+            {vision.map((v) => (
+              <div key={v.num} className="vision-item">
+                <span className="vision-item-heading"><strong>{v.title}:</strong></span>
+                <p>
+                  {v.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </FadeIn>
+
+      <TransitionScribble />
+    </div>
+  );
 }
