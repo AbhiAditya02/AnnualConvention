@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-    title: 'ISTE HIT SC — Annual Convention',
+    title: 'Annual Convention 26',
     description: 'ISTE HIT Students Chapter — Building a dynamic technical community empowering students with knowledge, skills, and industry exposure.',
     icons: {
         icon: '/assets/Iste.png',
