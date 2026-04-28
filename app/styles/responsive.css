@@ -44,22 +44,7 @@
         margin-left: 52px;
     }
 
-    .nav-bar__whatsapp-svg {
-        width: 26px;
-    }
-
     /* ── Header Hero ────────────────── */
-    .header-content {
-        height: 100svh;
-        padding: 0 24px;
-        text-align: center;
-    }
-
-    .header-content h1 {
-        font-size: 2rem;
-    }
-
-    /* ── Content / Hero Title ───────── */
     .content-section {
         padding: 80px 0 0;
         overflow: visible;
@@ -93,10 +78,6 @@
         max-width: 340px;
         min-height: 420px;
         height: auto;
-    }
-
-    .card-sticker {
-        pointer-events: none;
     }
 
     /* ── Double Marquee ─────────────── */
