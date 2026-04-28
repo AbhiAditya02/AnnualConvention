@@ -15,23 +15,28 @@ const stats = [
   { num: "∞", label: "Impact" },
 ];
 
-const conv2025 = [
-  "Distinguished academicians from prestigious technical institutions.",
-  "Guest Speakers: MN Dastur, IIFON, Trisita Engineering, EEGRAB, Google, SecureT360, Dataspace, IEM Labs.",
-  "Expert Sessions: Artificial Intelligence, Cybersecurity, Data Science & networking opportunities.",
-];
+const conv2025 = {
+  content: [
+    "Distinguished academicians from prestigious technical institutions.",
+    "Guest Speakers: MN Dastur, IIFON, Trisita Engineering, EEGRAB, Google, SecureT360, Dataspace, IEM Labs.",
+    "Expert Sessions: Artificial Intelligence, Cybersecurity, Data Science & networking opportunities.",
+  ],
+  color: "#4471f8",
+};
 
-const conv2024 = [
-  "Professionals from Google, TCS, Black Hills Information Security, and Dastur InfoScience.",
-  "Student innovation showcase — Drone Medicine Model demonstration.",
-  "Official launch of the ISTE HIT Students' Chapter Website.",
-];
+const conv2024 = {
+  content: [
+    "Professionals from Google, TCS, Black Hills Information Security, and Dastur InfoScience.",
+    "Student innovation showcase — Drone Medicine Model demonstration.",
+    "Official launch of the ISTE HIT Students' Chapter Website.",
+  ],
+  color: "orange",
+};
 
 const vision = [
-  {num: "01",title: "Technical Community",body: "Establish a strong and inclusive technical ecosystem that equips students with practical knowledge, problem-solving skills, and continuous learning opportunities."},
-  {num: "02",title: "Academia–Industry Integration",body: "Bridge the gap between academic learning and industry expectations through hands-on projects, expert interactions, and real-world exposure."},
-  {num: "03",title: "Leadership & Collaboration",body: "Develop leadership capabilities and promote teamwork by encouraging active participation, peer learning, and cross-disciplinary collaboration."},
-  {num: "04",title: "Ethical Innovation",body: "Promote responsible and sustainable technological development, ensuring ethical practices and long-term societal impact."}
+  { num: "01", title: "Technical Community", body: "Establish a strong and inclusive technical ecosystem that equips students with practical knowledge, problem-solving skills, and continuous learning opportunities." },
+  { num: "02", title: "Leadership & Collaboration", body: "Develop leadership capabilities and promote teamwork by encouraging active participation, peer learning, and cross-disciplinary collaboration." },
+  { num: "03", title: "Ethical Innovation", body: "Promote responsible and sustainable technological development, ensuring ethical practices and long-term societal impact." }
 ];
 
 function FadeIn({ children, delay = 0 }) {
@@ -71,12 +76,13 @@ export default function AboutPage() {
       <header className="hero">
         <Navbar />
         <div className="hero-glow" />
-        <p className="hero-eyebrow">ISTE HIT Students' Chapter · Est. 2023</p>
+        {/* <p className="hero-eyebrow">ISTE HIT Students' Chapter · Est. 2023</p> */}
         <h1 className="hero-h1">
-          About <em>Our</em> Chapter
+          About <em>US</em>
         </h1>
         <p className="hero-desc">
-          Building a dynamic technical community — empowering students...
+          Building a dynamic technical community
+          <br />empowering students with knowledge, skills, and industry exposure.
         </p>
 
         <div className="hero-rule" />
@@ -86,16 +92,22 @@ export default function AboutPage() {
       <FadeIn>
         <section className="about">
           <div className="about-side">
-            <span className="side-label">OVERVIEW</span>
+            <span className="side-label">Who are we</span>
+          </div>
+
+          <div className="about-illustration">
+            {/* <video src="https://storyset.com/illustration/innovation/amico/animate?share=98818" className="illustration"></video> */}
+            <img src="../assets/About SVG/Innovation.gif" alt="About Illustration" className="illustration" />
           </div>
 
           <div className="about-content">
-            <span className="body-label">Who We Are</span>
+            <span className="body-label">About ISTE HIT SC</span>
             <p className="body-text">
-              Established in 1941, the Indian Society for Technical Education (ISTE)
-              aims to advance technical education in India. <br /> In 2023, the ISTE HIT
-              Students’ Chapter was founded, offering workshops led by Prof. Priyatosh
-              Jana sir.
+              The ISTE HIT Students' Chapter was founded in 2023 under the parent body
+              established in 1941 to advance technical education in India. Workshops are led by
+              Prof. Priyatosh Jana sir. Within one year, the chapter has successfully educated
+              students in both technical and non-technical aspects - from hackathons and
+              expert sessions to cultural showcases and innovation expos.
             </p>
           </div>
         </section>
@@ -107,19 +119,21 @@ export default function AboutPage() {
           <h2 className="journey-heading">Our Journey</h2>
 
           <div className="conv-grid">
-            <div className="conv-dark">
-              <p className="year amber">2025</p>
-              <ul className="conv-list">
-                {conv2025.map((item) => (
+            <div className="conv-card" style={{ borderTop: `5px solid ${conv2025.color}`, backgroundColor: 'white' }}>
+              <span className="conv-year-badge" style={{ color: conv2025.color }}>2025</span>
+              <h3 className="conv-title">Annual Convention 3.0</h3>
+              <ul className="conv-list" style={{ '--bullet-color': conv2025.color }}>
+                {conv2025.content.map((item) => (
                   <li key={item} className="conv-list-items">{item}</li>
                 ))}
               </ul>
             </div>
 
-            <div className="conv-light">
-              <p className="year faded">2024</p>
-              <ul className="conv-list">
-                {conv2024.map((item) => (
+            <div className="conv-card" style={{ borderTop: `6px solid ${conv2024.color}`, backgroundColor: 'white' }}>
+              <span className="conv-year-badge" style={{ color: conv2024.color }}>2024</span>
+              <h3 className="conv-title">Annual Convention 2.0</h3>
+              <ul className="conv-list" style={{ '--bullet-color': conv2024.color }}>
+                {conv2024.content.map((item) => (
                   <li key={item} className="conv-list-items">{item}</li>
                 ))}
               </ul>
@@ -138,8 +152,8 @@ export default function AboutPage() {
           <div className="vision-grid">
             {vision.map((v) => (
               <div key={v.num} className="vision-item">
-                <span className="vision-item-heading"><strong>{v.title}:</strong></span>
-                <p>
+                <span className="vision-item-heading"><strong>{v.num}</strong></span>
+                <p className="vision-item-body">
                   {v.body}
                 </p>
               </div>
