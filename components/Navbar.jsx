@@ -128,8 +128,6 @@ function initRightPopout(navRight, registerBox, registerIcon, overlayHelpers) {
         gsap.killTweensOf(registerItems);
         if (registerIcon) gsap.killTweensOf(registerIcon);
         overlayHelpers.show();
-        // Spin the icon on enter, matching the blob rotation on the left
-        if (registerIcon) gsap.to(registerIcon, { rotation: '+=360', duration: 0.5, ease: 'power3.inOut' });
         gsap.set(registerBox, { visibility: 'visible' });
         gsap.fromTo(registerBox, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' });
         gsap.to(registerItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
