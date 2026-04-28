@@ -45,7 +45,7 @@ export default function TransitionScribble() {
                 let svgClone;
                 if (logoEl) {
                     svgClone = logoEl.cloneNode(true);
-                    svgClone.style.width = '500px';
+                    svgClone.style.width = 'min(500px, 45vw)';
                 } else {
                     const parser = new DOMParser();
                     const svgDoc = parser.parseFromString(ISTE_Default_SVG, 'image/svg+xml');
