@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import SvgSymbols from '@/components/SvgSymbols';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -62,9 +61,6 @@ export default function GalleryPage() {
                 </section>
             </main>
 
-            <footer className="main-footer">
-                <Footer />
-            </footer>
             <TransitionScribble />
         </>
     );
