@@ -1,7 +1,7 @@
 # Truus.co — Awwward-Winning Web Design Clone
 
-A highly interactive, visually stunning recreation of the **Truus.co** website, rebuilt as a **Next.js + React** application. This project captures the bold aesthetics, playful interactivity, and smooth motion design characteristic of Awwward-winning websites — with every pixel and every frame of animation faithfully recreated.
-
+A highly interactive, visually stunning recreation of the **AnnualConvention** website, rebuilt as a **Next.js + React** application. This project captures the bold aesthetics, playful interactivity, and smooth motion design — with every pixel and every frame of animation faithfully recreated.
+<!-- 
 <table>
   <tr>
     <td align="center"><b>Header Section</b><br/><img width="100%" alt="Header Section" src="https://github.com/user-attachments/assets/195d1543-3e28-4678-8545-567ca9b08767" /></td>
@@ -256,4 +256,4 @@ Made with ❤️ by **Arkyadeep Pal**, **Soumyakanta Mitra** and **Anshu Ram**, 
 
 ## 📄 License
 
-This project is for educational and portfolio purposes. All original brand assets belong to Truus.co.
+This project is for educational and portfolio purposes. All original brand assets belong to Truus.co. -->

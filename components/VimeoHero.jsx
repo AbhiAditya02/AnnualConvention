@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 export default function VimeoHero() {
-    const iframeRef = useRef(null);
+    const videoRef = useRef(null);
     const playerRef = useRef(null);
     const bubbleRef = useRef(null);
     const titleRef = useRef(null);
@@ -13,10 +13,6 @@ export default function VimeoHero() {
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    // Native video loads immediately enough that we don't need a heavy ready listener.
-    // We already handle `setIsLoaded(true)` directly on the <video onLoadedData={...}> element.
 
     /* ────────────────────────────────────────────────────
        ④ Hover mute bubble — same GSAP elastic spring as CursorBubble
@@ -98,19 +94,19 @@ export default function VimeoHero() {
     /* ── Controls ── */
     const togglePlay = (e) => {
         if (e) e.stopPropagation();
-        if (!iframeRef.current) return;
+        if (!videoRef.current) return;
         if (isPlaying) {
-            iframeRef.current.pause();
+            videoRef.current.pause();
         } else {
-            iframeRef.current.play();
+            videoRef.current.play();
         }
         setIsPlaying(p => !p);
     };
 
     const toggleMute = (e) => {
         if (e) e.stopPropagation();
-        if (!iframeRef.current) return;
-        iframeRef.current.muted = !isMuted;
+        if (!videoRef.current) return;
+        videoRef.current.muted = !isMuted;
         setIsMuted(m => !m);
     };
 
@@ -166,21 +162,16 @@ export default function VimeoHero() {
                 ref={playerRef}
                 onClick={toggleMute}
             >
-                {/* 
-                  Video Placeholder: 
-                  Currently left blank to display a solid black background while you work on text, SVGs, and the navbar.
-                  Once you have your personal video file in the `public/` folder, uncomment and update the src below!
-                */}
-<video 
-ref={iframeRef} 
-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260302_085844_21a8f4b3-dea5-4ede-be16-d53f6973bb14.mp4" 
-autoPlay 
-loop 
-muted 
-playsInline 
-className="vimeo-hero__iframe" 
-style={{ objectFit: 'cover', backgroundColor: '#111' }} 
-/>
+                <video
+                    ref={videoRef}
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260302_085844_21a8f4b3-dea5-4ede-be16-d53f6973bb14.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="vimeo-hero__iframe"
+                    style={{ objectFit: 'cover', backgroundColor: '#111' }}
+                />
 
                 {/* Gradient fade */}
                 <div className="vimeo-hero__fade" />

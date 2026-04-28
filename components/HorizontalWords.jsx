@@ -1,20 +1,21 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../app/styles/horizontal-words.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HorizontalWords = () => {
+const HEADING_TEXT = 'Building a dynamic technical community';
+
+export default function HorizontalWords() {
     const sectionRef = useRef(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             const container = sectionRef.current;
             const textRef = container.querySelector('.horizontal-words__relative');
-            const letters = container.querySelectorAll('.letter');
 
             // Select the individual stickers instead of just the wrapper
             // or we select the images directly if they are the elements we want to animate.
@@ -73,24 +74,7 @@ const HorizontalWords = () => {
             });
             // ------------------------------------
 
-            // Bounce each letter randomly
-            stickers.forEach((sticker) => {
-                gsap.from(sticker, {
-                    scale: 0,
-                    yPercent: (Math.random() - 0.5) * 400,
-                    rotation: (Math.random() - 0.5) * 60,
-                    ease: "elastic.out(1.2, 1)",
-                    scrollTrigger: {
-                        trigger: sticker,
-                        containerAnimation: scrollTween,
-                        start: 'right 100%', // Start when the letter is near the right edge
-                        end: 'left 70%',// Finish as it reaches center
-                        scrub: 0.5
-                    }
-                });
-            });
-
-            // Bounce stickers
+            // Bounce stickers into view as they scroll in
             stickers.forEach((sticker) => {
                 gsap.from(sticker, {
                     scale: 0,
@@ -101,7 +85,7 @@ const HorizontalWords = () => {
                         trigger: sticker,
                         containerAnimation: scrollTween,
                         start: 'left 100%',
-                        end: 'left 80%', // Finish as it reaches center
+                        end: 'left 80%',
                         scrub: 0.5
                     }
                 });
@@ -141,45 +125,12 @@ const HorizontalWords = () => {
                     <img src="/assets/HorizontalWords SVG/horizontal-words-sticker-phone.svg" className="horizontal-words__sticker-phone" alt="phone sticker" />
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 140 127" fill="none" className="horizontal-words__arrow-end-svg"><path d="M2.03125 2.42188C100.469 2.42188 130.156 52.4219 118.437 125.078L99.6875 107.891" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" ></path><path d="M2.03125 2.42188C100.469 2.42188 130.156 52.4219 118.438 125.078L137.969 110.234" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" ></path></svg>
 
-                    <h2 className="display horizontal-words__h2" aria-label="Building a dynamic technical community">
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>B</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>u</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>l</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>d</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>g</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>a</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>d</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>y</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>a</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>m</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>c</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>t</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>e</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>c</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>h</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>c</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>a</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>l</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>c</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>o</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>m</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>m</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>u</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>t</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>y</div>
+                    <h2 className="display horizontal-words__h2" aria-label={HEADING_TEXT}>
+                        {HEADING_TEXT.split('').map((char, i) =>
+                            char === ' ' ? ' ' : (
+                                <div key={i} className="letter" aria-hidden="true" style={{ position: 'relative', display: 'inline-block' }}>{char}</div>
+                            )
+                        )}
                     </h2>
                 </div>
             </div>
@@ -194,5 +145,3 @@ const HorizontalWords = () => {
         </section>
     );
 };
-
-export default HorizontalWords;
