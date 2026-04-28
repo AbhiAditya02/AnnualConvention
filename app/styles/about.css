@@ -132,16 +132,21 @@
   background: #0a0a0a;
   color: white;
   padding: 40px;
+  border-radius: 25px;
 }
 
 .conv-light {
   background: var(--amber);
   padding: 40px;
+  border-radius: 25px;
 }
 
 .year {
-  font-size: 56px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 52px;
   font-weight: 800;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .amber {
@@ -154,13 +159,14 @@
 
 .conv-list {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.15em;
-  line-height: 1.8;
+  font-size: 1.2em;
+  line-height: 1.25;
+  list-style: disc;
+  margin-left: 3%;
 }
 
-.symbol1 {
-  color: var(--amber);
-  margin-right: 8px;
+.conv-list-items {
+  margin-bottom: .5em;
 }
 
 .symbol2 {

@@ -111,7 +111,7 @@ export default function AboutPage() {
               <p className="year amber">2025</p>
               <ul className="conv-list">
                 {conv2025.map((item) => (
-                  <li key={item}><span className="symbol1">✦</span>{item}</li>
+                  <li key={item} className="conv-list-items">{item}</li>
                 ))}
               </ul>
             </div>
@@ -120,7 +120,7 @@ export default function AboutPage() {
               <p className="year faded">2024</p>
               <ul className="conv-list">
                 {conv2024.map((item) => (
-                  <li key={item}><span className="symbol2">✦</span> {item}</li>
+                  <li key={item} className="conv-list-items">{item}</li>
                 ))}
               </ul>
             </div>
