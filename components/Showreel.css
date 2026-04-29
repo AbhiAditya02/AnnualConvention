@@ -1,0 +1,265 @@
+.showreel-section {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem 5rem;
+    text-align: center;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ── Stickers ── */
+.sr-sticker {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 3;
+}
+.sr-sticker--1 { top: 30px;  left: 60px;              transform: rotate(-12deg); }
+.sr-sticker--2 { top: 25px;  right: 70px;             transform: rotate(10deg);  }
+.sr-sticker--3 { top: 80px;  left: 50%; margin-left: -22px; transform: rotate(5deg); }
+.sr-sticker--4 { top: 200px; left: calc(50% - 210px); transform: rotate(-8deg); z-index: 5; }
+.sr-sticker--5 { top: 195px; right: calc(50% - 210px);transform: rotate(8deg);  z-index: 5; }
+
+/* ── Heading ── */
+.sr-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.6rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.sr-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #f0ede8;
+    line-height: 1;
+    margin-bottom: 7rem;
+    position: relative;
+    z-index: 2;
+}
+
+.sr-title em {
+    font-style: italic;
+    font-weight: 700;
+    color: #c8b89a;
+}
+
+.sr-title-line {
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: #c8b89a;
+    margin: 0.4rem auto 0;
+    border-radius: 2px;
+}
+
+/* ── Arena ── */
+.sr-arena {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    height: 400px;
+    gap: 30px;
+}
+
+/* ── Cards ── */
+.sr-card {
+    position: relative;
+    width: 260px;
+    border-radius: 20px;
+    padding: 1.6rem 1.4rem 1.4rem;
+    text-align: left;
+    flex-shrink: 0;
+    transform-origin: bottom center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.sr-card--hack {
+    background: #d4e8d0;
+    transform: rotate(-6deg) translateX(60px);
+    z-index: 1;
+    margin-right: 2rem;
+}
+
+.sr-card--conv {
+    background: #e8d4c0;
+    transform: rotate(5deg) translateX(-60px);
+    z-index: 2;
+    margin-left: 2rem;
+}
+
+.sr-card--hack:hover {
+    transform: rotate(-2deg) translateX(60px) translateY(-18px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.sr-card--conv:hover {
+    transform: rotate(2deg) translateX(-60px) translateY(-18px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.sr-card-icon {
+    font-size: 28px;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.sr-card-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.sr-card-title {
+    font-size: 25px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.sr-divider {
+    height: 1.5px;
+    background: rgba(0, 0, 0, 0.12);
+    margin: 0.9rem 0;
+}
+
+.sr-desc {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+}
+
+.sr-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.1rem;
+    flex: 1;
+}
+
+.sr-list li {
+    font-size: 14.5px;
+    color: #333;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.sr-list li::before {
+    content: '✦';
+    font-size: 10px;
+    flex-shrink: 0;
+    color: #888;
+}
+
+/* ── Card Footer ── */
+.sr-foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.sr-venue strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #777;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.sr-venue p {
+    font-size: 11.5px;
+    color: #444;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+.sr-reg {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.sr-reg:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+}
+
+.sr-card--hack .sr-reg { background: #2d5a27; color: #fff; }
+.sr-card--conv .sr-reg { background: #5a3a1a; color: #fff; }
+
+/* ── Schedule Button ── */
+.sr-sched {
+    position: relative;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #f0ede8;
+    border: 1.5px solid #333;
+    border-radius: 100px;
+    background: transparent;
+    text-decoration: none;
+    transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+
+.sr-sched:hover {
+    border-color: #c8b89a;
+    background: rgba(200, 184, 154, 0.07);
+    transform: scale(1.03);
+}
+
+.sr-sched svg { transition: transform 0.2s; }
+.sr-sched:hover svg { transform: translateX(3px); }
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+    .sr-title { font-size: 32px; }
+    .sr-arena { height: auto; flex-direction: column; align-items: center; gap: 1.5rem; padding-bottom: 1rem; }
+    .sr-card--hack { transform: rotate(0deg) translateX(0); }
+    .sr-card--conv { transform: rotate(0deg) translateX(0); }
+    .sr-card--hack:hover { transform: translateY(-8px); }
+    .sr-card--conv:hover { transform: translateY(-8px); }
+    .sr-card { width: 100%; max-width: 300px; }
+    .sr-sticker--3,
+    .sr-sticker--4,
+    .sr-sticker--5 { display: none; }
+}
