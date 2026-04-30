@@ -1,0 +1,362 @@
+/* ─── Schedules Page ─────────────────────────────────────────────────────── */
+
+/* Hero — matches VimeoHero pattern */
+.sched-hero {
+    position: relative;
+    min-height: 70vh;
+    background-color: var(--color-black-deep);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 2rem 60px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.sched-hero__inner {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+}
+
+.sched-hero__title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    text-transform: lowercase;
+}
+
+.sched-hero__title em {
+    font-style: italic;
+}
+
+.sched-hero__date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.sched-hero__star {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.1;
+}
+
+.sched-hero__star--1 {
+    top: 18%;
+    right: 10%;
+    width: 55px;
+    animation: schedSpin 14s linear infinite;
+}
+
+.sched-hero__star--2 {
+    bottom: 12%;
+    left: 7%;
+    width: 70px;
+    animation: schedSpin 20s linear infinite reverse;
+}
+
+@keyframes schedSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Day Tabs — styled like service card color blocks ───────────────────── */
+.sched-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 2rem 0;
+    background-color: var(--bg-color);
+}
+
+.sched-tab {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    padding: 16px 40px;
+    border-radius: 10px;
+    border: none;
+    background: var(--color-white);
+    color: var(--color-dark);
+    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.sched-tab:hover {
+    background: var(--color-darkblue);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(75, 105, 240, 0.2);
+}
+
+.sched-tab--active {
+    background: var(--color-darkblue);
+    color: var(--color-white);
+    box-shadow: 0 8px 24px rgba(75, 105, 240, 0.2);
+}
+
+/* ─── Timeline ───────────────────────────────────────────────────────────── */
+.sched-timeline {
+    padding: 4rem 2rem 6rem;
+    background-color: var(--bg-color);
+}
+
+.sched-timeline__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Vertical line */
+.sched-timeline__inner::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-dark);
+    border-radius: 2px;
+    opacity: 0.12;
+}
+
+/* Single event row */
+.sched-event {
+    position: relative;
+    padding-left: 72px;
+    padding-bottom: 3rem;
+}
+
+.sched-event:last-child {
+    padding-bottom: 0;
+}
+
+/* Dot — matches the brand color palette */
+.sched-event__dot {
+    position: absolute;
+    left: 14px;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 4px solid var(--bg-color);
+    background-color: var(--color-orange);
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sched-event:hover .sched-event__dot {
+    transform: scale(1.25);
+}
+
+.sched-event--blue .sched-event__dot { background-color: var(--color-darkblue); }
+.sched-event--green .sched-event__dot { background-color: var(--color-green); }
+.sched-event--pink .sched-event__dot { background-color: var(--color-pink); }
+.sched-event--maroon .sched-event__dot { background-color: var(--color-maroon); }
+
+/* Time label */
+.sched-event__time {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--color-dark);
+    opacity: 0.4;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Card — styled like the service cards (solid bg, rounded) */
+.sched-event__card {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    padding: 2rem 2.2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
+}
+
+.sched-event:hover .sched-event__card {
+    transform: translateY(-3px);
+}
+
+.sched-event__title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--color-dark);
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+}
+
+.sched-event__desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-dark);
+    opacity: 0.5;
+}
+
+.sched-event__tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-top: 0.8rem;
+    background-color: var(--color-orange);
+    color: var(--color-white);
+}
+
+.sched-event--blue .sched-event__tag { background-color: var(--color-darkblue); }
+.sched-event--green .sched-event__tag { background-color: var(--color-green); }
+.sched-event--pink .sched-event__tag { background-color: var(--color-pink); color: var(--color-dark); }
+.sched-event--maroon .sched-event__tag { background-color: var(--color-maroon); }
+
+/* ─── Hackathon Feature — dark section like showreel ─────────────────────── */
+.sched-hackathon {
+    padding: 8rem 2rem;
+    background-color: var(--color-black-deep);
+    position: relative;
+    overflow: hidden;
+}
+
+.sched-hackathon__card {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.sched-hackathon__watermark {
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 900;
+    font-size: 14rem;
+    letter-spacing: -8px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+}
+
+.sched-hackathon__content {
+    position: relative;
+    z-index: 2;
+}
+
+.sched-hackathon__title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+}
+
+.sched-hackathon__subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.4);
+    max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+.sched-hackathon__subtitle strong {
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+/* Items grid — styled like the service card list items */
+.sched-hackathon__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+}
+
+.sched-hackathon__item {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-white);
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sched-hackathon__item::before {
+    content: '→';
+    color: var(--color-orange);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sched-hero {
+        min-height: 50vh;
+        padding: 100px 1.5rem 60px;
+    }
+
+    .sched-hero__title {
+        letter-spacing: -2px;
+    }
+
+    .sched-tabs {
+        padding: 2rem 1rem 0;
+        flex-wrap: wrap;
+    }
+
+    .sched-tab {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .sched-timeline {
+        padding: 3rem 1rem 4rem;
+    }
+
+    .sched-event {
+        padding-left: 56px;
+    }
+
+    .sched-timeline__inner::before {
+        left: 18px;
+    }
+
+    .sched-event__dot {
+        left: 8px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .sched-event__card {
+        padding: 1.5rem;
+    }
+
+    .sched-hackathon {
+        padding: 4rem 1.5rem;
+    }
+
+    .sched-hackathon__grid {
+        grid-template-columns: 1fr;
+    }
+}

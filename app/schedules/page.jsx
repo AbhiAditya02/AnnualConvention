@@ -1,89 +1,124 @@
 'use client';
 
+import { useState } from 'react';
 import SvgSymbols from '@/components/SvgSymbols';
 import Navbar from '@/components/Navbar';
 import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
+import Footer from '@/components/Footer';
+import '../styles/schedules.css';
 
+/* ─── Schedule Data ────────────────────────────────────────────────────── */
+const SCHEDULE = {
+    'Day 1 — 07 May': [
+        { time: '09:00 AM', title: 'Registration & Welcome Kit', desc: 'On-spot registration, ID distribution, and welcome kit handover.', tag: 'Opening', color: 'green' },
+        { time: '10:00 AM', title: 'Ceremonial Lamp Lighting', desc: 'Traditional inauguration with faculty, chief guests, and student representatives.', tag: 'Ceremony', color: '' },
+        { time: '10:30 AM', title: 'Inaugural Address & Keynote', desc: 'Opening remarks by the Chief Guest followed by a keynote on the future of technical education.', tag: 'Keynote', color: 'blue' },
+        { time: '12:00 PM', title: 'Expert Lecture — Artificial Intelligence', desc: 'Deep dive into modern AI architectures, LLMs, and real-world applications.', tag: 'AI', color: '' },
+        { time: '01:00 PM', title: 'Lunch Break', desc: 'Networking lunch with speakers and attendees.', tag: 'Break', color: 'green' },
+        { time: '02:00 PM', title: 'Expert Lecture — Cybersecurity', desc: 'Threat landscapes, zero-trust architectures, and ethical hacking methodologies.', tag: 'Security', color: 'blue' },
+        { time: '03:30 PM', title: 'Expert Lecture — Data Science', desc: 'From data pipelines to actionable insights — industry use cases and career paths.', tag: 'Data', color: 'pink' },
+        { time: '05:00 PM', title: 'Cultural Evening', desc: 'Singing, dancing, recitation, speeches, and one-act plays by students.', tag: 'Culture', color: 'maroon' },
+    ],
+    'Day 2 — 08 May': [
+        { time: '09:00 AM', title: 'Hack the Hackers — CTF Kickoff', desc: 'National-level Capture The Flag competition begins. Teams report to labs.', tag: 'Hackathon', color: '' },
+        { time: '10:00 AM', title: 'Guest Speaker Session', desc: 'Industry professionals from MN Dastur, IIFON, Google, and SecureT360 share insights.', tag: 'Speakers', color: 'blue' },
+        { time: '11:30 AM', title: 'Innovation Showcase', desc: 'Student projects on display — including the Drone Medicine Model demonstration.', tag: 'Innovation', color: 'green' },
+        { time: '01:00 PM', title: 'Lunch & Networking', desc: 'Connect with speakers, mentors, and fellow participants.', tag: 'Break', color: 'green' },
+        { time: '02:00 PM', title: 'CTF — Final Round', desc: 'Intensified challenges. Top teams battle for the podium.', tag: 'Hackathon', color: '' },
+        { time: '04:00 PM', title: 'Valedictory & Prize Distribution', desc: 'Closing ceremony, winner announcements, and certificate distribution.', tag: 'Closing', color: 'maroon' },
+        { time: '05:00 PM', title: 'Vote of Thanks', desc: 'Formal closing by Prof. Priyatosh Jana and the ISTE HIT SC team.', tag: 'Closing', color: 'pink' },
+    ],
+};
+
+const HACKATHON_ITEMS = [
+    'Nationwide participation',
+    'Ethical Hacking & CTF format',
+    'Full-day competitive event',
+    'Free & open registration',
+    'Focus on innovation & analytical skills',
+    'Industry-aligned problem-solving',
+];
+
+const DAY_KEYS = Object.keys(SCHEDULE);
+
+/* ─── Component ────────────────────────────────────────────────────────── */
 export default function SchedulesPage() {
+    const [activeDay, setActiveDay] = useState(0);
+
     return (
         <>
             <SvgSymbols />
             <SmoothScroll />
             <CursorBubble />
-            
-            <header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
+
+            {/* ═══ Hero — matches showreel section dark style ═══ */}
+            <header className="sched-hero main-header">
                 <Navbar />
-                <div style={{ maxWidth: '1000px', padding: '0 2rem' }}>
-                    <h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1rem' }}>Event Schedule</h1>
-                    <p style={{ fontSize: '1.8rem', color: '#a3a3a3', fontWeight: 600 }}>ANNUAL CONVENTION 3.0 &bull; 07th & 08th May, 2026</p>
+                <img src="/assets/VimeoHero SVG/pink-star.svg" alt="" className="sched-hero__star sched-hero__star--1" aria-hidden="true" />
+                <img src="/assets/VimeoHero SVG/pink-star.svg" alt="" className="sched-hero__star sched-hero__star--2" aria-hidden="true" />
+
+                <div className="sched-hero__inner">
+                    <h1 className="sched-hero__title">event <em>schedule</em></h1>
+                    <p className="sched-hero__date">Annual Convention 3.0 &bull; 07th &amp; 08th May, 2026</p>
                 </div>
             </header>
 
             <main>
-                <div className="content-section" style={{ padding: '8rem 2rem', backgroundColor: 'var(--bg-color)', color: 'var(--color-dark)' }}>
-                    <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '4rem' }}>
-                        
-                        {/* Convention Overview */}
-                        <div style={{ backgroundColor: 'var(--color-white)', padding: '5rem 4rem', borderRadius: '40px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)' }}>
-                            <h3 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '2px solid #eaeaea' }}>Event Flow</h3>
-                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-                                <li style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                    <div style={{ fontSize: '3rem', lineHeight: '1' }}>🪔</div>
-                                    <div>
-                                        <strong style={{ fontSize: '1.8rem', display: 'block', marginBottom: '0.5rem' }}>Ceremonial Lamp Lighting</strong>
-                                        <p style={{ fontSize: '1.3rem', color: '#666', lineHeight: '1.6' }}>Official kickoff to the convention.</p>
-                                    </div>
-                                </li>
-                                <li style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                    <div style={{ fontSize: '3rem', lineHeight: '1' }}>🎤</div>
-                                    <div>
-                                        <strong style={{ fontSize: '1.8rem', display: 'block', marginBottom: '0.5rem' }}>Keynote Speeches</strong>
-                                        <p style={{ fontSize: '1.3rem', color: '#666', lineHeight: '1.6' }}>Insights from 10–12 guest speakers.</p>
-                                    </div>
-                                </li>
-                                <li style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                    <div style={{ fontSize: '3rem', lineHeight: '1' }}>🎓</div>
-                                    <div>
-                                        <strong style={{ fontSize: '1.8rem', display: 'block', marginBottom: '0.5rem' }}>Expert Lectures</strong>
-                                        <p style={{ fontSize: '1.3rem', color: '#666', lineHeight: '1.6' }}>Interactive sessions focusing on emerging tech, AI, Data Science, and cybersecurity.</p>
-                                    </div>
-                                </li>
-                                <li style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                    <div style={{ fontSize: '3rem', lineHeight: '1' }}>🚀</div>
-                                    <div>
-                                        <strong style={{ fontSize: '1.8rem', display: 'block', marginBottom: '0.5rem' }}>Hack the Hackers</strong>
-                                        <p style={{ fontSize: '1.3rem', color: '#666', lineHeight: '1.6' }}>Full-day ethical hacking and CTF competition.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                {/* ═══ Day Tabs ═══ */}
+                <div className="sched-tabs">
+                    {DAY_KEYS.map((day, i) => (
+                        <button
+                            key={day}
+                            className={`sched-tab ${activeDay === i ? 'sched-tab--active' : ''}`}
+                            onClick={() => setActiveDay(i)}
+                        >
+                            {day}
+                        </button>
+                    ))}
+                </div>
 
-                        {/* Hackathon Details */}
-                        <div style={{ backgroundColor: 'var(--color-black-deep)', color: 'var(--color-white)', padding: '5rem 4rem', borderRadius: '40px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', position: 'relative', overflow: 'hidden' }}>
-                            <div style={{ position: 'absolute', top: '-20px', right: '0', padding: '2rem', opacity: '0.05', fontWeight: 900, fontSize: '12rem', letterSpacing: '-5px', lineHeight: '1' }}>CTF</div>
-                            
-                            <div style={{ position: 'relative', zIndex: 10 }}>
-                                <h3 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '2px solid #333' }}>Hack the Hackers</h3>
-                                <p style={{ fontSize: '1.6rem', marginBottom: '3rem', lineHeight: '1.6', color: '#ccc' }}>
-                                    Organized in collaboration with <strong style={{ color: 'var(--color-white)' }}>ISOAH</strong> (Indian School of Anti Hacking).
-                                </p>
-                                
-                                <ul style={{ listStyleType: 'square', paddingLeft: '2rem', fontSize: '1.4rem', lineHeight: '2', color: '#a3a3a3', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                    <li>Nationwide participation</li>
-                                    <li>Ethical Hacking & CTF format</li>
-                                    <li>Full-day competitive event</li>
-                                    <li>Free and open registration</li>
-                                    <li>Focus on innovation & analytical skills</li>
-                                    <li>Industry-aligned problem-solving</li>
-                                </ul>
+                {/* ═══ Timeline ═══ */}
+                <section className="sched-timeline">
+                    <div className="sched-timeline__inner">
+                        {SCHEDULE[DAY_KEYS[activeDay]].map((event, i) => (
+                            <div key={i} className={`sched-event ${event.color ? `sched-event--${event.color}` : ''}`}>
+                                <div className="sched-event__dot" />
+                                <span className="sched-event__time">{event.time}</span>
+                                <div className="sched-event__card">
+                                    <h3 className="sched-event__title">{event.title}</h3>
+                                    <p className="sched-event__desc">{event.desc}</p>
+                                    <span className="sched-event__tag">{event.tag}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* ═══ Hackathon — dark section like showreel ═══ */}
+                <section className="sched-hackathon">
+                    <div className="sched-hackathon__card">
+                        <div className="sched-hackathon__watermark">CTF</div>
+                        <div className="sched-hackathon__content">
+                            <h2 className="sched-hackathon__title">hack the hackers</h2>
+                            <p className="sched-hackathon__subtitle">
+                                Organized in collaboration with <strong>ISOAH</strong> (Indian School of Anti Hacking). A full-day national-level ethical hacking competition in CTF format.
+                            </p>
+                            <div className="sched-hackathon__grid">
+                                {HACKATHON_ITEMS.map((item) => (
+                                    <div key={item} className="sched-hackathon__item">{item}</div>
+                                ))}
                             </div>
                         </div>
-
                     </div>
-                </div>
+                </section>
             </main>
+
+            {/* ═══ Footer ═══ */}
+            <footer className="main-footer">
+                <Footer />
+            </footer>
 
             <TransitionScribble />
         </>
