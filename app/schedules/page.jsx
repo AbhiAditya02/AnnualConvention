@@ -53,16 +53,15 @@ export default function SchedulesPage() {
             <SmoothScroll />
             <CursorBubble />
 
-            {/* ═══ Hero ═══ */}
+            {/* ═══ Hero — matches showreel section dark style ═══ */}
             <header className="sched-hero main-header">
                 <Navbar />
                 <img src="/assets/VimeoHero SVG/pink-star.svg" alt="" className="sched-hero__star sched-hero__star--1" aria-hidden="true" />
                 <img src="/assets/VimeoHero SVG/pink-star.svg" alt="" className="sched-hero__star sched-hero__star--2" aria-hidden="true" />
 
                 <div className="sched-hero__inner">
-                    <span className="sched-hero__badge">Annual Convention 3.0</span>
-                    <h1 className="sched-hero__title">Event <em>Schedule</em></h1>
-                    <p className="sched-hero__date">07th &amp; 08th May, 2026</p>
+                    <h1 className="sched-hero__title">event <em>schedule</em></h1>
+                    <p className="sched-hero__date">Annual Convention 3.0 &bull; 07th &amp; 08th May, 2026</p>
                 </div>
             </header>
 
@@ -97,13 +96,12 @@ export default function SchedulesPage() {
                     </div>
                 </section>
 
-                {/* ═══ Hackathon Feature ═══ */}
+                {/* ═══ Hackathon — dark section like showreel ═══ */}
                 <section className="sched-hackathon">
                     <div className="sched-hackathon__card">
                         <div className="sched-hackathon__watermark">CTF</div>
                         <div className="sched-hackathon__content">
-                            <span className="sched-hackathon__label">Hackathon</span>
-                            <h2 className="sched-hackathon__title">Hack the Hackers</h2>
+                            <h2 className="sched-hackathon__title">hack the hackers</h2>
                             <p className="sched-hackathon__subtitle">
                                 Organized in collaboration with <strong>ISOAH</strong> (Indian School of Anti Hacking). A full-day national-level ethical hacking competition in CTF format.
                             </p>
