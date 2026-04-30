@@ -1,32 +1,102 @@
+.service-title {
+    font-size: 5rem;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: var(--color-black);
+    cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
+}
+
+
+.service-italic-text {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 500;
+    margin-left: -5px;
+}
+
+.service-underline-svg {
+    position: absolute;
+    right: 5px;
+    width: 160px;
+    height: auto;
+    color: var(--color-black);
+}
+
 /* ─── Cards Wrapper ──────────────────────────────────────────────────────── */
 .cards-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 1400px;
-    height: 650px;
-    margin: 100px auto 100px 100px;
+    height: 800px;
+    margin: 50px;
     display: flex;
     justify-content: center;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
 
+@media (max-width: 1000px) {
+    .cards-wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0px 40px 30px;
+        height: auto;
+    }
+    .card{
+        scale: .8;
+    }
+    
+}
+
+@media (max-width: 625px) {
+    .cards-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+        padding-left: 40px;
+        height: auto;
+        gap: 10px;
+    }
+}
+
 /* ─── Base Card ──────────────────────────────────────────────────────────── */
 .card {
     width: 320px;
-    height: 460px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1.5rem;
-    padding: 3.5rem 1.5rem 1.5rem;
+    height: fit-content;
+    padding: 1.5rem;
     cursor: pointer;
     border-radius: 10px;
     color: var(--color-white);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --rotate: 0deg;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform-origin: center center;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
+}
+
+.card-green { --rotate: 4deg; }
+.card-darkblue { --rotate: -5deg; }
+.card-orange { --rotate: 5deg; }
+.card-maroon { --rotate: -8deg; }
+
+.card {
+    transform: rotate(var(--rotate));
+}
+
+/* active card */
+.card.active {
+    transform: translateY(-10px) scale(1.15);
+    z-index: 100;
+}
+
+/* left side */
+.card.move-left {
+    transform: rotate(var(--rotate)) translateX(-50px) scale(0.9);
+    opacity: 0.95;
+}
+
+/* right side */
+.card.move-right {
+    transform: rotate(var(--rotate)) translateX(50px) scale(0.9);
+    opacity: 0.95;
 }
 
 .card-title {
@@ -34,7 +104,7 @@
     font-size: 2.2rem;
     font-family: 'Epilogue', sans-serif;
     font-weight: 800;
-    margin-top: 30px;
+    margin: 30px 0 5px;
     line-height: 1;
     letter-spacing: -1px;
 }
@@ -43,116 +113,70 @@
     width: 100%;
     height: auto;
     display: block;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0;
+    color: currentColor;
+    margin: 0 0 10px;
 }
 
 /* ─── Card Color Variants ────────────────────────────────────────────────── */
 .card-green {
     background-color: var(--color-green);
-    left: calc(50% - 700px);
-    top: 50px;
-    transform: rotate(4deg);
     z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-darkblue {
     background-color: var(--color-lightblue);
     color: var(--color-dark);
-    left: calc(50% - 430px);
-    top: 100px;
-    transform: rotate(-5deg);
     z-index: 2;
 }
 
 .card-orange {
     background-color: var(--color-orange);
     color: var(--color-dark);
-    left: calc(50% - 220px);
-    top: 20px;
-    transform: rotate(5deg);
     z-index: 3;
 }
 
 .card-maroon {
     background-color: var(--color-maroon);
-    left: calc(50% + 50px);
-    top: 30px;
-    transform: rotate(-8deg);
     z-index: 4;
-}
-
-.card-pink {
-    background-color: var(--color-pink);
-    color: var(--color-dark);
-    left: calc(50% + 320px);
-    top: 70px;
-    transform: rotate(5deg);
-    z-index: 5;
-}
-
-/* Expand hit area for middle cards to bridge gaps */
-.card-darkblue::after,
-.card-orange::after,
-.card-maroon::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -35px;
-    right: -35px;
-}
-
-/* Light card divider overrides */
-.card-pink .card-divider-svg,
-.card-orange .card-divider-svg,
-.card-darkblue .card-divider-svg {
-    color: rgba(0, 0, 0, 0.8);
 }
 
 /* ─── Card List ──────────────────────────────────────────────────────────── */
 .card-list {
     list-style: none;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-}
-
-.card-list li {
-    margin-bottom: 8px;
-    font-size: 1.15rem;
-    font-weight: 500;
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    line-height: 1.3;
-    letter-spacing: -0.3px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: start;
+    font-weight: 700;
+    font-size: 1.25rem;
+    gap: 0.75rem;
+    width: 100%;
+    padding-bottom: 10px;
 }
 
-.services-card__bullet-svg {
-    width: 14px;
+.services-card__bullet {
+    width: 18px;
     height: 18px;
-    flex-shrink: 0;
-    margin-top: 2px;
+    margin-right: 4px;
     color: currentColor;
 }
 
 /* ─── Card Sticker Variables ─────────────────────────────────────────────── */
 :root {
-    --sticker-camera-w: 160px;
+    --sticker-camera-w: 120px;
     --sticker-phone-w: 120px;
-    --sticker-smiley-w: 120px;
-    --sticker-hand-w: 120px;
-    --sticker-heart-w: 140px;
+    --sticker-smiley-w: 100px;
+    --sticker-heart-w: 120px;
 
     --sticker-camera-top: -45px;
-    --sticker-camera-left: 120px;
+    --sticker-camera-left: 140px;
 
     --sticker-phone-top: -45px;
     --sticker-phone-left: 155px;
 
     --sticker-smiley-top: -50px;
-
-    --sticker-hand-top: -40px;
 
     --sticker-heart-top: -50px;
     --sticker-heart-right: 15px;
@@ -193,14 +217,6 @@
     top: var(--sticker-smiley-top);
     left: 70%;
     transform: translateX(-50%) rotate(4deg);
-}
-
-.card-sticker.sticker-hand {
-    width: var(--sticker-hand-w);
-    height: auto;
-    top: var(--sticker-hand-top);
-    left: 70%;
-    transform: translateX(-50%) rotate(8deg);
 }
 
 .card-sticker.sticker-heart {
