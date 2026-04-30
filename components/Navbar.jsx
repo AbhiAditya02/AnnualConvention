@@ -17,7 +17,7 @@ const NAV_LINK_STYLE = { fontSize: '1.3rem', fontWeight: 600, textDecoration: 'n
  * section the user has scrolled into.
  */
 function initNavbarColorToggle(navbar, footerEl) {
-    if (!navbar || !footerEl) return () => { };
+    if (!navbar || !footerEl) return () => {};
 
     navbar.classList.add('on-dark');
     navbar.classList.remove('on-light');
@@ -57,7 +57,7 @@ function initNavbarColorToggle(navbar, footerEl) {
 
 /* ─── Left popout (navigation links) ─────────────────────────────────────── */
 function initLeftPopout(navLeft, workBox, workBlob, overlayHelpers) {
-    if (!navLeft || !workBox || !workBlob) return () => { };
+    if (!navLeft || !workBox || !workBlob) return () => {};
 
     const workInner = workBox.querySelector('.nav-popout-inner');
     const workItems = workInner ? Array.from(workInner.children) : [];
@@ -106,27 +106,26 @@ function initLeftPopout(navLeft, workBox, workBlob, overlayHelpers) {
 
 /* ─── Right popout (register CTA) ────────────────────────────────────────── */
 function initRightPopout(navRight, registerBox, registerIcon, overlayHelpers) {
-    if (!navRight || !registerBox) return () => { };
+    if (!navRight || !registerBox) return () => {};
 
     const registerInner = registerBox.querySelector('.nav-popout-inner-right');
     const registerItems = registerInner ? Array.from(registerInner.children) : [];
 
-    // Measure origin from the icon center, mirroring how left uses workBlob
     gsap.set(registerBox, { visibility: 'visible', scale: 1, opacity: 1 });
     const boxRect = registerBox.getBoundingClientRect();
     const iconRect = registerIcon ? registerIcon.getBoundingClientRect() : boxRect;
     const originX = (iconRect.left + iconRect.width / 2) - boxRect.left;
     const originY = (iconRect.top + iconRect.height / 2) - boxRect.top;
-    const registerOrigin = `${originX}px ${originY}px`;
 
-    gsap.set(registerBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: registerOrigin });
+    gsap.set(registerBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: `${originX}px ${originY}px` });
     gsap.set(registerItems, { y: 10, opacity: 0 });
-    if (registerIcon) gsap.set(registerIcon, { transformOrigin: 'center center' });
+
+    let hoverTimeout;
 
     const onEnter = () => {
+        clearTimeout(hoverTimeout);
         gsap.killTweensOf(registerBox);
         gsap.killTweensOf(registerItems);
-        if (registerIcon) gsap.killTweensOf(registerIcon);
         overlayHelpers.show();
         gsap.set(registerBox, { visibility: 'visible' });
         gsap.fromTo(registerBox, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' });
@@ -134,23 +133,28 @@ function initRightPopout(navRight, registerBox, registerIcon, overlayHelpers) {
     };
 
     const onLeave = () => {
-        // No hover guard — mirrors left popout's unconditional close
-        gsap.killTweensOf(registerBox);
-        gsap.killTweensOf(registerItems);
-        if (registerIcon) gsap.killTweensOf(registerIcon);
-        overlayHelpers.hide();
-        if (registerIcon) gsap.to(registerIcon, { rotation: 0, duration: 0.5, ease: 'power2.out' });
-        gsap.to(registerItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
-        gsap.to(registerBox, { scale: 0, opacity: 0, duration: 0.3, ease: 'expo.in', delay: 0.05, onComplete: () => gsap.set(registerBox, { visibility: 'hidden' }) });
+        hoverTimeout = setTimeout(() => {
+            if (!navRight.matches(':hover') && !registerBox.matches(':hover')) {
+                gsap.killTweensOf(registerBox);
+                gsap.killTweensOf(registerItems);
+                overlayHelpers.hide();
+                gsap.to(registerItems, { y: 10, opacity: 0, duration: 0.5, ease: 'power2.in' });
+                gsap.to(registerBox, { scale: 0, opacity: 0, duration: 0.3, ease: 'expo.in', delay: 0.05, onComplete: () => gsap.set(registerBox, { visibility: 'hidden' }) });
+            }
+        }, 100);
     };
 
-    // Only navRight drives open/close — no registerBox listeners (matches left pattern)
     navRight.addEventListener('mouseenter', onEnter);
     navRight.addEventListener('mouseleave', onLeave);
+    registerBox.addEventListener('mouseenter', onEnter);
+    registerBox.addEventListener('mouseleave', onLeave);
 
     return () => {
+        clearTimeout(hoverTimeout);
         navRight.removeEventListener('mouseenter', onEnter);
         navRight.removeEventListener('mouseleave', onLeave);
+        registerBox.removeEventListener('mouseenter', onEnter);
+        registerBox.removeEventListener('mouseleave', onLeave);
     };
 }
 
