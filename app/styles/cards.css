@@ -36,12 +36,18 @@
     .cards-wrapper{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 0px 40px 30px;
+        padding: 0px 40px;
         height: auto;
+        gap: -10px;
     }
     .card{
-        scale: .8;
+        scale: .85;
     }
+
+    .title-container{
+        scale: .9;
+    }
+
     
 }
 
@@ -53,7 +59,17 @@
         padding: 0 20px;
         padding-left: 40px;
         height: auto;
-        gap: 10px;
+        gap: 0px;
+    }
+    .title-container{
+        scale: .7;
+    }
+    .card{
+        scale: .75;
+    }
+
+    .service-underline-svg{
+        right: 33%;
     }
 }
 
