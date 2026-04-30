@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --violet: #4471f8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.root {
+  font-family: 'DM Sans', sans-serif;
+  background: #000000;
+  color: #f5f4f0;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 200px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 70% 50%, #5370f114, transparent);
+}
+
+.hero-eyebrow {
+  font-family: 'Space Mono';
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--violet);
+}
+
+.hero-h1 {
+  font-family: 'Playfair Display';
+  font-size: clamp(40px, 5vw, 90px);
+  font-weight: 900;
+}
+
+.hero-h1 em {
+  color: var(--violet);
+}
+
+.hero-desc {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+}
+
+.hero-rule {
+  margin-top: 30px;
+  width: 25%;
+  height: 2px;
+  background: var(--violet);
+}
+
+/* ABOUT */
+.about {
+  display: grid;
+  padding: 40px 40px 150px;
+}
+
+.about-side {
+  padding: 40px;
+  text-align: start;
+}
+
+.side-label {
+  font-size: 40px;
+  font-weight: 950;
+  font-family: 'Playfair Display';
+  margin-left: 20px;
+}
+
+.about-content {
+  padding: 0px 80px 40px;
+}
+
+.body-label {
+  color: var(--violet);
+  font-family: 'Space Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.body-text {
+  margin-top: 15px;
+  margin-left: 25px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+  max-width: 45vw;
+  overflow-y: auto;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  letter-spacing: 0.04em;
+  word-spacing: 0.1em;
+}
+
+.illustration{
+  position: absolute;
+  left: 65%;
+  top: 0;
+  width: 400px;
+  height: auto;
+  /* transform: scaleX(-1);
+  rotate: 15deg; */
+}
+
+@media  (max-width: 768px){
+  .illustration{
+    display: none;
+  }
+
+  .body-text {
+    max-width: 110%;
+  }
+}
+
+/* JOURNEY */
+.journey {
+  background: #f5f4f0;
+  color: #0a0a0a;
+  padding: 120px 80px;
+}
+
+.journey-heading {
+  font-family: 'Playfair Display';
+  font-size: 40px;
+  text-align: start;
+  margin-left: 40px;
+  margin-bottom: 60px;
+  font-weight: 900;
+}
+
+.conv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+@media (max-width: 768px) {
+  .conv-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conv-card {
+  background: white;
+  color: #0a0a0a;
+  padding: 28px 32px 36px;
+  border-radius: 18px;
+  border: 1px solid #d4d4d4;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.conv-year-badge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.conv-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2vw, 32px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #0a0a0a;
+}
+
+.conv-list {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  list-style: disc;
+  list-style-position: outside;
+  margin-left: 18px;
+  color: #2a2a28;
+}
+
+.conv-list li::marker {
+  color: var(--bullet-color, #2a2a28);
+}
+
+.conv-list-items {
+  margin-bottom: 0.55em;
+}
+
+/* VISION */
+.vision {
+  padding: 100px 120px;
+}
+
+.vision-heading {
+  font-family: 'Playfair Display';
+  font-size: 40px;
+  text-align: start;
+  margin-bottom: 80px;
+  margin-left: 20px;
+  font-weight: 900;
+}
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 100px;
+}
+
+.vision-item {
+  background: #333232;
+  padding: 20px 30px;
+  border-radius: 10px;
+  min-height: 200px;
+}
+
+.vision-item-heading {
+  font-family: 'Playfair Display', sans-serif;
+  font-size: 2em;
+  padding-bottom: 30px;
+  color: #4471f8;
+}
+
+.vision-item-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  padding: 20px 0px;
+}
+
+@media (max-width: 756px) {
+  .vision-grid {
+    grid-template-columns: 1fr;
+  }
+}
