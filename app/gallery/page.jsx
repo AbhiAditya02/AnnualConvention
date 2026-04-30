@@ -34,7 +34,7 @@ export default function GalleryPage() {
             <header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
                 <Navbar />
                 <div style={{ maxWidth: '900px', padding: '0 2rem' }}>
-                    <h1 style={{ fontSize: '5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-2px', fontFamily: 'Epilogue, sans-serif', marginBottom: '1.5rem' }}>Event Gallery</h1>
+                    <h1 style={{ fontSize: '4rem', fontWeight: 400, textTransform: 'capitalize', letterSpacing: '-2px', fontFamily: 'Georgia serif', marginBottom: '1.5rem' , fontStyle: 'italic'}}>Glimpses from <br />Annual Convention 2.0</h1>
                 </div>
             </header>
 

@@ -1,7 +1,7 @@
 .showreel-section {
     position: relative;
     overflow: hidden;
-    padding: 4rem 2rem 5rem;
+    padding: 5rem;
     text-align: center;
     background: #111;
     display: flex;
@@ -16,11 +16,11 @@
     user-select: none;
     z-index: 3;
 }
-.sr-sticker--1 { top: 30px;  left: 60px;              transform: rotate(-12deg); }
-.sr-sticker--2 { top: 25px;  right: 70px;             transform: rotate(10deg);  }
-.sr-sticker--3 { top: 80px;  left: 50%; margin-left: -22px; transform: rotate(5deg); }
-.sr-sticker--4 { top: 200px; left: calc(50% - 210px); transform: rotate(-8deg); z-index: 5; }
-.sr-sticker--5 { top: 195px; right: calc(50% - 210px);transform: rotate(8deg);  z-index: 5; }
+.sr-sticker--1 { top: 30px;  left: 60px; transform: rotate(-12deg); }
+.sr-sticker--2 { top: 25px;  right: 70px; transform: rotate(10deg);  }
+.sr-sticker--3 { top: 50px;  left: 60%; transform: rotate(25deg); }
+.sr-sticker--4 { top: 270px; left: calc(35% - 210px); transform: rotate(-8deg); z-index: 5; }
+.sr-sticker--5 { top: 230px; right: calc(35% - 210px);transform: rotate(8deg);  z-index: 5; }
 
 /* ── Heading ── */
 .sr-eyebrow {
@@ -53,7 +53,7 @@
 
 .sr-title-line {
     display: block;
-    width: 100px;
+    width: 50%;
     height: 2px;
     background: #c8b89a;
     margin: 0.4rem auto 0;
@@ -67,15 +67,15 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-bottom: 3rem;
-    height: 400px;
-    gap: 30px;
+    padding-bottom: 4rem;
+    height: fit-content;
+    gap: 15px;
 }
 
 /* ── Cards ── */
 .sr-card {
     position: relative;
-    width: 260px;
+    width: 380px;
     border-radius: 20px;
     padding: 1.6rem 1.4rem 1.4rem;
     text-align: left;
@@ -101,64 +101,63 @@
 }
 
 .sr-card--hack:hover {
-    transform: rotate(-2deg) translateX(60px) translateY(-18px);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    transform: translateX(-20px) translateY(-18px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
     z-index: 10;
 }
 
 .sr-card--conv:hover {
-    transform: rotate(2deg) translateX(-60px) translateY(-18px);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    transform: translateX(20px) translateY(-18px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
     z-index: 10;
 }
 
 .sr-card-icon {
-    font-size: 28px;
-    margin-bottom: 0.8rem;
-    display: block;
+    font-size: 20px;
+    padding: 5px 0;
 }
 
 .sr-card-label {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-transform: capitalize;
     color: #555;
-    margin-bottom: 0.3rem;
 }
 
 .sr-card-title {
-    font-size: 25px;
+    font-size: 32px;
     font-weight: 800;
     color: #1a1a1a;
     line-height: 1.1;
-    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+    margin-left: 10px;
 }
 
 .sr-divider {
-    height: 1.5px;
-    background: rgba(0, 0, 0, 0.12);
-    margin: 0.9rem 0;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.5);
+    margin:1rem 0;
 }
 
 .sr-desc {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 0.9rem;
+    font-size: 16px;
+    color: #000000;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
 }
 
 .sr-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 1.1rem;
+    margin: 10px 0 1.1rem;
     flex: 1;
 }
 
 .sr-list li {
-    font-size: 14.5px;
-    color: #333;
-    padding: 3px 0;
+    font-size: 14px;
+    color: #1c0202;
     display: flex;
     align-items: center;
     gap: 7px;
@@ -182,21 +181,38 @@
     border-top: 1.5px solid rgba(0, 0, 0, 0.1);
 }
 
+.sr-date strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4b4b4b;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.sr-date p {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
 .sr-venue strong {
     display: block;
     font-size: 12px;
-    font-weight: 500;
-    color: #777;
+    font-weight: 800;
+    color: #403f3f;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 2px;
 }
 
 .sr-venue p {
-    font-size: 11.5px;
+    font-size: 11px;
     color: #444;
     line-height: 1.4;
-    font-weight: 300;
+    font-weight: 600;
 }
 
 .sr-reg {

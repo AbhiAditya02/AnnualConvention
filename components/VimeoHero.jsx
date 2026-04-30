@@ -205,13 +205,12 @@ export default function VimeoHero() {
 
                         <span className="vimeo-hero__word">
 
-                            {/* Oval underline */}
-                            <img
-                                src="/assets/VimeoHero SVG/oval-underline.svg"
-                                alt=""
-                                className="home-header__title-line-svg"
-                            />
                             <em>3.0 </em>
+                            {/* Oval underline */}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 169 10" fill="none" className="home-header__title-line-svg">
+                                <path d="M1 6.5661C56.3941 3.06082 112.187 1.20095 168 0.999878" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"></path>
+                                <path d="M32.1313 8.63371C68.2147 6.92799 104.462 6.13378 140.695 6.25107" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path>
+                            </svg>
                         </span>
 
                         <div className="home-header__star">

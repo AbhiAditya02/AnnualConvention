@@ -117,6 +117,15 @@
   rotate: 15deg; */
 }
 
+@media  (max-width: 1000px){
+  .illustration{
+    left: 60%;
+    top: 10%;
+    scale: .7;
+  }
+}
+
+
 @media  (max-width: 768px){
   .illustration{
     display: none;
