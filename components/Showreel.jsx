@@ -102,7 +102,6 @@ export default function Showreel() {
                 </svg>
             </div>
 
-            <p className="sr-eyebrow">ISTE HIT SC</p>
             <h2 className="sr-title">
                 About the <em>Event:</em>
                 <span className="sr-title-line"></span>
@@ -111,41 +110,50 @@ export default function Showreel() {
             <div className="sr-arena">
 
                 <div className="sr-card sr-card--hack" id="card-hack">
-                    <span className="sr-card-icon">⚡</span>
-                    <p className="sr-card-label">Hackathon</p>
-                    <h3 className="sr-card-title">hackathon</h3>
+                    <span className="sr-card-icon">⚡<span className="sr-card-label">Hackathon</span></span>
+                    
+                    <h3 className="sr-card-title">Hack the hacker</h3>
                     <div className="sr-divider"></div>
-                    <p className="sr-desc">Push your limits in cybersecurity, ethical hacking and real-world CTF challenges.</p>
+                    <p className="sr-desc">Hack The Hackers is a fast-paced CTF hackathon where you solve real cybersecurity challenges, compete with top talents, win exciting prizes and experience the adrenaline of ethical hacking</p>
                     <ul className="sr-list">
-                        <li>National-Level Challenge</li>
-                        <li>Ethical Hacking</li>
-                        <li>Capture The Flag (CTF)</li>
                         <li>ISOAH Collaboration</li>
+                        <li>National-Level Challenge</li>
+                        <li>Capture The Flag (CTF)</li>
+                        <li>Ethical Hacking</li>
                         <li>Industry Tools &amp; Trends</li>
                     </ul>
                     <div className="sr-foot">
+                        <div className="sr-date">
+                            <strong>Event Date</strong>
+                            <p>7 <sup>th</sup> MAY 26</p>
+                            <p>10 AM Onward</p>
+                        </div>
                         <div className="sr-venue">
                             <strong>Venue</strong>
                             <p>HIT, Haldia<br />West Bengal</p>
                         </div>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhoVhFIEbH41zrbEwhtgaKSBswWQNVhfMg9wo_YLKX0SS5QA/alreadyresponded" className="sr-reg">Register →</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqER0V6yyJRKL1NMeF2pRQILv9d63zhiJ9Nfm9wqM7ROwATw/viewform" className="sr-reg">Register →</a>
                     </div>
                 </div>
 
                 <div className="sr-card sr-card--conv" id="card-conv">
-                    <span className="sr-card-icon">🎓</span>
-                    <p className="sr-card-label">Convention</p>
-                    <h3 className="sr-card-title">convention</h3>
+                    <span className="sr-card-icon">🎓<span className="sr-card-label">Convention</span></span>
+                    <h3 className="sr-card-title">Annual convention 3.0</h3>
                     <div className="sr-divider"></div>
-                    <p className="sr-desc">Keynotes, expert lectures and sessions bridging academia with industry innovation.</p>
+                    <p className="sr-desc">The Annual Convention is a flagship event that brings together students, faculty and industry experts for keynote talks, tech insights and interactive sessions on emerging technologies and professional development.</p>
                     <ul className="sr-list">
                         <li>Keynote Speeches</li>
                         <li>Expert Lectures</li>
-                        <li>Innovation Showcase</li>
+                        <li>Industry Insights</li>
                         <li>Networking Opportunities</li>
-                        <li>Drone Medicine Model</li>
+                        <li>Career Guidance</li>
                     </ul>
                     <div className="sr-foot">
+                        <div className="sr-date">
+                            <strong>Event Date</strong>
+                            <p>8 <sup>th</sup> MAY 26</p>
+                            <p>10 AM Onward</p>
+                        </div>
                         <div className="sr-venue">
                             <strong>Venue</strong>
                             <p>HIT, Haldia<br />West Bengal</p>
