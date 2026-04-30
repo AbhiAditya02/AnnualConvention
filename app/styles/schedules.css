@@ -1,0 +1,440 @@
+/* ─── Schedules Page ─────────────────────────────────────────────────────── */
+
+/* Hero */
+.sched-hero {
+    position: relative;
+    min-height: 65vh;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 2rem 80px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.sched-hero__inner {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+}
+
+.sched-hero__badge {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    border: 1px solid rgba(245, 105, 60, 0.3);
+    border-radius: 100px;
+    padding: 8px 24px;
+    margin-bottom: 2.5rem;
+}
+
+.sched-hero__title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.sched-hero__title em {
+    font-style: italic;
+    color: var(--color-orange);
+}
+
+.sched-hero__date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #a0a0a0;
+    letter-spacing: 1px;
+}
+
+.sched-hero__star {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.12;
+}
+
+.sched-hero__star--1 {
+    top: 18%;
+    right: 10%;
+    width: 55px;
+    animation: schedSpin 14s linear infinite;
+}
+
+.sched-hero__star--2 {
+    bottom: 12%;
+    left: 7%;
+    width: 70px;
+    animation: schedSpin 20s linear infinite reverse;
+}
+
+@keyframes schedSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Day Tabs ───────────────────────────────────────────────────────────── */
+.sched-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem 2rem 0;
+    background-color: var(--bg-color);
+}
+
+.sched-tab {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border-radius: 100px;
+    border: 2px solid var(--color-dark);
+    background: transparent;
+    color: var(--color-dark);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sched-tab:hover {
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+.sched-tab--active {
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+/* ─── Timeline ───────────────────────────────────────────────────────────── */
+.sched-timeline {
+    padding: 4rem 2rem 6rem;
+    background-color: var(--bg-color);
+}
+
+.sched-timeline__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Vertical spine line */
+.sched-timeline__inner::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--color-orange), var(--color-darkblue), var(--color-pink));
+    border-radius: 2px;
+}
+
+/* Single timeline event */
+.sched-event {
+    position: relative;
+    padding-left: 72px;
+    padding-bottom: 3.5rem;
+}
+
+.sched-event:last-child {
+    padding-bottom: 0;
+}
+
+/* Timeline dot */
+.sched-event__dot {
+    position: absolute;
+    left: 14px;
+    top: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 3px solid var(--bg-color);
+    background-color: var(--color-orange);
+    z-index: 2;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sched-event:hover .sched-event__dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 6px rgba(245, 105, 60, 0.15);
+}
+
+/* Color variants for dots */
+.sched-event--blue .sched-event__dot {
+    background-color: var(--color-darkblue);
+}
+
+.sched-event:hover.sched-event--blue .sched-event__dot {
+    box-shadow: 0 0 0 6px rgba(75, 105, 240, 0.15);
+}
+
+.sched-event--green .sched-event__dot {
+    background-color: var(--color-green);
+}
+
+.sched-event:hover.sched-event--green .sched-event__dot {
+    box-shadow: 0 0 0 6px rgba(41, 114, 95, 0.15);
+}
+
+.sched-event--pink .sched-event__dot {
+    background-color: var(--color-pink);
+}
+
+.sched-event:hover.sched-event--pink .sched-event__dot {
+    box-shadow: 0 0 0 6px rgba(240, 190, 250, 0.2);
+}
+
+.sched-event--maroon .sched-event__dot {
+    background-color: var(--color-maroon);
+}
+
+.sched-event:hover.sched-event--maroon .sched-event__dot {
+    box-shadow: 0 0 0 6px rgba(160, 50, 90, 0.15);
+}
+
+/* Time label */
+.sched-event__time {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    margin-bottom: 0.5rem;
+}
+
+.sched-event--blue .sched-event__time {
+    color: var(--color-darkblue);
+}
+
+.sched-event--green .sched-event__time {
+    color: var(--color-green);
+}
+
+.sched-event--pink .sched-event__time {
+    color: var(--color-maroon);
+}
+
+.sched-event--maroon .sched-event__time {
+    color: var(--color-maroon);
+}
+
+/* Event card */
+.sched-event__card {
+    background-color: var(--color-white);
+    border-radius: 16px;
+    padding: 2rem 2.2rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
+}
+
+.sched-event:hover .sched-event__card {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+.sched-event__title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+}
+
+.sched-event__desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #777;
+}
+
+.sched-event__tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-top: 0.8rem;
+    background-color: rgba(245, 105, 60, 0.08);
+    color: var(--color-orange);
+}
+
+.sched-event--blue .sched-event__tag {
+    background-color: rgba(75, 105, 240, 0.08);
+    color: var(--color-darkblue);
+}
+
+.sched-event--green .sched-event__tag {
+    background-color: rgba(41, 114, 95, 0.08);
+    color: var(--color-green);
+}
+
+.sched-event--pink .sched-event__tag {
+    background-color: rgba(240, 190, 250, 0.15);
+    color: var(--color-maroon);
+}
+
+.sched-event--maroon .sched-event__tag {
+    background-color: rgba(160, 50, 90, 0.08);
+    color: var(--color-maroon);
+}
+
+/* ─── Hackathon Feature Card ─────────────────────────────────────────────── */
+.sched-hackathon {
+    padding: 6rem 2rem;
+    background-color: var(--color-black);
+}
+
+.sched-hackathon__card {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--color-black-deep);
+    border-radius: 24px;
+    padding: 4rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sched-hackathon__watermark {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 900;
+    font-size: 10rem;
+    letter-spacing: -5px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+}
+
+.sched-hackathon__content {
+    position: relative;
+    z-index: 2;
+}
+
+.sched-hackathon__label {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    border: 1px solid rgba(245, 105, 60, 0.3);
+    border-radius: 100px;
+    padding: 6px 20px;
+    margin-bottom: 2rem;
+}
+
+.sched-hackathon__title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+}
+
+.sched-hackathon__subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #999;
+    margin-bottom: 2.5rem;
+}
+
+.sched-hackathon__subtitle strong {
+    color: var(--color-white);
+}
+
+.sched-hackathon__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+}
+
+.sched-hackathon__item {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #aaa;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.sched-hackathon__item:hover {
+    border-color: rgba(245, 105, 60, 0.3);
+    background: rgba(245, 105, 60, 0.04);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sched-hero {
+        min-height: 50vh;
+        padding: 100px 1.5rem 60px;
+    }
+
+    .sched-hero__title {
+        letter-spacing: -1px;
+    }
+
+    .sched-tabs {
+        padding: 2rem 1rem 0;
+    }
+
+    .sched-tab {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    .sched-timeline {
+        padding: 3rem 1rem 4rem;
+    }
+
+    .sched-event {
+        padding-left: 56px;
+    }
+
+    .sched-timeline__inner::before {
+        left: 18px;
+    }
+
+    .sched-event__dot {
+        left: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .sched-event__card {
+        padding: 1.5rem;
+    }
+
+    .sched-hackathon {
+        padding: 4rem 1.5rem;
+    }
+
+    .sched-hackathon__card {
+        padding: 2.5rem 2rem;
+    }
+
+    .sched-hackathon__grid {
+        grid-template-columns: 1fr;
+    }
+}
