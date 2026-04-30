@@ -95,32 +95,7 @@ export default function SchedulesPage() {
                         ))}
                     </div>
                 </section>
-
-                {/* ═══ Hackathon — dark section like showreel ═══ */}
-                <section className="sched-hackathon">
-                    <div className="sched-hackathon__card">
-                        <div className="sched-hackathon__watermark">CTF</div>
-                        <div className="sched-hackathon__content">
-                            <h2 className="sched-hackathon__title">hack the hackers</h2>
-                            <p className="sched-hackathon__subtitle">
-                                Organized in collaboration with <strong>ISOAH</strong> (Indian School of Anti Hacking). A full-day national-level ethical hacking competition in CTF format.
-                            </p>
-                            <div className="sched-hackathon__grid">
-                                {HACKATHON_ITEMS.map((item) => (
-                                    <div key={item} className="sched-hackathon__item">{item}</div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </main>
-
-            {/* ═══ Footer ═══ */}
-            <footer className="main-footer">
-                <Footer />
-            </footer>
-
-            <TransitionScribble />
         </>
     );
 }
