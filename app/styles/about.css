@@ -41,7 +41,7 @@
 }
 
 .hero-h1 {
-  font-family: 'Playfair Display';
+  font-family: 'Syne', sans-serif;
   font-size: clamp(40px, 5vw, 90px);
   font-weight: 900;
 }
@@ -117,7 +117,7 @@
   rotate: 15deg; */
 }
 
-@media  (max-width: 1000px){
+@media  (max-width: 1024px){
   .illustration{
     left: 60%;
     top: 10%;
