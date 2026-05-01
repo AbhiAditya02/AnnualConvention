@@ -106,26 +106,27 @@ function initLeftPopout(navLeft, workBox, workBlob, overlayHelpers) {
 
 /* ─── Right popout (register CTA) ────────────────────────────────────────── */
 function initRightPopout(navRight, registerBox, registerIcon, overlayHelpers) {
-    if (!navRight || !registerBox) return () => {};
+    if (!navRight || !registerBox) return () => { };
 
     const registerInner = registerBox.querySelector('.nav-popout-inner-right');
     const registerItems = registerInner ? Array.from(registerInner.children) : [];
 
+    // Measure origin from the icon center, mirroring how left uses workBlob
     gsap.set(registerBox, { visibility: 'visible', scale: 1, opacity: 1 });
     const boxRect = registerBox.getBoundingClientRect();
     const iconRect = registerIcon ? registerIcon.getBoundingClientRect() : boxRect;
     const originX = (iconRect.left + iconRect.width / 2) - boxRect.left;
     const originY = (iconRect.top + iconRect.height / 2) - boxRect.top;
+    const registerOrigin = `${originX}px ${originY}px`;
 
-    gsap.set(registerBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: `${originX}px ${originY}px` });
+    gsap.set(registerBox, { visibility: 'hidden', scale: 0, opacity: 0, transformOrigin: registerOrigin });
     gsap.set(registerItems, { y: 10, opacity: 0 });
-
-    let hoverTimeout;
+    if (registerIcon) gsap.set(registerIcon, { transformOrigin: 'center center' });
 
     const onEnter = () => {
-        clearTimeout(hoverTimeout);
         gsap.killTweensOf(registerBox);
         gsap.killTweensOf(registerItems);
+        if (registerIcon) gsap.killTweensOf(registerIcon);
         overlayHelpers.show();
         gsap.set(registerBox, { visibility: 'visible' });
         gsap.fromTo(registerBox, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' });
@@ -133,28 +134,23 @@ function initRightPopout(navRight, registerBox, registerIcon, overlayHelpers) {
     };
 
     const onLeave = () => {
-        hoverTimeout = setTimeout(() => {
-            if (!navRight.matches(':hover') && !registerBox.matches(':hover')) {
-                gsap.killTweensOf(registerBox);
-                gsap.killTweensOf(registerItems);
-                overlayHelpers.hide();
-                gsap.to(registerItems, { y: 10, opacity: 0, duration: 0.5, ease: 'power2.in' });
-                gsap.to(registerBox, { scale: 0, opacity: 0, duration: 0.3, ease: 'expo.in', delay: 0.05, onComplete: () => gsap.set(registerBox, { visibility: 'hidden' }) });
-            }
-        }, 100);
+        // No hover guard — mirrors left popout's unconditional close
+        gsap.killTweensOf(registerBox);
+        gsap.killTweensOf(registerItems);
+        if (registerIcon) gsap.killTweensOf(registerIcon);
+        overlayHelpers.hide();
+        if (registerIcon) gsap.to(registerIcon, { rotation: 0, duration: 0.5, ease: 'power2.out' });
+        gsap.to(registerItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
+        gsap.to(registerBox, { scale: 0, opacity: 0, duration: 0.3, ease: 'expo.in', delay: 0.05, onComplete: () => gsap.set(registerBox, { visibility: 'hidden' }) });
     };
 
+    // Only navRight drives open/close — no registerBox listeners (matches left pattern)
     navRight.addEventListener('mouseenter', onEnter);
     navRight.addEventListener('mouseleave', onLeave);
-    registerBox.addEventListener('mouseenter', onEnter);
-    registerBox.addEventListener('mouseleave', onLeave);
 
     return () => {
-        clearTimeout(hoverTimeout);
         navRight.removeEventListener('mouseenter', onEnter);
         navRight.removeEventListener('mouseleave', onLeave);
-        registerBox.removeEventListener('mouseenter', onEnter);
-        registerBox.removeEventListener('mouseleave', onLeave);
     };
 }
 
@@ -244,7 +240,7 @@ export default function Navbar() {
                 <Magnetic intensity={0.2}>
                     <div className="nav-right" style={{ cursor: CURSOR_POINTER }}>
                         <div className="nav-hover-trigger">
-                            <div className="logo-register-container" style={{ position: 'relative', zIndex: 105, display: 'flex', alignItems: 'center' }}>
+                            <div className="logo-register-container">
                                 <span className="nav-bar_register"><TextRevealHover>Register</TextRevealHover></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 169 10" fill="none" className="stroke-svg">
                                     <path d="M1 6.5661C56.3941 3.06082 112.187 1.20095 168 0.999878" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75"></path>
