@@ -60,7 +60,7 @@
     }
 
     .horizontal-words__arrow-end-svg {
-        display: none;
+        width: 7em;
     }
 
     /* ── MotionCards ────────────────── */
@@ -265,7 +265,7 @@
     }
 
     .horizontal-words__arrow-end-svg {
-        display: none;
+        width: 6em;
     }
 
     .horizontal-words__placeholder-left-svg {

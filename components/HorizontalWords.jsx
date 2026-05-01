@@ -58,8 +58,7 @@ export default function HorizontalWords() {
                     duration: 5
                 })
                 .to(textRef, {
-                    x: () => -(textRef.scrollWidth - window.innerWidth * 0.875),
-                    x: () => -(textRef.scrollWidth - window.innerWidth * 0.875),
+                    x: () => -(textRef.scrollWidth - window.innerWidth),
                     ease: "none",
                     duration: 10
                 });
