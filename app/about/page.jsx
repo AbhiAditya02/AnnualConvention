@@ -96,7 +96,6 @@ export default function AboutPage() {
           </div>
 
           <div className="about-illustration">
-            {/* <video src="https://storyset.com/illustration/innovation/amico/animate?share=98818" className="illustration"></video> */}
             <img src="../assets/About SVG/Innovation.gif" alt="About Illustration" className="illustration" />
           </div>
 

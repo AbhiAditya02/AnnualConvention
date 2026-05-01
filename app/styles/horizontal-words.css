@@ -116,3 +116,24 @@
     z-index: 2;
     white-space: nowrap;
 }
+
+@media (max-width: 425px) {
+    .horizontal-words__h2 {
+        font-size: 2.5rem;
+    }
+
+    .horizontal-words__arrow-svg {
+        width: 13em;
+    }
+
+    .horizontal-words__arrow-end-svg {
+        display: block;
+        width: 5em;
+        left: 95%;
+    }
+
+    .horizontal-words__bottom-text-l {
+        max-width: 40em;
+        font-size: 1rem;
+    }
+}

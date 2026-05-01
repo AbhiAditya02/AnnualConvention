@@ -18,10 +18,10 @@
 
 .gallery-hero__title {
     font-size: 4rem;
-    font-weight: 400;
+    font-weight: 800;
     text-transform: capitalize;
     letter-spacing: -2px;
-    font-family: Georgia, serif;
+    font-family: 'Syne', sans-serif;
     margin-bottom: 1.5rem;
     font-style: italic;
 }
