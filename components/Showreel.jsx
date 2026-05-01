@@ -60,26 +60,6 @@ export default function Showreel() {
     return (
         <section className="showreel-section" id="showreel-section">
 
-            {/* Sticker 1 — Camera */}
-            <div className="sr-sticker sr-sticker--1" id="sk1">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                    <circle cx="32" cy="32" r="28" fill="#f5f0e8" stroke="#1a1a1a" strokeWidth="2"/>
-                    <rect x="20" y="22" width="24" height="18" rx="3" stroke="#1a1a1a" strokeWidth="2" fill="none"/>
-                    <circle cx="32" cy="31" r="5" stroke="#1a1a1a" strokeWidth="1.8" fill="none"/>
-                    <circle cx="38" cy="25" r="1.5" fill="#1a1a1a"/>
-                </svg>
-            </div>
-
-            {/* Sticker 2 — Smiley */}
-            <div className="sr-sticker sr-sticker--2" id="sk2">
-                <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                    <circle cx="28" cy="28" r="24" fill="#c8e6f5" stroke="#1a1a1a" strokeWidth="2"/>
-                    <circle cx="21" cy="24" r="2.5" fill="#1a1a1a"/>
-                    <circle cx="35" cy="24" r="2.5" fill="#1a1a1a"/>
-                    <path d="M20 33c2 4 14 4 16 0" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-            </div>
-
             {/* Sticker 3 — Star */}
             <div className="sr-sticker sr-sticker--3" id="sk3">
                 <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
