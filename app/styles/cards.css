@@ -32,43 +32,48 @@
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
 
-@media (max-width: 1000px) {
-    .cards-wrapper{
+@media (max-width: 1024px) {
+    .service-title {
+        font-size: 4rem;
+    }
+
+    .cards-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding: 0px 40px;
+        margin: 0;
         height: auto;
-        gap: -10px;
-    }
-    .card{
-        scale: .85;
+        gap: 40px;
+        place-items: center
     }
 
-    .title-container{
-        scale: .9;
+    .card {
+        transform: rotate(0deg) !important;
     }
-
-    
 }
 
 @media (max-width: 625px) {
-    .cards-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 20px;
-        padding-left: 40px;
-        height: auto;
-        gap: 0px;
-    }
-    .title-container{
-        scale: .7;
-    }
-    .card{
-        scale: .75;
+    :root {
+        --sticker-camera-w: 80px !important;
+        --sticker-phone-w: 80px !important;
+        --sticker-smiley-w: 60px !important;
+        --sticker-heart-w: 80px !important;
     }
 
-    .service-underline-svg{
+    .cards-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .title-container {
+        scale: .7;
+    }
+
+    .card-sticker img {
+        width: 80px;
+    }
+
+    .service-underline-svg {
         right: 33%;
     }
 }
@@ -88,10 +93,21 @@
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
 
-.card-green { --rotate: 4deg; }
-.card-darkblue { --rotate: -5deg; }
-.card-orange { --rotate: 5deg; }
-.card-maroon { --rotate: -8deg; }
+.card-green {
+    --rotate: 4deg;
+}
+
+.card-darkblue {
+    --rotate: -5deg;
+}
+
+.card-orange {
+    --rotate: 5deg;
+}
+
+.card-maroon {
+    --rotate: -8deg;
+}
 
 .card {
     transform: rotate(var(--rotate));
