@@ -21,13 +21,13 @@
 }
 
 .sched-hero__title {
-    font-family: 'Epilogue', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 900;
     letter-spacing: -4px;
     line-height: 0.95;
     margin-bottom: 1.5rem;
-    text-transform: lowercase;
+    text-transform: capitalize;
 }
 
 .sched-hero__title em {
@@ -35,7 +35,7 @@
 }
 
 .sched-hero__date {
-    font-family: 'DM Sans', sans-serif;
+    font-family: ' Georgia', sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.4);
@@ -317,6 +317,7 @@
     }
 
     .sched-hero__title {
+        
         letter-spacing: -2px;
     }
 

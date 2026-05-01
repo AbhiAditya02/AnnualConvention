@@ -6,40 +6,26 @@ import Navbar from '@/components/Navbar';
 import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
-import Footer from '@/components/Footer';
 import '../styles/schedules.css';
 
 /* ─── Schedule Data ────────────────────────────────────────────────────── */
 const SCHEDULE = {
     'Day 1 — 07 May': [
-        { time: '09:00 AM', title: 'Registration & Welcome Kit', desc: 'On-spot registration, ID distribution, and welcome kit handover.', tag: 'Opening', color: 'green' },
-        { time: '10:00 AM', title: 'Ceremonial Lamp Lighting', desc: 'Traditional inauguration with faculty, chief guests, and student representatives.', tag: 'Ceremony', color: '' },
-        { time: '10:30 AM', title: 'Inaugural Address & Keynote', desc: 'Opening remarks by the Chief Guest followed by a keynote on the future of technical education.', tag: 'Keynote', color: 'blue' },
-        { time: '12:00 PM', title: 'Expert Lecture — Artificial Intelligence', desc: 'Deep dive into modern AI architectures, LLMs, and real-world applications.', tag: 'AI', color: '' },
+        { time: '10:00 AM', title: 'Hack the Hackers — CTF Kickoff', desc: 'National-level Capture The Flag competition begins. Teams report to labs.', tag: 'Hackathon', color: '' },
+        { time: '10:00 AM', title: 'Inaugural Address & Keynote', desc: 'Opening remarks by the Chief Guest followed by a keynote on the event.', tag: 'Keynote', color: 'blue' },
         { time: '01:00 PM', title: 'Lunch Break', desc: 'Networking lunch with speakers and attendees.', tag: 'Break', color: 'green' },
-        { time: '02:00 PM', title: 'Expert Lecture — Cybersecurity', desc: 'Threat landscapes, zero-trust architectures, and ethical hacking methodologies.', tag: 'Security', color: 'blue' },
-        { time: '03:30 PM', title: 'Expert Lecture — Data Science', desc: 'From data pipelines to actionable insights — industry use cases and career paths.', tag: 'Data', color: 'pink' },
-        { time: '05:00 PM', title: 'Cultural Evening', desc: 'Singing, dancing, recitation, speeches, and one-act plays by students.', tag: 'Culture', color: 'maroon' },
-    ],
-    'Day 2 — 08 May': [
-        { time: '09:00 AM', title: 'Hack the Hackers — CTF Kickoff', desc: 'National-level Capture The Flag competition begins. Teams report to labs.', tag: 'Hackathon', color: '' },
-        { time: '10:00 AM', title: 'Guest Speaker Session', desc: 'Industry professionals from MN Dastur, IIFON, Google, and SecureT360 share insights.', tag: 'Speakers', color: 'blue' },
-        { time: '11:30 AM', title: 'Innovation Showcase', desc: 'Student projects on display — including the Drone Medicine Model demonstration.', tag: 'Innovation', color: 'green' },
-        { time: '01:00 PM', title: 'Lunch & Networking', desc: 'Connect with speakers, mentors, and fellow participants.', tag: 'Break', color: 'green' },
-        { time: '02:00 PM', title: 'CTF — Final Round', desc: 'Intensified challenges. Top teams battle for the podium.', tag: 'Hackathon', color: '' },
         { time: '04:00 PM', title: 'Valedictory & Prize Distribution', desc: 'Closing ceremony, winner announcements, and certificate distribution.', tag: 'Closing', color: 'maroon' },
         { time: '05:00 PM', title: 'Vote of Thanks', desc: 'Formal closing by Prof. Priyatosh Jana and the ISTE HIT SC team.', tag: 'Closing', color: 'pink' },
     ],
+    'Day 2 — 08 May': [
+        { time: '09:00 AM', title: 'Registration', desc: 'On-spot registration and ID distribution.', tag: 'Opening', color: 'green' },
+        { time: '10:00 AM', title: 'Ceremonial Lamp Lighting', desc: 'Traditional inauguration with faculty, chief guests, and student representatives.', tag: 'Ceremony', color: '' },
+        { time: '10:00 AM', title: 'Guest Speaker Session', desc: 'Industry professionals from MN Dastur, IIFON, Google, and SecureT360 share insights.', tag: 'Speakers', color: 'blue' },
+        { time: '01:00 PM', title: 'Lunch & Networking', desc: 'Connect with speakers, mentors, and fellow participants.', tag: 'Break', color: 'green' },
+        { time: '03:00 PM', title: 'Cultural Evening', desc: 'Singing, dancing, recitation, speeches, and one-act plays by students.', tag: 'Culture', color: 'maroon' },
+        { time: '05:00 PM', title: 'Vote of Thanks', desc: 'Formal closing by Prof. Priyatosh Jana and the ISTE HIT SC team.', tag: 'Closing', color: 'pink' },
+    ],
 };
-
-const HACKATHON_ITEMS = [
-    'Nationwide participation',
-    'Ethical Hacking & CTF format',
-    'Full-day competitive event',
-    'Free & open registration',
-    'Focus on innovation & analytical skills',
-    'Industry-aligned problem-solving',
-];
 
 const DAY_KEYS = Object.keys(SCHEDULE);
 
@@ -51,7 +37,7 @@ export default function SchedulesPage() {
         <>
             <SvgSymbols />
             <SmoothScroll />
-            <CursorBubble />
+            <CursorBubble /> 
 
             {/* ═══ Hero — matches showreel section dark style ═══ */}
             <header className="sched-hero main-header">
@@ -96,6 +82,8 @@ export default function SchedulesPage() {
                     </div>
                 </section>
             </main>
+
+            <TransitionScribble />
         </>
     );
 }
