@@ -147,6 +147,13 @@ body {
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .page-body {
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
+}
+
 /* ── MEMBER CARDS GRID ──────────────────────── */
 .cards-grid {
   display: flex;
@@ -160,7 +167,8 @@ body {
   .cards-grid {
     display: grid;
     grid-template-columns: 250px 250px;
-    margin-left: -50px;
+    margin-left: 0;
+    justify-content: center;
   }
 }
 
@@ -169,7 +177,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: -50px;
+    margin-left: 0;
   }
 }
 
@@ -302,17 +310,17 @@ body {
   top: 615px;
 }
 
-@media (max-width: 756px) {
+@media (max-width: 768px) {
   .social-sidebar {
-    left: 90%;
-    top: 50%;
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-top: 20px;
   }
-}
 
-@media (max-width: 425px) {
-  .social-sidebar {
-    left: 80%;
-    top: 50%;
+  .social-list {
+    flex-direction: row;
+    justify-content: center;
   }
 }
 
@@ -347,22 +355,6 @@ body {
 .social-card:hover .social-icon-wrap {
   background: var(--dark-blue);
   color: var(--white);
-}
-
-@media (max-width: 90px) {
-  .social-sidebar {
-    position: absolute;
-    left: 80%;
-    top: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  .social-sidebar {
-    position: absolute;
-    left: 80%;
-    top: 100%;
-  }
 }
 
 /* Icon wrap */

@@ -7,6 +7,7 @@ import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
 import DomeGallery from '@/components/DomeGallery';
+import '../styles/gallery.css';
 
 export default function GalleryPage() {
     const [galleryImages, setGalleryImages] = useState([]);
@@ -31,17 +32,17 @@ export default function GalleryPage() {
             <SmoothScroll />
             <CursorBubble />
 
-            <header className="main-header" style={{ minHeight: '60vh', backgroundColor: 'var(--color-black)', color: 'var(--color-white)', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '80px', textAlign: 'center' }}>
+            <header className="gallery-hero main-header">
                 <Navbar />
-                <div style={{ maxWidth: '900px', padding: '0 2rem' }}>
-                    <h1 style={{ fontSize: '4rem', fontWeight: 400, textTransform: 'capitalize', letterSpacing: '-2px', fontFamily: 'Georgia serif', marginBottom: '1.5rem' , fontStyle: 'italic'}}>Glimpses from <br />Annual Convention 2.0</h1>
+                <div className="gallery-hero__inner">
+                    <h1 className="gallery-hero__title">Glimpses from <br />Annual Convention 2.0</h1>
                 </div>
             </header>
 
             <main>
-                <section style={{ width: '100vw', height: '100vh', backgroundColor: '#120F17' }}>
+                <section className="gallery-section">
                     {loading ? (
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff', fontSize: '1.5rem', fontFamily: 'Epilogue, sans-serif' }}>
+                        <div className="gallery-message gallery-message--loading">
                             Loading gallery...
                         </div>
                     ) : galleryImages.length > 0 ? (
@@ -54,7 +55,7 @@ export default function GalleryPage() {
                             openedImageBorderRadius="24px"
                         />
                     ) : (
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#888', fontSize: '1.5rem', fontFamily: 'Epilogue, sans-serif' }}>
+                        <div className="gallery-message gallery-message--empty">
                             No images found. Upload images to the &quot;iste-gallery&quot; folder on Cloudinary.
                         </div>
                     )}

@@ -1,9 +1,145 @@
-/* ─── Mobile (≤ 768px) ───────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════
+   responsive.css — All media queries for the site
+   Breakpoints:
+     Tablet  →  max-width: 1024px
+     Mobile  →  max-width: 768px
+     Small   →  max-width: 425px
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Hide custom cursor on touch devices ────────────────────────────────── */
+@media (pointer: coarse) {
+    .cursor-bubble {
+        display: none !important;
+    }
+
+    .vimeo-mute-bubble {
+        display: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TABLET (≤ 1024px)
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+    /* ── Navbar ─────────────────────── */
+    .navbar {
+        padding: 16px 24px;
+    }
+
+    /* ── VimeoHero ──────────────────── */
+    .vimeo-hero {
+        width: calc(100% - 16px);
+        height: calc(100vh - 16px);
+        margin: 8px;
+        border-radius: 18px;
+    }
+
+    .home-header__title {
+        bottom: 50px;
+        padding: 0 28px;
+    }
+
+    .vimeo-hero__controls {
+        bottom: 20px;
+        left: 28px;
+    }
+
+    .home-header__title-line-svg {
+        right: 100px;
+        width: 160px;
+    }
+
+    /* ── HorizontalWords ───────────── */
+    .horizontal-words__h2 {
+        font-size: 3.5rem;
+    }
+
+    .horizontal-words__bottom-text-l {
+        font-size: 1.4rem;
+    }
+
+    .horizontal-words__arrow-end-svg {
+        display: none;
+    }
+
+    /* ── MotionCards ────────────────── */
+    .motion-card__title {
+        font-size: 3rem;
+        left: -5%;
+    }
+
+    .motion-card__subtitle {
+        font-size: 2.8rem;
+    }
+
+    .motion-card__cards-area {
+        left: 4%;
+        height: 420px;
+    }
+
+    .motion-card__card {
+        width: 20vw;
+        height: 26vw;
+    }
+
+    .motion-card__blob {
+        width: 450px;
+        height: 400px;
+    }
+
+    .motion-card__floating-text {
+        font-size: 0.85rem;
+    }
+
+    /* ── ServiceCards ───────────────── */
+    .cards-wrapper {
+        height: auto;
+        min-height: 550px;
+        margin: 60px auto;
+    }
+
+    /* ── DoubleMarquee ─────────────── */
+    .Double-marquee {
+        padding: 40px 30px;
+        gap: 30px;
+    }
+
+    .marquee-left h2 {
+        font-size: 3rem;
+        margin-bottom: 80px;
+        margin-right: 20px;
+    }
+
+    .marquee-right {
+        width: 380px;
+        height: 700px;
+        margin-right: 20px;
+    }
+
+    .marquee-blob-container {
+        width: 320px;
+        height: 400px;
+    }
+
+    /* ── Footer ─────────────────────── */
+    .footer-column h3 {
+        font-size: 1.8rem;
+    }
+
+    .footer-column address {
+        font-size: 1.1rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE (≤ 768px)
+   ═══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
 
     /* ── Navbar ─────────────────────── */
     .navbar {
-        padding: 14px 16px;
+        padding: 15px 20px;
     }
 
     .logo {
@@ -18,6 +154,122 @@
     .logo-work-text {
         font-size: 1.4rem;
         margin-left: 52px;
+    }
+
+    .nav-bar_Iste-logo {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 5%;
+        left: 5%;
+    }
+
+    .logo {
+        position: relative;
+        scale: 1.5;
+        margin-left: 35px;
+    }
+
+    .nav-bar_register {
+        font-size: 1.1rem;
+    }
+
+    .stroke-svg {
+        scale: 0.9;
+    }
+
+    /* ── VimeoHero ──────────────────── */
+    .vimeo-hero {
+        width: calc(100% - 12px);
+        height: calc(100vh - 12px);
+        margin: 6px;
+        border-radius: 14px;
+    }
+
+    .home-header__title {
+        bottom: 30px;
+        padding: 0 16px;
+    }
+
+    .vimeo-hero__title {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        letter-spacing: -1.5px;
+        gap: 0 0.12em;
+    }
+
+    .home-header__title-line-svg {
+        right: 60px;
+        width: 120px;
+    }
+
+    .home-header__star {
+        width: 0.6em;
+        height: 0.6em;
+    }
+
+    .home-header__smiley {
+        width: 28px;
+    }
+
+    .vimeo-hero__controls {
+        bottom: 12px;
+        left: 16px;
+    }
+
+    .vimeo-hero__btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .vimeo-mute-bubble__blob {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* ── HorizontalWords ───────────── */
+    .horizontal-words-section {
+        height: 70vh;
+    }
+
+    .horizontal-words__h2 {
+        font-size: 2.2rem;
+    }
+
+    .horizontal-words__relative {
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+
+    .horizontal-words__bottom-text {
+        width: 90vw;
+        max-width: 90vw;
+    }
+
+    .horizontal-words__bottom-text-l {
+        font-size: 1rem;
+        white-space: normal;
+        max-width: 90vw;
+    }
+
+    .horizontal-words__sticker-watch,
+    .horizontal-words__sticker-phone {
+        display: none;
+    }
+
+    .horizontal-words__sticker-cursor {
+        width: 2.5em;
+    }
+
+    .horizontal-words__arrow-svg {
+        width: 14em;
+    }
+
+    .horizontal-words__arrow-end-svg {
+        display: none;
+    }
+
+    .horizontal-words__placeholder-left-svg {
+        width: 50em;
     }
 
     /* ── Header Hero ────────────────── */
@@ -38,6 +290,95 @@
 
     .title-container {
         margin-bottom: 50px;
+    }
+
+    /* ── MotionCards ────────────────── */
+    .motion-card-section {
+        margin: 0;
+    }
+
+    .motion-card__heading {
+        margin-bottom: 20px;
+    }
+
+    .motion-card__title {
+        font-size: 2rem;
+        left: 0;
+    }
+
+    .motion-card__title-part {
+        left: 10%;
+    }
+
+    .motion-card__subtitle {
+        font-size: 1.8rem;
+        right: 5%;
+    }
+
+    .motion-card__sticker--top {
+        width: 80px;
+        right: -20%;
+    }
+
+    .motion-card__underline-svg {
+        max-width: 400px;
+        right: 5%;
+    }
+
+    .motion-card__cards-area {
+        left: 0;
+        height: 280px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .motion-card__card {
+        width: 100px;
+        height: 140px;
+    }
+
+    .motion-card__card--2 {
+        left: -1rem;
+        bottom: -1.5rem;
+    }
+
+    .motion-card__card--3 {
+        left: -1.5rem;
+    }
+
+    .motion-card__card--4 {
+        left: -2rem;
+        bottom: -1rem;
+    }
+
+    .motion-card__blob {
+        width: 250px;
+        height: 200px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+    }
+
+    .motion-card__floating-label {
+        display: none;
+    }
+
+    .motion-card__footer-text {
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    .motion-card__footer-text p {
+        font-size: 0.95rem;
+    }
+
+    .motion-card__btn {
+        padding: 1rem 1.8rem;
+        font-size: 1.1rem;
+    }
+
+    /* ── ServiceCards ───────────────── */
+    .title-container {
+        padding: 0 20px;
     }
 
     /* ── Double Marquee ─────────────── */
@@ -94,7 +435,7 @@
         width: 70px;
     }
 
-    /* ── Logo columns → 2-row horizontal scroll grid ── */
+    /* Logo columns → 2-row horizontal scroll grid */
     .marquee-right {
         display: grid;
         grid-template-rows: 130px 130px;
@@ -134,5 +475,116 @@
         width: 130px;
         height: 130px;
         flex-shrink: 0;
+    }
+
+    /* ── Footer ─────────────────────── */
+    .footer-top {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .footer-column h3 {
+        font-size: 1.6rem;
+    }
+
+    .footer-column address {
+        font-size: 1rem;
+    }
+
+    .footer-socials a {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SMALL PHONES (≤ 425px)
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 425px) {
+
+    /* ── Navbar ─────────────────────── */
+    .navbar {
+        padding: 15px 10px;
+    }
+
+    .nav-bar_Iste-logo {
+        width: 30px;
+        height: 30px;
+        top: 9%;
+        left: 15%;
+    }
+
+    .logo {
+        scale: 1;
+        margin-left: 30px;
+    }
+
+    .logo-register-container {
+        width: 80px;
+        font-size: 1rem;
+    }
+
+    .nav-bar_register {
+        font-size: 0.8rem;
+    }
+
+    .stroke-svg {
+        scale: 0.6;
+    }
+
+    /* ── VimeoHero ──────────────────── */
+    .vimeo-hero__title {
+        font-size: clamp(1.4rem, 7vw, 2.2rem);
+        letter-spacing: -1px;
+    }
+
+    .home-header__title-line-svg {
+        width: 80px;
+        right: 30px;
+    }
+
+    /* ── HorizontalWords ───────────── */
+    .horizontal-words__h2 {
+        font-size: 1.6rem;
+    }
+
+    .horizontal-words__bottom-text-l {
+        font-size: 0.95rem;
+    }
+
+    .horizontal-words__sticker-cursor {
+        display: none;
+    }
+
+    .horizontal-words__arrow-svg {
+        width: 10em;
+    }
+
+    /* ── MotionCards ────────────────── */
+    .motion-card__title {
+        font-size: 1.6rem;
+    }
+
+    .motion-card__subtitle {
+        font-size: 1.4rem;
+    }
+
+    .motion-card__card {
+        width: 80px;
+        height: 110px;
+    }
+
+    .motion-card__cards-area {
+        height: 220px;
+    }
+
+    .motion-card__blob {
+        width: 200px;
+        height: 160px;
+    }
+
+    /* ── Marquee ────────────────────── */
+    .marquee-left h2 {
+        font-size: 2rem;
     }
 }
