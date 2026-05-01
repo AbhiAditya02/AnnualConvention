@@ -255,3 +255,26 @@
     cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 2 2, auto;
 }
 
+@media (max-width: 425px) {
+    .motion-card__title {
+        position: relative;
+        left: -10% !important;
+        font-family: 'Epilogue', sans-serif;
+        font-size: 2rem !important;
+        font-weight: 550;
+        max-width: 300px !important;
+    }
+
+    .motion-card__sticker--top {
+        right: -50% !important;
+    }
+
+    .motion-card__underline-svg {
+        max-width: 200px !important;
+    }
+
+    .motion-card__cards{
+        scale: 1.2;
+        margin-left: 15px;
+    }
+}
