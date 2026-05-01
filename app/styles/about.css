@@ -252,8 +252,96 @@
   padding: 20px 0px;
 }
 
-@media (max-width: 756px) {
+@media (max-width: 1024px) {
+  .journey {
+    padding: 80px 40px;
+  }
+
+  .conv-grid {
+    gap: 40px;
+  }
+
+  .vision {
+    padding: 80px 40px;
+  }
+
+  .vision-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 140px 24px 40px;
+    gap: 20px;
+  }
+
+  .hero-h1 {
+    font-size: clamp(32px, 8vw, 50px);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+  }
+
+  .about {
+    padding: 30px 20px 80px;
+  }
+
+  .about-side {
+    padding: 20px;
+  }
+
+  .side-label {
+    font-size: 28px;
+    margin-left: 0;
+  }
+
+  .about-content {
+    padding: 0 20px 20px;
+  }
+
+  .body-label {
+    font-size: 20px;
+  }
+
+  .body-text {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .journey {
+    padding: 60px 20px;
+  }
+
+  .journey-heading {
+    font-size: 28px;
+    margin-left: 0;
+    margin-bottom: 30px;
+  }
+
+  .vision {
+    padding: 60px 20px;
+  }
+
+  .vision-heading {
+    font-size: 28px;
+    margin-left: 0;
+    margin-bottom: 40px;
+  }
+
   .vision-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .hero-h1 {
+    font-size: 28px;
+  }
+
+  .conv-card {
+    padding: 20px;
   }
 }
