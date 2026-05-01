@@ -62,7 +62,6 @@
 
     .cards-wrapper {
         grid-template-columns: 1fr;
-        gap: 2px;
     }
 
     .title-container {
