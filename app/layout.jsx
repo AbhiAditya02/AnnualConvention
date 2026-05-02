@@ -79,8 +79,8 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <head>
-                <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
-                <link rel="dns-prefetch" href="https://d8j0ntlcm91z4.cloudfront.net" />
+                <link rel="preconnect" href="https://res.cloudinary.com" />
+                <link rel="dns-prefetch" href="https://res.cloudinary.com" />
                 <meta name="theme-color" content="#0a0a0a" />
                 <meta name="google-site-verification" content="MckHw7q30JqKxC7vzeZxHfVvk2LxxZIaleuv8cIIg6Y" />
                 <script

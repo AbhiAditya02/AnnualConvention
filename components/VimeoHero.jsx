@@ -164,11 +164,12 @@ export default function VimeoHero() {
             >
                 <video
                     ref={videoRef}
-                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260302_085844_21a8f4b3-dea5-4ede-be16-d53f6973bb14.mp4"
+                    src="https://res.cloudinary.com/dwykuhn2s/video/upload/q_auto,f_auto,w_1280,ac_none/0502_1_hhtzur.mp4"
                     autoPlay
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                     className="vimeo-hero__iframe"
                     style={{ objectFit: 'cover', backgroundColor: '#111' }}
                 />
