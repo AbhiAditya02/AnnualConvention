@@ -5,7 +5,7 @@ const SITE_URL = 'https://ac.istehitsc.com';
 export const metadata = {
     metadataBase: new URL(SITE_URL),
     title: {
-        default: 'Annual Convention 3.0 — ISTE HIT Students\' Chapter',
+        default: 'Annual Convention 3.0',
         template: '%s | ISTE HIT SC',
     },
     description: 'ISTE HIT Students\' Chapter — Building a dynamic technical community empowering students with knowledge, skills, and industry exposure. Join Annual Convention 3.0 at Haldia Institute of Technology.',
@@ -13,18 +13,18 @@ export const metadata = {
     authors: [{ name: 'ISTE HIT Students\' Chapter' }],
     creator: 'ISTE HIT Students\' Chapter',
     icons: {
-        icon: '/assets/favicon.png',
+        icon: '/assets/Navbar SVG/Iste.webp',
     },
     openGraph: {
         type: 'website',
         locale: 'en_IN',
         url: SITE_URL,
         siteName: 'ISTE HIT Students\' Chapter',
-        title: 'Annual Convention 3.0 — ISTE HIT SC',
+        title: 'Annual Convention 3.0',
         description: 'Building a dynamic technical community empowering students with knowledge, skills, and industry exposure.',
         images: [
             {
-                url: '/assets/Iste.png',
+                url: '/assets/Navbar SVG/Iste.webp',
                 width: 1200,
                 height: 630,
                 alt: 'ISTE HIT Students\' Chapter — Annual Convention 3.0',
@@ -33,9 +33,9 @@ export const metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Annual Convention 3.0 — ISTE HIT SC',
+        title: 'Annual Convention 3.0',
         description: 'Building a dynamic technical community empowering students with knowledge, skills, and industry exposure.',
-        images: ['/assets/Iste.png'],
+        images: ['/assets/Navbar SVG/Iste.webp'],
     },
     robots: {
         index: true,
@@ -59,7 +59,7 @@ export default function RootLayout({ children }) {
         '@type': 'Organization',
         name: 'ISTE HIT Students\' Chapter',
         url: SITE_URL,
-        logo: `${SITE_URL}/assets/Iste.png`,
+        logo: `${SITE_URL}/assets/Navbar SVG/Iste.webp`,
         description: 'Building a dynamic technical community empowering students with knowledge, skills, and industry exposure at Haldia Institute of Technology.',
         foundingDate: '2023',
         address: {
