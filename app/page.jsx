@@ -34,9 +34,9 @@ export default function Home() {
                     <ServiceCards />
                 </div>
             </main>
-            <section className="Double-marquee">
+            {/* <section className="Double-marquee">
                 <DoubleMarquee />
-            </section>
+            </section> */}
             <footer className="main-footer">
                 <Footer />
             </footer>
