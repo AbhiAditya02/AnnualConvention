@@ -164,7 +164,7 @@ export default function VimeoHero() {
             >
                 <video
                     ref={videoRef}
-                    src="https://res.cloudinary.com/dwykuhn2s/video/upload/q_auto,f_auto,w_1280,ac_none/0502_1_hhtzur.mp4"
+                    src="https://res.cloudinary.com/dwykuhn2s/video/upload/q_auto,f_auto,ac_none/0502_1_hhtzur.mp4"
                     autoPlay
                     loop
                     muted
