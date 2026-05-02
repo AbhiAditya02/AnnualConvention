@@ -199,7 +199,7 @@ export default function Navbar() {
                     <div className="nav-left" style={{ cursor: CURSOR_POINTER }}>
                         <div className="nav-hover-trigger">
                             <div className="logo-container">
-                                <img src="/assets/Iste.png" width="60" height="60" className="nav-bar_Iste-logo" alt="" aria-hidden="true" />
+                                <img src="/assets/Navbar SVG/Iste.webp" width="60" height="60" className="nav-bar_Iste-logo" alt="" aria-hidden="true" />
                             </div>
 
                             {/* Pop-out Box — Navigation Links */}
