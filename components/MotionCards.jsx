@@ -88,7 +88,7 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--1">
                         <div className="motion-card__card-image">
                             <img
-                                src="/assets/MotionCard SVG/ideathon_web.jpeg"
+                                src="/assets/MotionCard SVG/ideathon_web.webp"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -102,13 +102,13 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--2">
                         <div className="motion-card__card-image">
                             <img
-                                src="/assets/MotionCard SVG/convention1_web.jpeg"
+                                src="/assets/MotionCard SVG/convention1_web.webp"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
                                 alt="Students in auditorium"
                                 className="cover-image"
-                                style={{ objectFit: 'cover' }}
+                                style={{ objectFit: 'cover' ,scale: '1.7'}}
                             />
                         </div>
                     </div>
@@ -116,7 +116,7 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--3">
                         <div className="motion-card__card-image">
                             <img
-                                src="/assets/MotionCard SVG/convention2_web.jpeg"
+                                src="/assets/MotionCard SVG/convention2_web.webp"
                                 loading="lazy"
                                 width={1000}
                                 height={1000}
@@ -130,10 +130,10 @@ export default function MotionCards() {
                     <div className="motion-card__card motion-card__card--4">
                         <div className="motion-card__card-image">
                             <img
-                                src="/assets/MotionCard SVG/convention3_web.jpeg"
+                                src="/assets/MotionCard SVG/convention3_web.webp"
                                 loading="lazy"
                                 width={1000}
-                                height={1000}
+                                height= 'auto'
                                 alt="Chief Guest"
                                 className="cover-image"
                                 style={{ objectFit: 'cover' }}

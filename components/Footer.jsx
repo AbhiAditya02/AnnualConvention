@@ -36,8 +36,8 @@ export default function Footer() {
     return (
         <div className="footer-inner">
             <div className='footer-logo-box'>
-                <img src="../assets/iste.png" alt="" className='footer-logo'/>
-                <img src="../assets/Footer-Sticker SVG/footer-sticker-iste-logo.svg" alt="ISTE HIT SC" className='footer-wordmark'/>
+                <img src="/assets/Navbar SVG/Iste.webp" alt="ISTE LOGO" width="60" height="60" className='footer-logo'/>
+                <img src="../assets/Footer-Sticker SVG/footer-sticker-iste-logo.svg" alt="ISTE HIT SC" width="60" height="20" className='footer-wordmark'/>
             </div>
             <div className="footer-top">
                 {/* Office */}
