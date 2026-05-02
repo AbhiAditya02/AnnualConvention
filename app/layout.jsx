@@ -82,6 +82,7 @@ export default function RootLayout({ children }) {
                 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
                 <link rel="dns-prefetch" href="https://d8j0ntlcm91z4.cloudfront.net" />
                 <meta name="theme-color" content="#0a0a0a" />
+                <meta name="google-site-verification" content="MckHw7q30JqKxC7vzeZxHfVvk2LxxZIaleuv8cIIg6Y" />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
