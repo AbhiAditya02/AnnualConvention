@@ -10,6 +10,12 @@ A Next.js 15 + React 19 application built for the ISTE HIT SC Annual Convention.
 
 ---
 
+## 🌐 Live Site
+
+[ac.istehitsc.com](https://ac.istehitsc.com)
+
+---
+
 ## Key Features
 
 ### Animations & Interactions
@@ -175,6 +181,6 @@ annual-convention/
 
 ## Built By
 
-**Abhi Aditya**, **Nayab Gauhar** & **Somya Keshri**
+[**Nayab Gauhar**](https://github.com/Nayab-Gauhar), [**Abhi Aditya**](https://github.com/AbhiAditya02) & [**Somya Keshri**](https://github.com/Somya-keshri)
 
 Made for ISTE Student Chapter, Haldia Institute of Technology, Haldia.
