@@ -110,7 +110,7 @@ export default function Showreel() {
                         </div>
                         <div className="sr-venue">
                             <strong>Venue</strong>
-                            <p>HIT, Haldia<br />West Bengal</p>
+                            <p>ICARE Complex,<br />Hatiberia, Haldia</p>
                         </div>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqER0V6yyJRKL1NMeF2pRQILv9d63zhiJ9Nfm9wqM7ROwATw/viewform" className="sr-reg">Register →</a>
                     </div>
@@ -136,7 +136,7 @@ export default function Showreel() {
                         </div>
                         <div className="sr-venue">
                             <strong>Venue</strong>
-                            <p>HIT, Haldia<br />West Bengal</p>
+                            <p>Radha Binod Pal Seminar Hall,<br />HIT, ICARE Complex, Haldia</p>
                         </div>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhoVhFIEbH41zrbEwhtgaKSBswWQNVhfMg9wo_YLKX0SS5QA/alreadyresponded" className="sr-reg">Register →</a>
                     </div>
