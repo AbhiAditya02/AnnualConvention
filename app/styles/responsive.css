@@ -437,40 +437,69 @@
         width: 70px;
     }
 
-    /* Logo columns → 2-row horizontal scroll grid */
+    /* Logo columns → 2-row horizontal animated marquee */
     .marquee-right {
-        display: grid;
-        grid-template-rows: 130px 130px;
-        grid-auto-flow: column;
-        grid-auto-columns: 130px;
+        display: flex;
+        flex-direction: column;
         gap: 8px;
         width: 100%;
         height: auto;
         margin-right: 0;
-        padding: 20px 24px 32px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-
-    .marquee-right::-webkit-scrollbar {
-        display: none;
+        padding: 20px 0 32px;
+        overflow: hidden;
     }
 
     .marquee-column {
-        display: contents;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
     }
 
+    /* Swap top/bottom fades → left/right fades */
     .marquee-column::before,
     .marquee-column::after {
-        display: none;
+        display: block;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 60px;
     }
 
-    .marquee-column:nth-child(1) .marquee-track,
+    .marquee-column::before {
+        left: 0;
+        right: auto;
+        background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%);
+    }
+
+    .marquee-column::after {
+        right: 0;
+        left: auto;
+        background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%);
+    }
+
+    /* Horizontal track layout */
+    .marquee-track {
+        flex-direction: row;
+        width: max-content;
+    }
+
+    .marquee-column:nth-child(1) .marquee-track {
+        animation: marqueeLeft 22s linear infinite;
+    }
+
     .marquee-column:nth-child(2) .marquee-track {
-        display: contents;
-        animation: none;
+        animation: marqueeRight 22s linear infinite;
+    }
+
+    @keyframes marqueeLeft {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    @keyframes marqueeRight {
+        0%   { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
     }
 
     .marquee-item {
