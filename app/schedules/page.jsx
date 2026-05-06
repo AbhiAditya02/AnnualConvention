@@ -14,9 +14,9 @@ const SCHEDULE = {
         heading: 'Hack The Hackers',
         events: [
             { title: 'Inaugural Address & Keynote', desc: 'Opening remarks by the Chief Guest followed by a keynote on the event.', tag: 'Keynote', color: 'blue' },
-            { title: 'CTF Round 1 — Elimination Round', desc: 'Initial screening round where participating teams compete to qualify for the final CTF stage.', tag: 'Competition', color: 'black' },
-            { title: 'Lunch Break', desc: 'Break for networking, and informal interaction among participants.', tag: 'Break', color: 'green' },
-            { title: 'CTF Round 2 — Final Challenge', desc: 'Final Capture The Flag round featuring advanced cybersecurity challenges for shortlisted teams.', tag: 'CTF Finals', color: 'maroon' },
+            { title: 'CTF Round 1 — Elimination Round', desc: 'Individual participants compete in the preliminary Capture The Flag round to qualify for the finals.', tag: 'Competition', color: 'black' },
+            { title: 'Break', desc: 'Break for networking and informal interaction among participants.', tag: 'Break', color: 'green' },
+            { title: 'CTF Round 2 — Final Challenge', desc: 'Final individual Capture The Flag round featuring advanced cybersecurity challenges for shortlisted participants.', tag: 'CTF Finals', color: 'maroon' },
             { title: 'Winner Announcement & Prize Distribution', desc: 'Announcement of winners followed by prize and certificate distribution.', tag: 'Closing', color: 'pink' },
         ]
     },
@@ -27,14 +27,14 @@ const SCHEDULE = {
             { title: 'Welcome / Opening Speech', desc: 'Formal inauguration of the convention with an opening address by the organizing committee.', tag: 'Opening', color: 'green' },
             { title: 'Ceremonial Lamp Lighting', desc: 'Traditional lamp lighting ceremony with guests, faculty members, and industry leaders.', tag: 'Ceremony', color: 'maroon' },
             { title: 'National Anthem', desc: 'Commencement of the convention with the national anthem.', tag: 'Patriotic', color: 'blue' },
-            { title: 'Convention Website Showcase', desc: 'Presentation and live showcase of the official convention website and its features.', tag: 'Showcase', color: 'blue' },
+            { title: 'Convention Website Showcase', desc: 'Presentation and live showcase of the official convention website.', tag: 'Showcase', color: 'blue' },
             { title: 'Welcome Dance', desc: 'Cultural dance performance to welcome guests and participants.', tag: 'Culture', color: 'pink' },
             { title: 'ISTE Journey Video', desc: 'A visual presentation highlighting the journey, milestones, and achievements of ISTE.', tag: 'Presentation', color: 'blue' },
-            { title: 'Guest Speeches', desc: 'Addresses and keynote speeches by invited dignitaries, faculty, and industry guests.', tag: 'Speakers', color: 'blue' },
+            { title: 'Guest Speeches', desc: 'Addresses and keynote speeches by invited dignitaries, and industry guests.', tag: 'Speakers', color: 'blue' },
             { title: 'Quiz Competition', desc: 'Interactive quiz session engaging participants in technical and general knowledge rounds.', tag: 'Activity', color: 'green' },
             { title: 'Group Song', desc: 'Musical group performance by students as part of the cultural segment.', tag: 'Culture', color: 'maroon' },
             { title: 'Felicitation of 4th Year Students', desc: 'Recognition and presentation of mementos to outgoing 4th year students.', tag: 'Felicitation', color: 'pink' },
-            { title: 'Vote of Thanks', desc: 'Formal closing address expressing gratitude to guests, participants, and organizers.', tag: 'Closing', color: 'green' }
+            { title: 'Vote of Thanks', desc: 'Formal closing address expressing gratitude to guests.', tag: 'Closing', color: 'green' }
         ]
     }
 };
