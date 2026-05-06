@@ -10,21 +10,33 @@ import '../styles/schedules.css';
 
 /* ─── Schedule Data ────────────────────────────────────────────────────── */
 const SCHEDULE = {
-    'Day 1 — 07 May': [
-        { time: '10:00 AM', title: 'Hack the Hackers — CTF Kickoff', desc: 'National-level Capture The Flag competition begins. Teams report to labs.', tag: 'Hackathon', color: '' },
-        { time: '10:00 AM', title: 'Inaugural Address & Keynote', desc: 'Opening remarks by the Chief Guest followed by a keynote on the event.', tag: 'Keynote', color: 'blue' },
-        { time: '01:00 PM', title: 'Lunch Break', desc: 'Networking lunch with speakers and attendees.', tag: 'Break', color: 'green' },
-        { time: '04:00 PM', title: 'Valedictory & Prize Distribution', desc: 'Closing ceremony, winner announcements, and certificate distribution.', tag: 'Closing', color: 'maroon' },
-        { time: '05:00 PM', title: 'Vote of Thanks', desc: 'Formal closing by Prof. Priyatosh Jana and the ISTE HIT SC team.', tag: 'Closing', color: 'pink' },
-    ],
-    'Day 2 — 08 May': [
-        { time: '09:00 AM', title: 'Registration', desc: 'On-spot registration and ID distribution.', tag: 'Opening', color: 'green' },
-        { time: '10:00 AM', title: 'Ceremonial Lamp Lighting', desc: 'Traditional inauguration with faculty, chief guests, and student representatives.', tag: 'Ceremony', color: '' },
-        { time: '10:00 AM', title: 'Guest Speaker Session', desc: 'Industry professionals from MN Dastur, IIFON, Google, and SecureT360 share insights.', tag: 'Speakers', color: 'blue' },
-        { time: '01:00 PM', title: 'Lunch & Networking', desc: 'Connect with speakers, mentors, and fellow participants.', tag: 'Break', color: 'green' },
-        { time: '03:00 PM', title: 'Cultural Evening', desc: 'Singing, dancing, recitation, speeches, and one-act plays by students.', tag: 'Culture', color: 'maroon' },
-        { time: '05:00 PM', title: 'Vote of Thanks', desc: 'Formal closing by Prof. Priyatosh Jana and the ISTE HIT SC team.', tag: 'Closing', color: 'pink' },
-    ],
+    'Day 1 — 07 May': {
+        heading: 'Hack The Hackers',
+        events: [
+            { title: 'Inaugural Address & Keynote', desc: 'Opening remarks by the Chief Guest followed by a keynote on the event.', tag: 'Keynote', color: 'blue' },
+            { title: 'CTF Round 1 — Elimination Round', desc: 'Initial screening round where participating teams compete to qualify for the final CTF stage.', tag: 'Competition', color: 'black' },
+            { title: 'Lunch Break', desc: 'Break for networking, and informal interaction among participants.', tag: 'Break', color: 'green' },
+            { title: 'CTF Round 2 — Final Challenge', desc: 'Final Capture The Flag round featuring advanced cybersecurity challenges for shortlisted teams.', tag: 'CTF Finals', color: 'maroon' },
+            { title: 'Winner Announcement & Prize Distribution', desc: 'Announcement of winners followed by prize and certificate distribution.', tag: 'Closing', color: 'pink' },
+        ]
+    },
+
+    'Day 2 — 08 May': {
+        heading: 'Annual Convention 3.0',
+        events: [
+            { title: 'Welcome / Opening Speech', desc: 'Formal inauguration of the convention with an opening address by the organizing committee.', tag: 'Opening', color: 'green' },
+            { title: 'Ceremonial Lamp Lighting', desc: 'Traditional lamp lighting ceremony with guests, faculty members, and industry leaders.', tag: 'Ceremony', color: 'maroon' },
+            { title: 'National Anthem', desc: 'Commencement of the convention with the national anthem.', tag: 'Patriotic', color: 'blue' },
+            { title: 'Convention Website Showcase', desc: 'Presentation and live showcase of the official convention website and its features.', tag: 'Showcase', color: 'blue' },
+            { title: 'Welcome Dance', desc: 'Cultural dance performance to welcome guests and participants.', tag: 'Culture', color: 'pink' },
+            { title: 'ISTE Journey Video', desc: 'A visual presentation highlighting the journey, milestones, and achievements of ISTE.', tag: 'Presentation', color: 'blue' },
+            { title: 'Guest Speeches', desc: 'Addresses and keynote speeches by invited dignitaries, faculty, and industry guests.', tag: 'Speakers', color: 'blue' },
+            { title: 'Quiz Competition', desc: 'Interactive quiz session engaging participants in technical and general knowledge rounds.', tag: 'Activity', color: 'green' },
+            { title: 'Group Song', desc: 'Musical group performance by students as part of the cultural segment.', tag: 'Culture', color: 'maroon' },
+            { title: 'Felicitation of 4th Year Students', desc: 'Recognition and presentation of mementos to outgoing 4th year students.', tag: 'Felicitation', color: 'pink' },
+            { title: 'Vote of Thanks', desc: 'Formal closing address expressing gratitude to guests, participants, and organizers.', tag: 'Closing', color: 'green' }
+        ]
+    }
 };
 
 const DAY_KEYS = Object.keys(SCHEDULE);
@@ -37,7 +49,7 @@ export default function SchedulesPage() {
         <>
             <SvgSymbols />
             <SmoothScroll />
-            <CursorBubble /> 
+            <CursorBubble />
 
             {/* ═══ Hero — matches showreel section dark style ═══ */}
             <header className="sched-hero main-header">
@@ -67,11 +79,13 @@ export default function SchedulesPage() {
 
                 {/* ═══ Timeline ═══ */}
                 <section className="sched-timeline">
+                    <h2 className="sched-day-heading">
+                        {SCHEDULE[DAY_KEYS[activeDay]].heading}
+                    </h2>
                     <div className="sched-timeline__inner">
-                        {SCHEDULE[DAY_KEYS[activeDay]].map((event, i) => (
+                        {SCHEDULE[DAY_KEYS[activeDay]].events.map((event, i) => (
                             <div key={i} className={`sched-event ${event.color ? `sched-event--${event.color}` : ''}`}>
                                 <div className="sched-event__dot" />
-                                <span className="sched-event__time">{event.time}</span>
                                 <div className="sched-event__card">
                                     <h3 className="sched-event__title">{event.title}</h3>
                                     <p className="sched-event__desc">{event.desc}</p>
